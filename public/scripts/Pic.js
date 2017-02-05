@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('AddPicCtrl', function($scope, $http) {
+.controller('AddPicCtrl', function($scope, $http, $rootScope) {
   $scope.pic = {};
   $scope.file = {};
   $scope.pictures = [];
@@ -13,6 +13,7 @@ angular.module('testApp')
      var fd = new FormData();
      fd.append('file', $scope.file);
      fd.append('name', $scope.pic.name);
+     fd.append('owner',  $rootScope.getUser)
      $http.post('api/pictures/upload', fd, {
      transformRequest: angular.identity,
      headers: {'Content-Type': undefined}

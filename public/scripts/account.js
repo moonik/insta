@@ -2,7 +2,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $scope.userForm = {};
     $rootScope.user = {};
 
-    $scope.getUser = function () {
+    $rootScope.getUser = function () {
         $http.get('api/users/me').then(function (response) {
             $rootScope.user = response.data;
             $rootScope.isSignedIn = true;

@@ -30,8 +30,8 @@ public class PictureController {
     }
 
     @PostMapping("upload")
-    public Picture upload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
-        Picture picture = pictureService.upload(new PictureDTO(name), file);
+    public Picture upload(@RequestParam("name") String name, @RequestParam("owner") String owner, @RequestParam("file") MultipartFile file) {
+        Picture picture = pictureService.upload(new PictureDTO(name, owner), file);
         return picture;
     }
 

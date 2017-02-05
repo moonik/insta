@@ -1,9 +1,11 @@
 package insta.project.storage;
 
+import insta.project.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import insta.project.TestUtils;
 
 /**
  * Created by Роман on 27.01.2017.
@@ -28,7 +30,10 @@ public class PictureService {
             return null;
         }
         token = token + TestUtils.getMultipartFileExtension(file);
-        Picture picture = new Picture(pictureDTO.getName(), token);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+        Picture picture = new Picture(pictureDTO.getName(), owner, token);
         storageService.store(file, token);
         return pictureRepository.save(picture);
     }

@@ -6,13 +6,23 @@ package insta.project.storage;
 public class PictureDTO {
 
     private String name;
+    private String owner;
 
     public  PictureDTO(){}
 
 
-    public PictureDTO(String name){
+    public PictureDTO(String name, String owner){
         this.name = name;
+        this.owner = owner;
 
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getName() {

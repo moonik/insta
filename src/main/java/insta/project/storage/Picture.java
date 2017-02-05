@@ -17,16 +17,25 @@ public class Picture {
 
     private String name;
     private String token;
+    private String owner;
 
     public  Picture(){
 
     }
 
-    public Picture(String name, String token) {
+    public Picture(String name, String owner, String token) {
         this.name = name;
+        this.owner = owner;
         this.token = token;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     public Long getId() {
         return id;
