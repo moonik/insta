@@ -26,14 +26,19 @@ angular.module('testApp')
      });
    };
 
-    $scope.addComment = function() {
-        $http.post('api/account/saveComment', $scope.comment).then(function(response){
-                         alert("Comment sent :)");
-                     });
-                      $scope.comment = {};
-                      };
+//    $scope.addComment = function() {
+//        $http.post('api/account/saveComment', $scope.comment).then(function(response){
+//                         alert("Comment sent :)");
+//                     });
+//                      $scope.comment = {};
+//                      };
 
-
+    $scope.delete = function(pic){
+        $http.delete('api/pictures/delete/' + pic.id, $scope.pic).then(function(response){
+       var index = $scope.pictures.indexOf(pic);
+       $scope.pictures.splice(index, 1);
+        })
+   };
 
 
 

@@ -34,4 +34,10 @@ public class PictureController {
         Picture picture = pictureService.upload(new PictureDTO(name), file);
         return picture;
     }
+
+    @DeleteMapping("delete/{id}")
+    public void delete(@PathVariable("id") Long id)
+    {
+        pictureRepository.delete(id);
+    }
 }
