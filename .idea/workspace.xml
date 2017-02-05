@@ -2,75 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8a9b97d-3194-424e-b657-6ba06d523fc7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/Application.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/Comment/Comment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/Comment/CommentDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/Comment/CommentRepo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/TestUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/SecurityConfiguration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/StatelessAuthenticationFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/StatelessLoginFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/TokenAuthenticationService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/TokenHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/UserAuthentication.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/service/SecurityContextService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/security/service/SecurityContextServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/FileController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/FileSystemStorageService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/Picture.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/PictureController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/PictureDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/PictureRepository.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/PictureService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/StorageException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/StorageFileNotFoundException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/StorageProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/storage/StorageService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/controller/UserController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/controller/UserController$UserNotFoundException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/controller/UserController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/domain/UserAccount.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/model/UserDTO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/model/UserParams.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/repository/UserRepository.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/service/UserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/tutorial/Test/user/service/UserServiceImpl.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/scripts/account.js" afterPath="$PROJECT_DIR$/public/scripts/account.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/Application.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/Application.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/Comment/Comment.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/Comment/Comment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/Comment/CommentDTO.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/Comment/CommentDTO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/Comment/CommentRepo.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/Comment/CommentRepo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/TestUtils.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/TestUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/SecurityConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/SecurityConfiguration.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/StatelessAuthenticationFilter.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/StatelessAuthenticationFilter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/StatelessLoginFilter.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/StatelessLoginFilter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/TokenAuthenticationService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/TokenAuthenticationService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/TokenHandler.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/TokenHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/UserAuthentication.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/UserAuthentication.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/service/SecurityContextService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/service/SecurityContextService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/security/service/SecurityContextServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/security/service/SecurityContextServiceImpl.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/FileController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/FileSystemStorageService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/FileSystemStorageService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/Picture.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/Picture.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/PictureController.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/PictureController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/PictureDTO.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/PictureDTO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/PictureRepository.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/PictureRepository.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/PictureService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/PictureService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/StorageException.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/StorageException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/StorageFileNotFoundException.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/StorageFileNotFoundException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/StorageProperties.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/StorageProperties.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/storage/StorageService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/storage/StorageService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/controller/UserController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/domain/UserAccount.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/domain/UserAccount.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/model/UserDTO.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/model/UserDTO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/model/UserParams.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/model/UserParams.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/repository/UserRepository.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/repository/UserRepository.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/service/UserService.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/tutorial/Test/user/service/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/insta/project/user/service/UserServiceImpl.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/upload-dir/14862885767979_H7oftEbFk.jpg.jpg" afterPath="" />
     </list>
     <ignored path="basic-web-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -964,7 +896,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
