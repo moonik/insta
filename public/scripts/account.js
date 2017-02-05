@@ -1,4 +1,4 @@
-angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $http, /*$window*/ $location) {
+angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $http, $window) {
     $scope.userForm = {};
     $rootScope.user = {};
 
@@ -23,8 +23,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
             localStorage.setItem('jwt', response.headers()['x-auth-token']);
             $scope.getUser();
             console.log('signed in');
-            $location.path('#/gallery');
-            //$window.location.href = "#/gallery"
+            $window.location.href = "#/gallery"
         })
          $scope.userForm = {};
     };
