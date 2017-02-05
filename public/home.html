@@ -1,0 +1,10 @@
+
+<br>
+<script src="assets/jquery-1.11.3-jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<br />
+
+<div id="imagelist" ng-repeat="pics in pictures">
+    <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}"></p>
+</div>

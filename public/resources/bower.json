@@ -1,0 +1,12 @@
+{
+  "name": "Test Project",
+  "description": "test",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+, "dependencies": {
+    "angular": "~1.5.8",
+    "bootstrap": "~3.3.7",
+    "angular-route": "~1.5.8"
+  }}
