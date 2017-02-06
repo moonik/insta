@@ -15,7 +15,7 @@ $routeProvider.when('/registration', {
     .when('/gallery',{
 
         templateUrl: 'Gallery.html',
-        controller: 'AddPicCtrl'
+        controller: 'myGallery'
         })
 
           .when('/home',{

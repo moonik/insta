@@ -38,6 +38,11 @@ public class PictureService {
         return pictureRepository.save(picture);
     }
 
+//    public List<Picture> findPicture(String name)
+//    {
+//        return pictureRepo.findPictureByOwner(name);
+//    }
+
 }
 
 
