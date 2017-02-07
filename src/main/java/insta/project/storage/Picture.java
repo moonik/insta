@@ -18,6 +18,7 @@ public class Picture {
     private String name;
     private String token;
     private String owner;
+    private String comment;
 
     public  Picture(){
 

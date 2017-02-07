@@ -4,7 +4,11 @@
 <script src="assets/js/bootstrap.min.js"></script>
 
 <br />
-
-<div id="imagelist" ng-repeat="pics in pictures">
+<form>
+    <div id="imagelist" ng-repeat="pics in pictures">
     <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}"></p>
-</div>
+    <br/>
+        <input name="comment" type="text" class="ed" id="brnu" ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
+        <button type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit" ng-click="addComment(pics.id)"/>
+        </div>
+</form>

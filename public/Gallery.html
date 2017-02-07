@@ -6,13 +6,7 @@
 <br />
 
 <div id="imagelist" ng-repeat="pics in pictures">
-    <form ng-submit="addComment()">
     <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}"></p>
     <br/>
-
-        <input name="comment" type="text" class="ed" id="brnu" ng-model="comment.content"/>
-        <br />
-        <input type="submit" name="Submit" value="Send" id="Submit" ng-click="addComment()" />
         <button type="submit" id="delete" name="delete" class="glyphicon glyphicon-remove" ng-click="delete(pics)"></button>
-    </form>
     </div>

@@ -1,5 +1,8 @@
 package insta.project.storage;
 
+import insta.project.Comment.Comment;
+import insta.project.Comment.CommentDTO;
+import insta.project.Comment.CommentRepo;
 import insta.project.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +21,9 @@ public class PictureService {
 
     @Autowired
     private PictureRepository pictureRepository;
+
+    @Autowired
+    private CommentRepo commentRepo;
 
     public Picture upload(PictureDTO pictureDTO, MultipartFile file)
     {
@@ -42,6 +48,12 @@ public class PictureService {
 //    {
 //        return pictureRepo.findPictureByOwner(name);
 //    }
+
+    public Comment create(CommentDTO commentDTO)
+    {
+        Comment comment = new Comment(commentDTO.getContent());
+        return commentRepo.save(comment);
+    }
 
 }
 

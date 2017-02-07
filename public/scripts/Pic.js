@@ -27,12 +27,12 @@ angular.module('testApp')
      });
    };
 
-//    $scope.addComment = function() {
-//        $http.post('api/account/saveComment', $scope.comment).then(function(response){
-//                         alert("Comment sent :)");
-//                     });
-//                      $scope.comment = {};
-//                      };
+    $scope.addComment = function(id) {
+        $http.post('api/pictures/comment', $scope.comment[id]).then(function(response){
+                         alert("Comment sent :)");
+                     });
+                      $scope.comment = {};
+                      };
 
     $scope.delete = function(pic){
         $http.delete('api/pictures/delete/' + pic.id, $scope.pic).then(function(response){
