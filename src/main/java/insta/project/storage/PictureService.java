@@ -25,6 +25,8 @@ public class PictureService {
     @Autowired
     private CommentRepo commentRepo;
 
+    private Picture picture;
+
     public Picture upload(PictureDTO pictureDTO, MultipartFile file)
     {
         if(file == null){
@@ -51,7 +53,9 @@ public class PictureService {
 
     public Comment create(CommentDTO commentDTO)
     {
-        Comment comment = new Comment(commentDTO.getContent());
+
+        Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id());
+
         return commentRepo.save(comment);
     }
 

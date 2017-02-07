@@ -31,7 +31,6 @@ public class PictureController {
     @Autowired
     private CommentRepo commentRepo;
 
-
     @GetMapping("getAll")
     public List<Picture> get(){
         return pictureRepository.findAll();
@@ -58,9 +57,12 @@ public class PictureController {
     }
 
     @PostMapping("comment")
-    public Comment save(@RequestBody Comment comment)
+    public Comment save(@RequestBody CommentDTO commentDTO)
     {
-        comment = pictureService.create(new CommentDTO(comment.getContent()));
-        return comment;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+        commentDTO.setOwner(owner);
+
+        return pictureService.create(commentDTO);
     }
 }
