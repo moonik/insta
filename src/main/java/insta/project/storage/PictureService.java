@@ -2,7 +2,7 @@ package insta.project.storage;
 
 import insta.project.Comment.Comment;
 import insta.project.Comment.CommentDTO;
-import insta.project.Comment.CommentRepo;
+import insta.project.Comment.CommentRepository;
 import insta.project.TestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,7 +23,7 @@ public class PictureService {
     private PictureRepository pictureRepository;
 
     @Autowired
-    private CommentRepo commentRepo;
+    private CommentRepository commentRepository;
 
     private Picture picture;
 
@@ -56,7 +56,7 @@ public class PictureService {
 
         Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id());
 
-        return commentRepo.save(comment);
+        return commentRepository.save(comment);
     }
 
 }

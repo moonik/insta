@@ -3,6 +3,7 @@ package insta.project.storage;
 import insta.project.Comment.Comment;
 import insta.project.Comment.CommentDTO;
 import insta.project.Comment.CommentRepo;
+import insta.project.Comment.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,9 @@ public class PictureController {
 
     @Autowired
     private PictureService pictureService;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
     private CommentRepo commentRepo;
@@ -65,4 +69,11 @@ public class PictureController {
 
         return pictureService.create(commentDTO);
     }
+
+    @GetMapping("{picture_id}")
+    public List<Comment> getComments(@PathVariable("picture_id") Long picture_id)
+    {
+        return commentRepo.findBypicture_id(picture_id);
+    }
+
 }

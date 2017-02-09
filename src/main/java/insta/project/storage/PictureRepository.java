@@ -13,4 +13,5 @@ public interface PictureRepository extends JpaRepository<Picture, Long> {
 
     List<Picture> findAllByOwner(String owner);
 
+
 }

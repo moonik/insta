@@ -1,9 +1,8 @@
 package insta.project.Comment;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-/**
- * Created by Роман on 03.02.2017.
- */
-public interface CommentRepo extends JpaRepository<Comment, Long> {
+public interface CommentRepo {
+
+    List<Comment> findBypicture_id(Long id);
 }

@@ -4,6 +4,7 @@ angular.module('testApp')
   $scope.file = {};
   $scope.pictures = [];
   $scope.comment = {};
+  $scope.comments = [];
 
   $http.get('api/pictures/getAll', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
@@ -38,6 +39,11 @@ angular.module('testApp')
                       };
 
 
+    $scope.showComments = function(id){
+    $http.get('api/pictures/' + id, $scope.comments).then(function(data) {
+     $scope.comments = data.data;
+     });
+     };
 
 
 });
