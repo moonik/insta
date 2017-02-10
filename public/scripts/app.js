@@ -1,4 +1,4 @@
-var testProject = angular.module('testApp', ['ngRoute'])
+var testProject = angular.module('testApp', ['ngRoute', 'angularModalService'])
 
 testProject.config(function($routeProvider, $httpProvider){
 
@@ -30,9 +30,58 @@ $routeProvider.when('/registration', {
                                 templateUrl: 'enter.html',
                                 controller: 'MainCtrl'
                                 });
-                                $httpProvider.interceptors.push('httpRequestInterceptor');
-})
 
+                                $httpProvider.interceptors.push('httpRequestInterceptor');
+});
+
+//testProject.run(function ($rootScope, $location, ModalService, $http) {
+//    $rootScope.me = {};
+//    $rootScope.isSignedIn = false;
+//
+//    getUser();
+//
+//    $rootScope.signUp = function () {
+//        ModalService.showModal({
+//            templateUrl: 'signUpModal.html',
+//            controller: 'SignUpModalCtrl'
+//        }).then(function (modal) {
+//            modal.element.modal();
+//            modal.close.then(function (result) {
+//                getUser();
+//            });
+//        });
+//    };
+//
+//    $rootScope.logIn = function () {
+//        ModalService.showModal({
+//            templateUrl: 'logInModal.html',
+//            controller: 'LogInModalCtrl'
+//        }).then(function (modal) {
+//            modal.element.modal();
+//            modal.close.then(function (result) {
+//                getUser();
+//            });
+//        });
+//    };
+//
+//    $rootScope.logOut = function () {
+//        $rootScope.isSignedIn = false;
+//        localStorage.removeItem('jwt');
+//    };
+//
+//    function getUser() {
+//        if (localStorage.getItem('jwt') === null) {
+//            return;
+//        }
+//        $http.get('api/users/me').then(function (response) {
+//            $rootScope.me = response.data;
+//            $rootScope.isSignedIn = true;
+//        }, function (response) {
+//            localStorage.removeItem('jwt');
+//            $rootScope.isSignedIn = false;
+//        })
+//    }
+//});
 
 testProject.factory('httpRequestInterceptor', function () {
     return {

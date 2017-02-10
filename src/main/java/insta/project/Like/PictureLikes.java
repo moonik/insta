@@ -10,16 +10,13 @@ public class PictureLikes {
     @Id
     @GeneratedValue
     private Long id;
-
-    private Integer likeCounter;
     private String owner;
     private Long picture_id;
 
     public PictureLikes() {
     }
 
-    public PictureLikes(Integer likeCounter, String owner, Long picture_id) {
-        this.likeCounter = likeCounter;
+    public PictureLikes(String owner, Long picture_id) {
         this.owner = owner;
         this.picture_id = picture_id;
     }
@@ -30,14 +27,6 @@ public class PictureLikes {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getLikeCounter() {
-        return likeCounter;
-    }
-
-    public void setLikeCounter(Integer likeCounter) {
-        this.likeCounter = likeCounter;
     }
 
     public String getOwner() {

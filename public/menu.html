@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" ng-controller="MainCtrl">
+            <ul class="nav navbar-nav">
+                <li class="active"><a ng-href="#/home">Home</a></li>
+                <li ng-show="isSignedIn"><a class="active" ng-href="#/gallery">My Gallery</a></li>
+                <li ng-show="isSignedIn"><a class="active" ng-href="#/chat">Chat</a></li>
+                <li><a id="upload" class="glyphicon glyphicon-upload" ng-href="#/pictureUpload"></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <span ng-show="!isSignedIn"><a ng-href="#/login">Sign Up</a></span>
+                <span ng-show="!isSignedIn"><a ng-href="#/login">Log In</a></span>
+                <li ng-show="isSignedIn"><a ng-href="#/login" ng-click="signOut()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
+                <!--<li class="dropdown" ng-show="isSignedIn">-->
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+                        <!--<span class="glyphicon glyphicon-user"></span>&nbsp;Hi, {{user.username}}&nbsp;<span class="caret"></span></a>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a ng-href="#/login" ng-click="signOut()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>

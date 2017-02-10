@@ -5,7 +5,6 @@ angular.module('testApp')
   $scope.pictures = [];
   $scope.comment = {};
   $scope.comments = [];
-  $scope.like = 0;
 
   $http.get('api/pictures/getAll', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
@@ -46,16 +45,13 @@ angular.module('testApp')
      });
      };
 
-     $scope.likePhoto = function(id){
-        $http.post('api/pictures/like/', {
-                 likeCounter: $scope.like,
-                 picture_id: id
-             }).then(function(response){
-                              alert("Comment sent :)");
+     $scope.likePhoto = function(pics){
+        $http.post('api/pictures/like/' + pics.id).then(function(data){
+                              pics.pictureLikes.push(data.data);
                           });
 
 
-     }
+     };
 
 
 });

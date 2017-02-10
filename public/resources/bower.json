@@ -8,5 +8,6 @@
 , "dependencies": {
     "angular": "~1.5.8",
     "bootstrap": "~3.3.7",
+    "angular-modal-service": "~0.10.1",
     "angular-route": "~1.5.8"
   }}
