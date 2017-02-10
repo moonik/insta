@@ -10,7 +10,8 @@
     <br/>
         <input name="comment" type="text" class="ed" id="brnu" ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
         <button type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit" ng-click="addComment(pics.id)"/>
-        <button type="submit" class="glyphicon glyphicon-send" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
+        <button type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
+        <button type="submit" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like" ng-click="likePhoto(pics.id)"/>
         </div>
 </form>
 

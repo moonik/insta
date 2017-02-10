@@ -4,6 +4,9 @@ import insta.project.Comment.Comment;
 import insta.project.Comment.CommentDTO;
 import insta.project.Comment.CommentRepo;
 import insta.project.Comment.CommentRepository;
+import insta.project.Like.PictureLikes;
+import insta.project.Like.PictureLikesDTO;
+import insta.project.Like.PictureLikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +37,9 @@ public class PictureController {
 
     @Autowired
     private CommentRepo commentRepo;
+
+    @Autowired
+    private PictureLikesRepository pictureLikesRepository;
 
     @GetMapping("getAll")
     public List<Picture> get(){
@@ -74,6 +80,16 @@ public class PictureController {
     public List<Comment> getComments(@PathVariable("picture_id") Long picture_id)
     {
         return commentRepo.findBypicture_id(picture_id);
+    }
+
+    @PostMapping("like")
+    public PictureLikes like(@RequestBody PictureLikesDTO pictureLikesDTO)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+        pictureLikesDTO.setOwner(owner);
+
+        return pictureService.saveLike(pictureLikesDTO);
     }
 
 }
