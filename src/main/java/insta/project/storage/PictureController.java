@@ -38,11 +38,22 @@ public class PictureController {
     private CommentRepo commentRepo;
 
     @Autowired
+    private PictureRepo pictureRepo;
+
+    @Autowired
     private PictureLikesRepository pictureLikesRepository;
 
     @GetMapping("getAll")
     public List<Picture> get(){
         return pictureRepository.findAll();
+    }
+
+    @GetMapping("home")
+    public List<Picture> getHomePage()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        return pictureRepo.findByOwner(name);
     }
 
     @PostMapping("upload")

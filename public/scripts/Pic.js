@@ -6,7 +6,7 @@ angular.module('testApp')
   $scope.comment = {};
   $scope.comments = [];
 
-  $http.get('api/pictures/getAll', $scope.pictures).then(function(data) {
+  $http.get('api/pictures/home', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 
 
