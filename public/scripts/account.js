@@ -23,7 +23,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
             localStorage.setItem('jwt', response.headers()['x-auth-token']);
             $scope.getUser();
             console.log('signed in');
-            $window.location.href = "#/gallery"
+            $window.location.href = "#/home"
         })
          $scope.userForm = {};
     };

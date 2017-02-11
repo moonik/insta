@@ -9,7 +9,7 @@
                 <li><a ng-href="#/home">Home</a></li>
                 <li ng-show="isSignedIn"><a class="active" ng-href="#/gallery">My Gallery</a></li>
                 <li ng-show="isSignedIn"><a class="active" ng-href="#/chat">Chat</a></li>
-                <li><a id="upload" class="glyphicon glyphicon-upload" ng-href="#/pictureUpload"></a></li>
+                <li ng-show="isSignedIn"><a id="upload" class="glyphicon glyphicon-upload" ng-href="#/pictureUpload"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <span ng-show="!isSignedIn"><a ng-href="#/login">Sign Up</a></span>
