@@ -13,9 +13,10 @@
         <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}} people like this photo</span><br>
         <span> Show comments</span>
         <button type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
-        <div id="commentlist" ng-repeat="commen in comments">
-        <p>{{commen.owner}} said: {{commen.content}}</p>
-    </div>
+
+</div>
+<div id="commentlist" ng-repeat="commen in comments">
+    <p>{{commen.owner}} said: {{commen.content}}</p>
 </div>
 
 </div>

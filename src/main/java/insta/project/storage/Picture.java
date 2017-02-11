@@ -31,7 +31,7 @@ public class Picture {
 
     }
 
-    public Picture(String name, String token, String owner) {
+    public Picture(String name, String owner, String token) {
         this.name = name;
         this.token = token;
         this.owner = owner;

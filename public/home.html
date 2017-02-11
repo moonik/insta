@@ -12,11 +12,11 @@
         <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit" ng-click="addComment(pics.id)"/>
         <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
         <button type="submit" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like" ng-click="likePhoto(pics)"/>
-        <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span>
-        <div id="commentlist" ng-repeat="commen in comments">
-            <p>{{commen.owner}} said: {{commen.content}}</p>
+       <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span> <span ng-show="!isSignedIn">people like this photo</span>
         </div>
-        </div>
+    <div id="commentlist" ng-repeat="commen in comments">
+        <p>{{commen.owner}} said: {{commen.content}}</p>
+    </div>
 </form>
 
 
