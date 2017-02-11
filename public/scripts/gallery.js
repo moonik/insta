@@ -13,4 +13,10 @@ angular.module('testApp')
                                  })
                             };
 
+                                $scope.showComments = function(id){
+                                $http.get('api/pictures/' + id, $scope.comments).then(function(data) {
+                                 $scope.comments = data.data;
+                                 });
+                                 };
+
     });
