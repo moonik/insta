@@ -5,6 +5,8 @@ package insta.project.storage;
  */
 
 import insta.project.Like.PictureLikes;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Picture {
     private String comment;
 
     @OneToMany(mappedBy = "picture_id")
+    @Cascade(CascadeType.DELETE)
     private List<PictureLikes> pictureLikes;
 
     public  Picture(){

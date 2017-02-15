@@ -60,3 +60,9 @@ margin-left: 5px;
 img{
 height: 225px;
 }
+#uploadBackGround{
+    background-color: #B0A591;
+    height: 100%;
+    weight: 100%;
+
+}

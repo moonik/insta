@@ -5,12 +5,14 @@ angular.module('testApp')
   $scope.pictures = [];
   $scope.comment = {};
   $scope.comments = [];
+  $scope.isUploadComplete = false;
 
   $http.get('api/pictures/home', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 
 
    $scope.upload = function () {
+    $scope.isUploadComplete = true;
      var fd = new FormData();
      fd.append('file', $scope.file);
      fd.append('name', $scope.pic.name);
@@ -24,8 +26,8 @@ angular.module('testApp')
 //         utterance.voice = voices[1];
 //         speechSynthesis.speak(utterance);
         $scope.pic = {};
-
-     });
+        $scope.isUploadComplete = false;
+        });
    };
 
     $scope.addComment = function(id) {

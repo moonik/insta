@@ -5,6 +5,7 @@ import insta.project.Comment.CommentDTO;
 import insta.project.Comment.CommentRepo;
 import insta.project.Comment.CommentRepository;
 import insta.project.Like.PictureLikes;
+import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -43,6 +44,9 @@ public class PictureController {
     @Autowired
     private PictureLikesRepository pictureLikesRepository;
 
+    @Autowired
+    private PictureLikesRepo pictureLikesRepo;
+
     @GetMapping("getAll")
     public List<Picture> get(){
         return pictureRepository.findAll();
@@ -65,7 +69,9 @@ public class PictureController {
     @DeleteMapping("delete/{id}")
     public void delete(@PathVariable("id") Long id)
     {
+        Picture picture = pictureRepository.findOne(id);
         pictureRepository.delete(id);
+        storageService.delete(picture.getToken());
     }
 
     @GetMapping("my")

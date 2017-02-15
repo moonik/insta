@@ -1,5 +1,5 @@
-<div id="login-form">
-    <form>
+<div id="login-form" >
+    <form ng-show="!isUploadComplete">
         <div class="col-md-12">
 
             <div class="form-group">
@@ -24,8 +24,9 @@
             <div class="form-group">
                 <hr />
             </div>
-        </div>
-
     </form>
 </div>
+<div id="uploadBackGround" class="uploadBackGround" ng-show="isUploadComplete">Uploading...</div>
+</div>
+
 
