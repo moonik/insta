@@ -4,7 +4,7 @@ testProject.config(function($routeProvider, $httpProvider){
 
 $routeProvider.when('/registration', {
     templateUrl: 'registration.html',
-    controller: 'regCtrl'
+    controller: 'MainCtrl'
 
 }).when('/pictureUpload',{
 

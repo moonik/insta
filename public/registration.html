@@ -1,63 +1,10 @@
 <div id="login-form">
-    <form>
-
-        <div class="col-md-12">
-
-            <div class="form-group">
-                <h2 class="">Sign Up.</h2>
-            </div>
-
-            <div class="form-group">
-                <hr />
-            </div>
-
-
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" ng-model="account.name"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input type="text" name="familyName" class="form-control" placeholder="Eneter your family name" maxlength="40" ng-model="account.familyName"/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlength="15" ng-model="account.password"/>
-                </div>
-                <span class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <hr />
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-block btn-primary" name="btn-signup" ng-click="save()">Sign Up</button>
-            </div>
-
-            <div class="form-group">
-                <hr />
-            </div>
-        </div>
-
+    <form class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" class="form-control" ng-model="userForm.username"><br/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" ng-model="userForm.password"><br/>
+        <input type="submit" value="Sign Up" class="btn btn-block btn-primary" name="btn-signup" ng-click="signUp()">
+        <!--<input type="submit"  value="Sign Out" ng-click="signOut()" ng-if="isSignedIn">-->
     </form>
-    <table class="table table-hover">
-        <tbody>
-        <tr ng-repeat="accounte in accounts">
-            <td class="col-md-5">{{accounte.name}}</td>
-            <td class="col-md-5">{{accounte.familyName}}</td>
-            <td class="col-md-5">{{accounte.password}}<button type="submit" id="delete" name="delete" class="glyphicon glyphicon-remove" ng-click="delete(accounte)"/>
-                <span class="glyphicon glyphicon-pencil"  ng-click="edit(accounte)"/></td>
-        </tr>
-        </tbody>
-    </table>
-    </div>
-
+</div>

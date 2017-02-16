@@ -14,7 +14,9 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 
     $scope.signUp = function () {
         $http.post('api/users', $scope.userForm).then(function (response) {
+         $window.location.href = "#/login"
             console.log('signed up');
+            alert("Registration completed, you can log in now");
         });
     };
 
