@@ -15,8 +15,19 @@ public class PictureLikesRepositoryImpl implements PictureLikesRepo {
             Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1");
             query.setParameter(1, id);
             return query.getResultList();
-
         }
+
+    @Override
+    public Boolean findByPicId(Long id, String owner) {
+        Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1 AND pl.owner=?2");
+        query.setParameter(1, id);
+        query.setParameter(2, owner);
+        List<PictureLikes> pictureLikes = query.getResultList();
+        if(pictureLikes.size() != 0){ return true;}
+        else{
+        return false;
+        }
+    }
 
 
 }

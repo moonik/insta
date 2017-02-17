@@ -8,6 +8,8 @@ import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -99,11 +101,18 @@ public class PictureController {
     }
 
     @PostMapping("like/{id}")
-    public PictureLikes like(@PathVariable("id") Long picture_id)
+    public ResponseEntity<PictureLikes> like(@PathVariable("id") Long picture_id)
     {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
 
 
-        return pictureService.saveLike(picture_id);
+        if(pictureLikesRepo.findByPicId(picture_id, owner)){
+            return new ResponseEntity<PictureLikes>(HttpStatus.CONFLICT);
+        }else{
+            return new ResponseEntity<PictureLikes>(pictureService.saveLike(picture_id), HttpStatus.OK);}
+
+
     }
 
 }

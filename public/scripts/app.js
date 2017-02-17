@@ -10,8 +10,11 @@ $routeProvider.when('/registration', {
 
     templateUrl: 'pictureUpload.html',
     controller: 'AddPicCtrl'
-    })
 
+    }).when('/intro',{
+
+        templateUrl: 'intro.html'
+        })
     .when('/gallery',{
 
         templateUrl: 'Gallery.html',
@@ -29,6 +32,8 @@ $routeProvider.when('/registration', {
 
                                 templateUrl: 'enter.html',
                                 controller: 'MainCtrl'
+                                }).otherwise({
+                                    redirectTo: '/intro'
                                 });
 
                                 $httpProvider.interceptors.push('httpRequestInterceptor');

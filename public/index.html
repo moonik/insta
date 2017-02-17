@@ -1,56 +1,66 @@
-<style type="text/css">
-<!--
-.ed{
-border-style:solid;
-border-width:thin;
-border-color:#00CCFF;
-padding:5px;
-margin-bottom: 4px;
-margin-left: 5px;
-}
-#button1{
-text-align:center;
-font-family:Arial, Helvetica, sans-serif;
-border-style:solid;
-border-width:thin;
-border-color:#00CCFF;
-padding:5px;
-background-color:#00CCFF;
-height: 34px;
-margin-left: 5px;
-}
-#imagelist{
-border: thin solid silver;
-float:left;
-padding:5px;
-width:auto;
-margin: 0 5px 0 0;
-margin-left: 5px;
-}
-p{
-margin:0;
-padding:0;
-text-align: center;
-font-style: italic;
-font-size: smaller;
-text-indent: 0;
-}
-#caption{
-margin-top: 5px;
-margin-left: 5px;
-}
-img{
-height: 225px;
-}
--->
+<!--<style type="text/css">-->
+<!--&lt;!&ndash;-->
+<!--.ed{-->
+<!--border-style:solid;-->
+<!--border-width:thin;-->
+<!--border-color:#00CCFF;-->
+<!--padding:5px;-->
+<!--margin-bottom: 4px;-->
+<!--margin-left: 5px;-->
+<!--}-->
+<!--#button1{-->
+<!--text-align:center;-->
+<!--font-family:Arial, Helvetica, sans-serif;-->
+<!--border-style:solid;-->
+<!--border-width:thin;-->
+<!--border-color:#00CCFF;-->
+<!--padding:5px;-->
+<!--background-color:#00CCFF;-->
+<!--height: 34px;-->
+<!--margin-left: 5px;-->
+<!--}-->
+<!--#imagelist{-->
+<!--border: thin solid silver;-->
+<!--float:left;-->
+<!--padding:5px;-->
+<!--width:auto;-->
+<!--margin: 0 5px 0 0;-->
+<!--margin-left: 5px;-->
+<!--}-->
+<!--p{-->
+<!--margin:0;-->
+<!--padding:0;-->
+<!--text-align: center;-->
+<!--font-style: italic;-->
+<!--font-size: smaller;-->
+<!--text-indent: 0;-->
+<!--}-->
+<!--#caption{-->
+<!--margin-top: 5px;-->
+<!--margin-left: 5px;-->
+<!--}-->
+<!--img{-->
+<!--height: 225px;-->
+<!--}-->
+<!--&ndash;&gt;-->
 
-</style>
+<!--</style>-->
 <!DOCTYPE html>
 <html ng-app="testApp" ng-cloak>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-    <link rel="stylesheet" href="style.css" type="text/css" />
+    <!--<link rel="stylesheet" href="style.css" type="text/css" />-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 </head>
 
@@ -60,7 +70,7 @@ height: 225px;
 <body>
 
 
-<div class="container">
+<div class="container-fluid">
     <div ng-view></div>
 </div>
 <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
@@ -68,6 +78,10 @@ height: 225px;
 <script src="resources/bower_components/angular/angular.js"></script>
 <script src="resources/bower_components/angular-route/angular-route.js"></script>
 <script src="resources/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jssor.slider-22.2.7.mini.js"></script>
+<script src="js/slider.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/account.js"></script>
 <script src="scripts/Pic.js"></script>
