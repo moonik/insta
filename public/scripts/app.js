@@ -32,7 +32,13 @@ $routeProvider.when('/registration', {
 
                                 templateUrl: 'enter.html',
                                 controller: 'MainCtrl'
-                                }).otherwise({
+                                })
+                                 .when('/search',{
+
+                                                                templateUrl: 'search.html',
+                                                                controller: 'MainCtrl'
+                                                                })
+                                 .otherwise({
                                     redirectTo: '/intro'
                                 });
 

@@ -1,6 +1,9 @@
-angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $http, $window) {
+angular.module('testApp').controller('MainCtrl', function ($scope, $routeParams, $rootScope, $http, $window) {
     $scope.userForm = {};
     $rootScope.user = {};
+    $scope.searchUser = {};
+    $rootScope.searchText = '';
+    //var search = $routeParams['search'];
 
     $rootScope.getUser = function () {
         $http.get('api/users/me').then(function (response) {
@@ -37,4 +40,24 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     };
 
     $scope.getUser();
+
+        $rootScope.search = function(search)
+        {
+             if (angular.isDefined(search) && search !== "") {
+                         $http.get('api/users/search/' + search).then(function (response) {
+                         $scope.searchUser = response.data;
+                         $window.location.href = "#/search"
+                       });
+                       };
+        };
+
+
+//           } else {
+//             $http.get('api/users/all').then(function (response) {
+//               $scope.songs = response.data;
+//               for(var i=0; i<$scope.songs.length; i++) {
+//                 $scope.songs[i].url = "/api/files/" + $scope.songs[i].token;
+//               }
+//             });
+//           }
 });

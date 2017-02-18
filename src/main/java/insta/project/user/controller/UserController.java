@@ -35,4 +35,12 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No user")
     private class UserNotFoundException extends RuntimeException {
     }
+
+    @GetMapping("search/{search}")
+    public UserAccount getUser(@PathVariable("search") String search)
+    {
+        UserAccount userAccount = userRepository.findByUsername(search);
+        return userAccount;
+    }
+
 }
