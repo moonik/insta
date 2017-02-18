@@ -7,16 +7,13 @@
                     <li ><a href="#/home"> HOME</a></li>
                     <li ng-show="isSignedIn"><a href="#/pictureUpload"><img src="img/Livello.png" alt="photoapp"></a></li>
                     <li ng-show="isSignedIn"><a href="#/gallery"> My gallery</a></li>
+                    <li ng-show="isSignedIn"><a href="#/search">Search users</a></li>
                 </ul>
             </div>
         </dov>
         <div class="col-md-4 col-xs-6">
             <div class="sign_in_up">
                 <ul>
-                    <li><form ng-submit="search(searchText)">
-                <input type="search" class="searchField" placeholder="Search" ng-model="searchText"/>
-                    </form>
-                    </li>
                     <li ng-show="!isSignedIn" ><a href="#/login"> Sign in</a></li>
                     <li ng-show="!isSignedIn"><a href="#/registration"> Sign up</a></li>
                     <li ng-show="isSignedIn"><a ng-href="#/login" ng-click="signOut()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
