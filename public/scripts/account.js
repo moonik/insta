@@ -1,8 +1,9 @@
-angular.module('testApp').controller('MainCtrl', function ($scope, $routeParams, $rootScope, $http, $window) {
+angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $http, $window) {
     $scope.userForm = {};
     $rootScope.user = {};
     $scope.searchUser = {};
     $rootScope.searchText = '';
+    $rootScope.showBttn = false;
     //var search = $routeParams['search'];
 
     $rootScope.getUser = function () {
@@ -46,7 +47,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $routeParams,
              if (angular.isDefined(search) && search !== "") {
                          $http.get('api/users/search/' + search).then(function (response) {
                          $scope.searchUser = response.data;
-                         $window.location.href = "#/search"
+                         $rootScope.showBttn = true;
                        });
                        };
         };
