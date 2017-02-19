@@ -1,14 +1,14 @@
 package insta.project.user.service;
 
+import insta.project.security.service.SecurityContextService;
+import insta.project.user.domain.UserAccount;
+import insta.project.user.model.UserDTO;
+import insta.project.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountStatusUserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import insta.project.security.service.SecurityContextService;
-import insta.project.user.domain.UserAccount;
-import insta.project.user.model.UserDTO;
-import insta.project.user.repository.UserRepository;
 
 import java.util.Optional;
 
@@ -46,4 +46,5 @@ public class UserServiceImpl implements UserService {
         user.ifPresent(detailsChecker::check);
         return user.orElseThrow(() -> new UsernameNotFoundException("user not found."));
     }
+
 }

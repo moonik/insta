@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
@@ -25,6 +26,13 @@ public class UserAccount implements UserDetails {
 
     @NotNull
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+            name="Followers",
+            joinColumns=@JoinColumn(name="follower", referencedColumnName="ID"),
+            inverseJoinColumns=@JoinColumn(name="owner", referencedColumnName="ID"))
+    private List<UserAccount> userAccount;
 
     @Override
     @JsonProperty("username")
@@ -83,5 +91,13 @@ public class UserAccount implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<UserAccount> getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(List<UserAccount> userAccount) {
+        this.userAccount = userAccount;
     }
 }

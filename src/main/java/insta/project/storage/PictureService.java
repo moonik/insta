@@ -6,7 +6,7 @@ import insta.project.Comment.CommentRepository;
 import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
-import insta.project.TestUtils;
+import insta.project.InstaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,7 +44,7 @@ public class PictureService {
         if (token == null) {
             return null;
         }
-        token = token + TestUtils.getMultipartFileExtension(file);
+        token = token + InstaUtils.getMultipartFileExtension(file);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
