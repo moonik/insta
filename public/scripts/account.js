@@ -4,6 +4,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $scope.searchUser = {};
     $rootScope.searchText = '';
     $rootScope.showBttn = false;
+    $rootScope.isFollowed = false;
     //var search = $routeParams['search'];
 
     $rootScope.getUser = function () {
@@ -66,6 +67,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 
             $http.post('api/users/follow/' + username).then(function(response){
                 console.log('followed');
+                 $rootScope.showBttn = false;
             });
 
         };
