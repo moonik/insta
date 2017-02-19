@@ -32,6 +32,7 @@ public class UserAccount implements UserDetails {
             name="Followers",
             joinColumns=@JoinColumn(name="follower", referencedColumnName="ID"),
             inverseJoinColumns=@JoinColumn(name="owner", referencedColumnName="ID"))
+    @JsonIgnore
     private List<UserAccount> userAccount;
 
     @Override
