@@ -50,6 +50,9 @@ angular.module('testApp')
      $scope.likePhoto = function(pics){
         $http.post('api/pictures/like/' + pics.id).then(function(data){
                               pics.pictureLikes.push(data.data);
+                          },
+                          function(response){
+                          pics.pictureLikes.pop(response.data)
                           });
 
 

@@ -29,5 +29,14 @@ public class PictureLikesRepositoryImpl implements PictureLikesRepo {
         }
     }
 
+    public PictureLikes findByPicIdAndOwner(Long id, String owner){
+
+        Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1 AND pl.owner=?2");
+        query.setParameter(1, id);
+        query.setParameter(2, owner);
+        List<PictureLikes> pictureLikes = query.getResultList();
+        return pictureLikes.get(0);
+    }
+
 
 }
