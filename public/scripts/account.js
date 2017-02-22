@@ -3,6 +3,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $rootScope.user = {};
     $scope.searchUser = {};
     $rootScope.searchText = '';
+    $scope.following = {};
     $rootScope.showBttn = false;
     $rootScope.isFollowed = false;
     //var search = $routeParams['search'];

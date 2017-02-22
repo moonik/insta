@@ -1,5 +1,9 @@
 package insta.project.user.controller;
 
+import insta.project.Follower.Follower;
+import insta.project.Follower.FollowerDTO;
+import insta.project.Follower.FollowerRepo;
+import insta.project.Follower.FollowerService;
 import insta.project.user.domain.UserAccount;
 import insta.project.user.model.UserDTO;
 import insta.project.user.model.UserParams;
@@ -8,10 +12,13 @@ import insta.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,6 +31,15 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FollowerService followerService;
+
+    @Autowired
+    private FollowerRepo followerRepo;
+
+    @PersistenceContext
+    EntityManager em;
 
     @RequestMapping(method = RequestMethod.POST)
     public UserAccount create(@Valid @RequestBody UserParams params) {
@@ -46,22 +62,37 @@ public class UserController {
         return userAccount;
     }
 
-    @PostMapping("follow/{follower}")
-    public List<UserAccount> follow(@PathVariable("follower") String follower)
+    @PostMapping("follow/{following}")
+    public ResponseEntity<Follower> follow(@PathVariable("following") String following)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         UserAccount currentUser = userRepository.findByUsername(owner);
-        UserAccount userFollow = userRepository.findByUsername(follower);
+        UserAccount userFollow = userRepository.findByUsername(following);
+        if(currentUser.getUsername().equals(userFollow.getUsername()) || userFollow.getUsername() == null || followerRepo.ifFollowed(currentUser.getUsername(), userFollow.getUsername())) {
 
-        List<UserAccount> followers = currentUser.getUserAccount();
+            return new ResponseEntity<Follower>(HttpStatus.CONFLICT);
+        }
 
-        followers.add(userFollow);
+        FollowerDTO followerDTO = new FollowerDTO(currentUser.getUsername(), userFollow.getUsername());
 
-
-        return userRepository.save(followers);
+        return new ResponseEntity<Follower>(followerService.saveFollowers(followerDTO), HttpStatus.OK);
 
     }
+
+    @GetMapping("myFollowers")
+    public List<Follower> getFollowers()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+
+        UserAccount currentUser = userRepository.findByUsername(owner);
+
+        List<Follower> followers = followerRepo.findFollowersByName(currentUser.getUsername());
+
+        return followers;
+    }
+
 
 }
