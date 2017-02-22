@@ -50,6 +50,10 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
                          $http.get('api/users/search/' + search).then(function (response) {
                          $scope.searchUser = response.data;
                          $rootScope.showBttn = true;
+                       },
+                       function(response){
+                       $rootScope.showBttn = false;
+                       alert("User not found");
                        });
                        };
         };

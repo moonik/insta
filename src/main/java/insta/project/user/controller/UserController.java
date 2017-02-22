@@ -56,10 +56,14 @@ public class UserController {
     }
 
     @GetMapping("search/{search}")
-    public UserAccount getUser(@PathVariable("search") String search)
+    public ResponseEntity<UserAccount> getUser(@PathVariable("search") String search)
     {
         UserAccount userAccount = userRepository.findByUsername(search);
-        return userAccount;
+        if(userAccount == null)
+        {
+            return new ResponseEntity<UserAccount>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<UserAccount>(userAccount, HttpStatus.OK);
     }
 
     @PostMapping("follow/{following}")
