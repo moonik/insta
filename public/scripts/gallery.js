@@ -3,12 +3,17 @@ angular.module('testApp')
 
     $scope.pictures = [];
     $scope.myFollowers = [];
+    $scope.myFollowings = [];
       $http.get('api/pictures/my', $scope.pictures).then(function(data) {
                          $scope.pictures = data.data;});
 
         $http.get('api/users/myFollowers', $scope.myFollowers).then(function(data) {
                              $scope.myFollowers = data.data;
                              });
+
+                             $http.get('api/users/iFollow', $scope.myFollowings).then(function(data) {
+                                                          $scope.myFollowings = data.data;
+                                                          });
 
                           $scope.delete = function(pic){
                                  $http.delete('api/pictures/delete/' + pic.id, $scope.pic).then(function(response){

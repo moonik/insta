@@ -94,5 +94,18 @@ public class UserController {
         return followers;
     }
 
+    @GetMapping("iFollow")
+    public List<Follower> getFollowings()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+
+        UserAccount currentUser = userRepository.findByUsername(owner);
+
+        List<Follower> followers = followerRepo.findFollowingByName(currentUser.getUsername());
+
+        return followers;
+    }
+
 
 }
