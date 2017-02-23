@@ -6,6 +6,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $scope.following = {};
     $rootScope.showBttn = false;
     $rootScope.isFollowed = false;
+    $rootScope.getPictures = [];
     //var search = $routeParams['search'];
 
     $rootScope.getUser = function () {
@@ -57,6 +58,8 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
                        });
                        };
         };
+
+
 
 
 //           } else {

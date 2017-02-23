@@ -3,7 +3,7 @@
     <input type="search" class="searchField" placeholder="Search" ng-model="searchText"/>
 </form>
 <br/>
-<table class="table table-hover">
+<table class="table table-hover" ng-controller="UserProfileCtrl">
     <thead>
     <tr>
         <th>User name</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     <tr>
-        <td>{{searchUser.username}}</td>
+        <td><a ng-href="#/userProfile/{{searchUser.username}}">{{searchUser.username}}</a></td>
         <td><button type="button" class="btn btn-primary" ng-show="showBttn" ng-click="followUser(searchUser.username)">Follow</button></td>
     </tr>
     </tbody>

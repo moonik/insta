@@ -81,7 +81,7 @@ public class PictureController {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        return pictureRepository.findAllByOwner(name);
+        return pictureRepository.findAllByOwnerOrderByIdDesc(name);
     }
 
     @PostMapping("comment")
@@ -114,6 +114,13 @@ public class PictureController {
         }else{
             return new ResponseEntity<PictureLikes>(pictureService.saveLike(picture_id), HttpStatus.OK);}
 
+
+    }
+
+    @GetMapping("profile/{userName}")
+    public List<Picture> getUsersPictures(@PathVariable("userName") String userName)
+    {
+        return pictureRepository.findAllByOwnerOrderByIdDesc(userName);
 
     }
 

@@ -27,7 +27,11 @@ $routeProvider.when('/registration', {
                 controller: 'AddPicCtrl'
                 })
 
+            .when('/userProfile/:username',{
 
+                          templateUrl: 'userProfile.html',
+                          controller: 'UserProfileCtrl'
+                          })
                 .when('/login',{
 
                                 templateUrl: 'enter.html',
