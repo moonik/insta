@@ -24,7 +24,6 @@ public class Picture {
     private String name;
     private String token;
     private String owner;
-    private String comment;
 
     @OneToMany(mappedBy = "picture_id")
     @Cascade(CascadeType.DELETE)
