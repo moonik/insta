@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('myGallery', function($scope, $http, $rootScope) {
+.controller('myGallery', function($scope, $http, $rootScope, ModalService) {
 
     $scope.pictures = [];
     $scope.myFollowers = [];
@@ -27,5 +27,25 @@ angular.module('testApp')
                                  $scope.comments = data.data;
                                  });
                                  };
+
+                                 $rootScope.showFollowers = function(){
+                                       ModalService.showModal({
+                                                 templateUrl: 'showFollowersModal.html',
+                                                 controller: 'showFollowersCtrl',
+                                             }).then(function(modal) {
+                                                 modal.element.modal();
+                                             });
+
+                                 };
+
+                                 $rootScope.showFollowings = function(){
+                                                                        ModalService.showModal({
+                                                                                  templateUrl: 'showFollowingsModal.html',
+                                                                                  controller: 'showFollowingsCtrl',
+                                                                              }).then(function(modal) {
+                                                                                  modal.element.modal();
+                                                                              });
+
+                                                                  };
 
     });
