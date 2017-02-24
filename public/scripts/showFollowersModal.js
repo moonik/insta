@@ -7,8 +7,6 @@ $http.get('api/users/myFollowers', $scope.showMyFollowers).then(function(data) {
                              });
 
 
-
-
   $scope.close = function () {
         closeModal(undefined);
     };

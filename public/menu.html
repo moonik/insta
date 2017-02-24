@@ -4,18 +4,19 @@
         <dov class="col-md-8 col-xs-6">
             <div class="nav_menu" >
                 <ul>
-                    <li ><a href="#/home"> HOME</a></li>
-                    <li ng-show="isSignedIn"><a href="#/pictureUpload"><img src="img/Livello.png" alt="photoapp"></a></li>
-                    <li ng-show="isSignedIn"><a href="#/gallery"> My gallery</a></li>
-                    <li ng-show="isSignedIn"><a href="#/search">Search users</a></li>
+                    <li ><a ng-href="#/home"> HOME</a></li>
+                    <li ng-show="isSignedIn"><a ng-href="#/news">My news</a></li>
+                    <li ng-show="isSignedIn"><a ng-href="#/pictureUpload"><img src="img/Livello.png" alt="photoapp"></a></li>
+                    <li ng-show="isSignedIn"><a ng-href="#/gallery"> My gallery</a></li>
+                    <li ng-show="isSignedIn"><a ng-href="#/search">Search users</a></li>
                 </ul>
             </div>
         </dov>
         <div class="col-md-4 col-xs-6">
             <div class="sign_in_up">
                 <ul>
-                    <li ng-show="!isSignedIn" ><a href="#/login"> Sign in</a></li>
-                    <li ng-show="!isSignedIn"><a href="#/registration"> Sign up</a></li>
+                    <li ng-show="!isSignedIn" ><a ng-href="#/login"> Sign in</a></li>
+                    <li ng-show="!isSignedIn"><a ng-href="#/registration"> Sign up</a></li>
                     <li ng-show="isSignedIn"><a ng-href="#/login" ng-click="signOut()"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
                 </ul>
             </div>

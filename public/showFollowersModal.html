@@ -7,7 +7,8 @@
                 <h4 class="modal-title">My followers</h4>
             </div>
             <div class="modal-body">
-            <span ng-repeat="followers in showMyFollowers">[{{followers.follower}}]</span>
+            <span ng-repeat="followers in showMyFollowers"><h4><a ng-href="#/userProfile/{{followers.follower}}">{{followers.follower}}</a></h4></span>
+
             </div>
         </div>
     </div>

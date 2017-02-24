@@ -9,7 +9,7 @@ $scope.showMyFollowings = [];
 
 
 
-  $scope.close = function () {
+  $rootScope.close = function () {
         closeModal(undefined);
     };
 

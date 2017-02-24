@@ -1,20 +1,16 @@
-angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootScope, $http, $window, $routeParams, ModalService) {
+angular.module('testApp')
+.controller('NewsCtrl', function($scope, $http, $rootScope) {
+  $scope.pic = {};
+  $scope.file = {};
+  $scope.pictures = [];
+  $scope.comment = {};
+  $scope.comments = [];
+
+  $http.get('api/pictures/myNews', $scope.pictures).then(function(data) {
+                     $scope.pictures = data.data;});
 
 
-   $scope.pic = {};
-   $scope.file = {};
-   $scope.pictures = [];
-   $scope.comment = {};
-   $scope.comments = [];
-   $scope.username = $routeParams['username'];
-
-
-             $http.get('api/pictures/profile/' + $scope.username, $scope.pictures).then(function(data) {
-                                    $scope.pictures = data.data;});
-
-
-
- $scope.addComment = function(id) {
+    $scope.addComment = function(id) {
         $http.post('api/pictures/comment', {
             content: $scope.comment[id].content,
             picture_id: id
@@ -41,18 +37,4 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
 
 
      };
-
-
-
-
-
-
-
 });
-
-
-
-
-
-
-

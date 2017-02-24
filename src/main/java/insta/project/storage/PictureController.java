@@ -4,6 +4,8 @@ import insta.project.Comment.Comment;
 import insta.project.Comment.CommentDTO;
 import insta.project.Comment.CommentRepo;
 import insta.project.Comment.CommentRepository;
+import insta.project.Follower.Follower;
+import insta.project.Follower.FollowerRepo;
 import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
@@ -15,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +51,9 @@ public class PictureController {
 
     @Autowired
     private PictureLikesRepo pictureLikesRepo;
+
+    @Autowired
+    private FollowerRepo followerRepo;
 
     @GetMapping("getAll")
     public List<Picture> get(){
@@ -124,4 +130,20 @@ public class PictureController {
 
     }
 
+    @GetMapping("myNews")
+    public List<Picture>  getMyNews()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+
+        List<Follower> myFollowings = followerRepo.findFollowingByName(owner);
+        List<Picture> myFollowingsPictures = new ArrayList<>();
+
+        for(int i = 0; i < myFollowings.size(); i++)
+        {
+            myFollowingsPictures.addAll(pictureRepo.findByFollowing(myFollowings.get(i).getFollowing()));
+        }
+
+        return myFollowingsPictures;
+    }
 }

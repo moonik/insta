@@ -1,10 +1,7 @@
 
-<br>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
-<!--<span ng-model="myFollowers"><a ng-click="showFollowers()"> Followers: {{myFollowers.length}}</a></span> <br/>-->
-<!--<span ng-model="myFollowings"><a ng-click="showFollowings()"> Following: {{myFollowings.length}}</a></span> <br/>-->
 <br />
 <form>
     <div id="imagelist" ng-repeat="pics in pictures">
@@ -15,10 +12,11 @@
             <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
             <button type="submit" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like" ng-click="likePhoto(pics)"/>
             <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span> <span ng-show="!isSignedIn">people like this photo</span>
-        </p>
-
+        </p><br/>
     </div>
     <div id="commentlist" ng-repeat="commen in comments">
         <p>{{commen.owner}} said: {{commen.content}}</p>
     </div>
 </form>
+
+

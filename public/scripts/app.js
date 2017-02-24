@@ -32,6 +32,12 @@ $routeProvider.when('/registration', {
                           templateUrl: 'userProfile.html',
                           controller: 'UserProfileCtrl'
                           })
+
+                         .when('/news',{
+
+                                                   templateUrl: 'News.html',
+                                                   controller: 'NewsCtrl'
+                                                   })
                 .when('/login',{
 
                                 templateUrl: 'enter.html',
