@@ -65,7 +65,7 @@ public class PictureController {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        return pictureRepo.findByOwner(name);
+        return pictureRepo.findPictures(name);
     }
 
     @PostMapping("upload")

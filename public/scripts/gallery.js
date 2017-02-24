@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('myGallery', function($scope, $http, $rootScope, ModalService) {
+.controller('myGallery', function($scope, $http, $rootScope, ModalService, $window) {
 
     $scope.pictures = [];
     $scope.myFollowers = [];
@@ -34,6 +34,11 @@ angular.module('testApp')
                                                  controller: 'showFollowersCtrl',
                                              }).then(function(modal) {
                                                  modal.element.modal();
+                                                    modal.close.then(function (result) {
+                                                    if (angular.isDefined(result)) {
+                                                  $window.location.href = "#/userProfile/"+result;
+                                                 }
+                                               });
                                              });
 
                                  };
@@ -44,6 +49,11 @@ angular.module('testApp')
                                                                                   controller: 'showFollowingsCtrl',
                                                                               }).then(function(modal) {
                                                                                   modal.element.modal();
+                                                                                  modal.close.then(function (result) {
+                                                                                                  if (angular.isDefined(result)) {
+                                                                                                     $window.location.href = "#/userProfile/"+result;
+                                                                                                  }
+                                                                                              });
                                                                               });
 
                                                                   };

@@ -7,7 +7,9 @@ $scope.showMyFollowings = [];
                                                           });
 
 
-
+ $scope.closeAndGo = function(username){
+    closeModal(username);
+    };
 
   $rootScope.close = function () {
         closeModal(undefined);
