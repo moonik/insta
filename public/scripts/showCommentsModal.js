@@ -1,15 +1,41 @@
-angular.module('testApp').controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window, close, picture) {
+var app = angular.module('testApp')
+app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window, close, picture, $interval) {
 
    $scope.comments = [];
    $scope.pictureId = picture;
    $scope.comment = {};
    $scope.picture = picture;
-   $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
-                                 $scope.comments = data.data;
-                                 });
-     $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
-                                    $scope.picture = data.data;
-                                    });
+   $scope.data = [];
+
+//   $scope.$on('got new data!', function(event, args) {
+//         $scope.data = args.data;
+//       });
+//
+//
+// $interval(function() {
+//      return $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function successCallback(response) {
+//              $scope.comments = response.data.data;
+//               $rootScope.$broadcast('got new data!', { data: $scope.comments});
+//               }, function failureCallback(reason) {
+//               console.log(reason);
+//                })
+//     }, 5000);
+
+   var myVar = setInterval(function(){
+        $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
+                                        $scope.comments = data.data;
+                                        });
+     }, 1000);
+
+
+    function myStopFunction() {
+    clearInterval(myVar);
+    };
+
+
+//     $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
+//                                    $scope.picture = data.data;
+//                                    });
 
      $scope.addComment = function(id) {
             $http.post('api/pictures/comment', {
@@ -33,6 +59,7 @@ angular.module('testApp').controller('showCommentsCtrl', function ($scope, $root
 
 
        function closeModal(data) {
+           myStopFunction();
            close(data, 500);
        }
 

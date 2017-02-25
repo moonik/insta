@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('AddPicCtrl', function($scope, $http, $rootScope, ModalService) {
+.controller('AddPicCtrl', function($scope, $http, $rootScope, ModalService, $window) {
   $scope.pic = {};
   $scope.file = {};
   $scope.pictures = [];

@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('NewsCtrl', function($scope, $http, $rootScope, ModalService) {
+.controller('NewsCtrl', function($scope, $http, $rootScope, ModalService, $window) {
   $scope.pic = {};
   $scope.file = {};
   $scope.pictures = [];
