@@ -7,8 +7,10 @@
                 <h4 class="modal-title">Comments</h4>
             </div>
             <div class="modal-body">
+                <p></p><img ng-src="http://localhost:8080/api/files/{{picture.token}}"></p>
+                <br>
                 <div id="commentlist" ng-repeat="commen in comments">
-                    <p><b>{{commen.owner}}</b> said: {{commen.content}}</p>
+                    <p><a ng-click="closeAndGo(commen.owner)" data-dismiss="modal" aria-hidden="true"> <b>{{commen.owner}}</b></a> said: {{commen.content}}</p>
                 </div>
                 <div class="modal-footer">
                   <span>   <input ng-show="isSignedIn" name="comment" type="text" class="ed" id="brnu"

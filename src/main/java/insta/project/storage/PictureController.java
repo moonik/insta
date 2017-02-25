@@ -60,6 +60,9 @@ public class PictureController {
         return pictureRepository.findAll();
     }
 
+    @GetMapping("getOne/{picture_id}")
+    public Picture getOne(@PathVariable("picture_id") Long id){return pictureRepository.findOne(id);}
+
     @GetMapping("home")
     public List<Picture> getHomePage()
     {

@@ -3,9 +3,13 @@ angular.module('testApp').controller('showCommentsCtrl', function ($scope, $root
    $scope.comments = [];
    $scope.pictureId = picture;
    $scope.comment = {};
+   $scope.picture = picture;
    $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
                                  $scope.comments = data.data;
                                  });
+     $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
+                                    $scope.picture = data.data;
+                                    });
 
      $scope.addComment = function(id) {
             $http.post('api/pictures/comment', {
@@ -20,16 +24,16 @@ angular.module('testApp').controller('showCommentsCtrl', function ($scope, $root
                           };
 
     $scope.closeAndGo = function(username){
-    closeModal(username);
-    };
+       closeModal(username);
+       };
 
-  $scope.close = function () {
-        closeModal(undefined);
-    };
+     $scope.close = function () {
+           closeModal(undefined);
+       };
 
 
-    function closeModal(data) {
-        close(data, 500);
-    }
+       function closeModal(data) {
+           close(data, 500);
+       }
 
 });
