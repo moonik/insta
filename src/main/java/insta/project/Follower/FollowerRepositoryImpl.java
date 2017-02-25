@@ -32,8 +32,9 @@ public class FollowerRepositoryImpl implements FollowerRepo {
         query.setParameter(1, currentUser);
         query.setParameter(2, following);
         List<Follower> followers = query.getResultList();
-        if(followers.size() != 0){ return true;}
-        else{
+        if (followers.size() != 0) {
+            return true;
+        } else {
             return false;
         }
     }

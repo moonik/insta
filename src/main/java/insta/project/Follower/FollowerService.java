@@ -12,8 +12,8 @@ public class FollowerService {
     @Autowired
     private FollowerRepository followerRepository;
 
-    public Follower saveFollowers(FollowerDTO followerDTO)
-    {
+    public Follower saveFollowers(FollowerDTO followerDTO) {
+
         Follower follower = new Follower(followerDTO.getFollower(), followerDTO.getFollowing());
 
         return followerRepository.save(follower);

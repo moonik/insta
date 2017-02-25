@@ -7,15 +7,15 @@ import java.util.List;
 
 public class PictureLikesRepositoryImpl implements PictureLikesRepo {
 
-        @PersistenceContext
-        private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
-        public List<PictureLikes> findBypicture_id(Long id){
+    public List<PictureLikes> findBypicture_id(Long id) {
 
-            Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1");
-            query.setParameter(1, id);
-            return query.getResultList();
-        }
+        Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1");
+        query.setParameter(1, id);
+        return query.getResultList();
+    }
 
     @Override
     public Boolean findByPicId(Long id, String owner) {
@@ -23,13 +23,14 @@ public class PictureLikesRepositoryImpl implements PictureLikesRepo {
         query.setParameter(1, id);
         query.setParameter(2, owner);
         List<PictureLikes> pictureLikes = query.getResultList();
-        if(pictureLikes.size() != 0){ return true;}
-        else{
-        return false;
+        if (pictureLikes.size() != 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public PictureLikes findByPicIdAndOwner(Long id, String owner){
+    public PictureLikes findByPicIdAndOwner(Long id, String owner) {
 
         Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1 AND pl.owner=?2");
         query.setParameter(1, id);

@@ -1,11 +1,12 @@
 package insta.project.Follower;
 
-public class FollowerDTO  {
+public class FollowerDTO {
 
     private String follower;
     private String following;
 
-    public FollowerDTO(){}
+    public FollowerDTO() {
+    }
 
     public FollowerDTO(String follower, String following) {
         this.follower = follower;

@@ -22,12 +22,11 @@ public class Comment {
     private String owner;
     private Long picture_id;
 
-    public Comment(){
+    public Comment() {
 
     }
 
-    public Comment(String content, String owner, Long picture_id)
-    {
+    public Comment(String content, String owner, Long picture_id) {
         this.content = content;
         this.owner = owner;
         this.picture_id = picture_id;

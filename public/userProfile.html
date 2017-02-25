@@ -1,19 +1,24 @@
-
 <br>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
 <!--<span ng-model="myFollowers"><a ng-click="showFollowers()"> Followers: {{myFollowers.length}}</a></span> <br/>-->
 <!--<span ng-model="myFollowings"><a ng-click="showFollowings()"> Following: {{myFollowings.length}}</a></span> <br/>-->
-<br />
+<br/>
 <form>
     <div id="imagelist" ng-repeat="pics in pictures">
-        <h4> <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div></h4>
+        <h4>
+            <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div>
+        </h4>
         <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
-            <input ng-show="isSignedIn" name="comment" type="text" class="ed" id="brnu" ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
-            <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit" ng-click="addComment(pics.id)"/>
-            <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments" ng-click="showComments(pics.id)"/>
-            <button type="submit" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like" ng-click="likePhoto(pics)"/>
+            <input ng-show="isSignedIn" name="comment" type="text" class="ed" id="brnu"
+                   ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
+            <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit"
+                    ng-click="addComment(pics.id)"/>
+            <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-comment" name="Submit"
+                    id="show_comments" ng-click="showComments(pics.id)"/>
+            <button type="submit" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like"
+                    ng-click="likePhoto(pics)"/>
             <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span> <span ng-show="!isSignedIn">people like this photo</span>
         </p>
 

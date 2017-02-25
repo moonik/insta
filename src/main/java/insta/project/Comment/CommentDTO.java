@@ -12,7 +12,7 @@ public class CommentDTO {
 
     //private Account owner;
 
-    public CommentDTO(){
+    public CommentDTO() {
 
     }
 

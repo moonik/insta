@@ -44,18 +44,18 @@ angular.module('testApp')
                                  };
 
                                  $rootScope.showFollowings = function(){
-                                                                        ModalService.showModal({
-                                                                                  templateUrl: 'showFollowingsModal.html',
-                                                                                  controller: 'showFollowingsCtrl',
-                                                                              }).then(function(modal) {
-                                                                                  modal.element.modal();
-                                                                                  modal.close.then(function (result) {
-                                                                                                  if (angular.isDefined(result)) {
-                                                                                                     $window.location.href = "#/userProfile/"+result;
-                                                                                                  }
-                                                                                              });
-                                                                              });
+                                  ModalService.showModal({
+                                  templateUrl: 'showFollowingsModal.html',
+                                  controller: 'showFollowingsCtrl',
+                                   }).then(function(modal) {
+                                      modal.element.modal();
+                                        modal.close.then(function (result) {
+                                            if (angular.isDefined(result)) {
+                                            $window.location.href = "#/userProfile/"+result;
+                                               }
+                                                 });
+                                                  });
 
-                                                                  };
+                                                   };
 
     });

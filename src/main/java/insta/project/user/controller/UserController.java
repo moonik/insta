@@ -56,25 +56,22 @@ public class UserController {
     }
 
     @GetMapping("search/{search}")
-    public ResponseEntity<UserAccount> getUser(@PathVariable("search") String search)
-    {
+    public ResponseEntity<UserAccount> getUser(@PathVariable("search") String search) {
         UserAccount userAccount = userRepository.findByUsername(search);
-        if(userAccount == null)
-        {
+        if (userAccount == null) {
             return new ResponseEntity<UserAccount>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<UserAccount>(userAccount, HttpStatus.OK);
     }
 
     @PostMapping("follow/{following}")
-    public ResponseEntity<Follower> follow(@PathVariable("following") String following)
-    {
+    public ResponseEntity<Follower> follow(@PathVariable("following") String following) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         UserAccount currentUser = userRepository.findByUsername(owner);
         UserAccount userFollow = userRepository.findByUsername(following);
-        if(currentUser.getUsername().equals(userFollow.getUsername()) || userFollow.getUsername() == null || followerRepo.ifFollowed(currentUser.getUsername(), userFollow.getUsername())) {
+        if (currentUser.getUsername().equals(userFollow.getUsername()) || userFollow.getUsername() == null || followerRepo.ifFollowed(currentUser.getUsername(), userFollow.getUsername())) {
 
             return new ResponseEntity<Follower>(HttpStatus.CONFLICT);
         }
@@ -86,8 +83,7 @@ public class UserController {
     }
 
     @GetMapping("myFollowers")
-    public List<Follower> getFollowers()
-    {
+    public List<Follower> getFollowers() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
@@ -99,8 +95,7 @@ public class UserController {
     }
 
     @GetMapping("iFollow")
-    public List<Follower> getFollowings()
-    {
+    public List<Follower> getFollowings() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 

@@ -15,7 +15,8 @@ public class Follower {
     private String follower;
     private String following;
 
-    public Follower(){}
+    public Follower() {
+    }
 
     public Follower(String follower, String following) {
         this.follower = follower;

@@ -34,9 +34,8 @@ public class PictureService {
     @Autowired
     private PictureLikesRepo pictureLikesRepo;
 
-    public Picture upload(PictureDTO pictureDTO, MultipartFile file)
-    {
-        if(file == null){
+    public Picture upload(PictureDTO pictureDTO, MultipartFile file) {
+        if (file == null) {
             return null;
         }
 
@@ -53,20 +52,18 @@ public class PictureService {
         return pictureRepository.save(picture);
     }
 
-    public Comment create(CommentDTO commentDTO)
-    {
+    public Comment create(CommentDTO commentDTO) {
 
         Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id());
 
         return commentRepository.save(comment);
     }
 
-    public PictureLikes saveLike(Long picture_id)
-    {
+    public PictureLikes saveLike(Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
-        PictureLikes pictureLikes = new PictureLikes(owner , picture_id);
+        PictureLikes pictureLikes = new PictureLikes(owner, picture_id);
 
         return pictureLikesRepository.save(pictureLikes);
     }
