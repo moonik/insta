@@ -15,7 +15,6 @@ angular.module('testApp')
             content: $scope.comment[id].content,
             picture_id: id
         }).then(function(response){
-                         alert("Comment sent :)");
                      });
                       $scope.comment = {};
                       };

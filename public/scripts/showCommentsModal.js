@@ -12,6 +12,9 @@ angular.module('testApp').controller('showCommentsCtrl', function ($scope, $root
                 content: $scope.comment.content,
                 picture_id: $scope.pictureId.id
             }).then(function(response){
+              $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
+                                             $scope.comments = data.data;
+                                             });
                          });
                           $scope.comment = {};
                           };
