@@ -25,6 +25,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
         $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
                                         $scope.comments = data.data;
                                         });
+                                        console.log("h");
      }, 1000);
 
 
@@ -33,9 +34,9 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
     };
 
 
-//     $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
-//                                    $scope.picture = data.data;
-//                                    });
+     $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
+                                    $scope.picture = data.data;
+                                    });
 
      $scope.addComment = function(id) {
             $http.post('api/pictures/comment', {
