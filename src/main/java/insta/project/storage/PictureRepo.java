@@ -6,5 +6,4 @@ public interface PictureRepo {
 
     List<Picture> findPictures(String currentUser);
     List<Picture> findByFollowing(String owner);
-    List<Picture> findById(List<Long> id);
 }

@@ -138,18 +138,10 @@ public class PictureController {
 
         List<Follower> myFollowings = followerRepo.findFollowingByName(owner);
         List<Picture> myFollowingsPictures = new ArrayList<>();
-        List<Long> ids = new ArrayList<>();
         for(int i = 0; i < myFollowings.size(); i++)
         {
             myFollowingsPictures.addAll(pictureRepo.findByFollowing(myFollowings.get(i).getFollowing()));
         }
-
-        for(int i = 0; i < myFollowingsPictures.size(); i++)
-        {
-            ids.add(myFollowingsPictures.get(i).getId());
-        }
-
-        myFollowingsPictures = pictureRepo.findById(ids);
 
         return myFollowingsPictures;
     }
