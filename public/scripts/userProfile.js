@@ -6,6 +6,7 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
    $scope.pictures = [];
    $scope.comment = {};
    $scope.comments = [];
+
    $scope.username = $routeParams['username'];
 
 

@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('NewsCtrl', function($scope, $http, $rootScope) {
+.controller('NewsCtrl', function($scope, $http, $rootScope, ModalService) {
   $scope.pic = {};
   $scope.file = {};
   $scope.pictures = [];
@@ -21,11 +21,22 @@ angular.module('testApp')
                       };
 
 
-    $scope.showComments = function(id){
-    $http.get('api/pictures/' + id, $scope.comments).then(function(data) {
-     $scope.comments = data.data;
-     });
-     };
+   $scope.showComments = function(picture){
+                                      ModalService.showModal({
+                                      templateUrl: 'showCommentsModal.html',
+                                      controller: 'showCommentsCtrl',
+                                      inputs: {
+                                      picture: jQuery.extend({}, picture)
+                                      }
+                                      }).then(function(modal) {
+                                      modal.element.modal();
+                                      modal.close.then(function (result) {
+                                      if (angular.isDefined(result)) {
+                                      $window.location.href = "#/userProfile/"+result;
+                                      }
+                                      });
+                                       });
+                                       };
 
      $scope.likePhoto = function(pics){
         $http.post('api/pictures/like/' + pics.id).then(function(data){

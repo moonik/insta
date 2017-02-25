@@ -4,6 +4,8 @@ angular.module('testApp')
     $scope.pictures = [];
     $scope.myFollowers = [];
     $scope.myFollowings = [];
+    $scope.comments = [];
+
       $http.get('api/pictures/my', $scope.pictures).then(function(data) {
                          $scope.pictures = data.data;});
 
@@ -22,10 +24,21 @@ angular.module('testApp')
                                  })
                             };
 
-                                $scope.showComments = function(id){
-                                $http.get('api/pictures/' + id, $scope.comments).then(function(data) {
-                                 $scope.comments = data.data;
-                                 });
+                                $scope.showComments = function(picture){
+                                ModalService.showModal({
+                                                 templateUrl: 'showCommentsModal.html',
+                                                 controller: 'showCommentsCtrl',
+                                                      inputs: {
+                                                        picture: jQuery.extend({}, picture)
+                                                      }
+                                             }).then(function(modal) {
+                                                 modal.element.modal();
+                                                    modal.close.then(function (result) {
+                                                    if (angular.isDefined(result)) {
+                                                  $window.location.href = "#/userProfile/"+result;
+                                                 }
+                                               });
+                                             });
                                  };
 
                                  $rootScope.showFollowers = function(){

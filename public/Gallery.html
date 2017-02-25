@@ -7,19 +7,14 @@
 <br/>
 
 <div id="imagelist" ng-repeat="pics in pictures">
-    <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}"></p>
+    <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
     <button type="submit" id="delete" name="delete" class="glyphicon glyphicon-remove" ng-click="delete(pics)"></button>
     <br>
-    <br/>
-
     <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}} people like this photo</span><br>
     <span> Show comments</span>
     <button type="submit" class="glyphicon glyphicon-comment" name="Submit" id="show_comments"
-            ng-click="showComments(pics.id)"/>
+            ng-click="showComments(pics)"/></p>
+    <br/>
 
 </div>
-<div id="commentlist" ng-repeat="commen in comments">
-    <p>{{commen.owner}} said: {{commen.content}}</p>
-</div>
-
 </div>

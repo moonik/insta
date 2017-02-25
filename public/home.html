@@ -13,7 +13,7 @@
             <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit"
                     ng-click="addComment(pics.id)"/>
             <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-comment" name="Submit"
-                    id="show_comments" ng-click="showComments(pics.id)"/>
+                    id="show_comments" ng-click="showComments(pics)"/>
             <button type="submit" ng-show="isSignedIn" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like"
                     ng-click="likePhoto(pics)"/>
             <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span> <span ng-show="!isSignedIn">people like this photo</span>
