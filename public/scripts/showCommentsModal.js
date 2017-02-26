@@ -25,8 +25,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
         $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
                                         $scope.comments = data.data;
                                         });
-                                        console.log("h");
-     }, 1000);
+     }, 1500);
 
 
     function myStopFunction() {
