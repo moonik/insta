@@ -9,8 +9,8 @@
             <div class="modal-body">
                 <p></p><img ng-src="http://localhost:8080/api/files/{{picture.token}}"></p>
                 <br>
-                <div id="commentlist" ng-repeat="commen in comments | orderBy: 'date'">
-                    <p><a ng-click="closeAndGo(commen.owner)" data-dismiss="modal" aria-hidden="true">{{commen.date | date:'yyyy-MM-dd HH:mm'}} <b>{{commen.owner}}</b></a> said: {{commen.content}}</p>
+                <div id="commentlist" ng-repeat="commen in comments  | orderBy: 'id' track by $index">
+                    <p>{{commen.date | date:'yyyy-MM-dd HH:mm'}} <a ng-click="closeAndGo(commen.owner)" data-dismiss="modal" aria-hidden="true"><b>{{commen.owner}}</b></a> said: {{commen.content}}</p>
                 </div>
                 <div class="modal-footer">
                   <span>   <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brnu"

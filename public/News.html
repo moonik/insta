@@ -4,7 +4,7 @@
 
 <br />
 <form>
-    <div id="imagelist" ng-repeat="pics in pictures | orderBy: '-date'">
+    <div id="imagelist" ng-repeat="pics in pictures | orderBy: '-id'">
         <h4> <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div></h4>
         <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
             <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brnu" ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>

@@ -3,7 +3,7 @@
 
 <br/>
 <form>
-    <div id="imagelist" ng-repeat="pics in pictures | orderBy: '-date'">
+    <div id="imagelist" ng-repeat="pics in pictures | orderBy: '-id'">
         <h4>
             <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div>
         </h4>

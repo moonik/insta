@@ -115,6 +115,16 @@ public class PictureController {
         return commentRepo.findBypicture_id(picture_id);
     }
 
+    @PostMapping("updateComments/{picture_id}")
+    public ResponseEntity<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
+    {
+        if(!(commentRepo.checkIfNewComment(picture_id, lastComment)))
+        {
+            return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Comment>(commentRepo.findNewComments(picture_id, lastComment), HttpStatus.OK);
+    }
+
     @PostMapping("like/{id}")
     public ResponseEntity<PictureLikes> like(@PathVariable("id") Long picture_id)
     {

@@ -6,25 +6,24 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
    $scope.comment = {};
    $scope.picture = picture;
    $scope.data = [];
+   $scope.newComment = {};
 
-//   $scope.$on('got new data!', function(event, args) {
-//         $scope.data = args.data;
-//       });
-//
-//
-// $interval(function() {
-//      return $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function successCallback(response) {
-//              $scope.comments = response.data.data;
-//               $rootScope.$broadcast('got new data!', { data: $scope.comments});
-//               }, function failureCallback(reason) {
-//               console.log(reason);
-//                })
-//     }, 5000);
+    $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data){
+        $scope.comments = data.data;
+    });
+
+//  var myVar = setInterval(function(){
+//        $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
+//                                        $scope.comments = data.data;
+//                                        });
+//     }, 1500);
 
    var myVar = setInterval(function(){
-        $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
-                                        $scope.comments = data.data;
-                                        });
+        $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
+        $scope.newComment = data.data;
+        $scope.comments.push($scope.newComment);
+        console.log($scope.newComment);
+        });
      }, 1500);
 
 
@@ -42,11 +41,11 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
                 content: $scope.comment.content,
                 picture_id: $scope.pictureId.id
             }).then(function(response){
-              $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
-                                             $scope.comments = data.data;
-                                             });
+//              $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
+//                                             $scope.comments = data.data;
+//                                             });
                          });
-                          $scope.comment = {};
+                         $scope.comment = {};
                           };
 
     $scope.closeAndGo = function(username){
