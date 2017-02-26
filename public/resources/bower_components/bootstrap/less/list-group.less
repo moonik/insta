@@ -54,7 +54,7 @@ button.list-group-item {
   // Hover state
   &:hover,
   &:focus {
-    text-decoration: none;
+    text_message-decoration: none;
     color: @list-group-link-hover-color;
     background-color: @list-group-hover-bg;
   }
@@ -62,7 +62,7 @@ button.list-group-item {
 
 button.list-group-item {
   width: 100%;
-  text-align: left;
+  text_message-align: left;
 }
 
 .list-group-item {
@@ -78,8 +78,8 @@ button.list-group-item {
     .list-group-item-heading {
       color: inherit;
     }
-    .list-group-item-text {
-      color: @list-group-disabled-text-color;
+    .list-group-item-text_message {
+      color: @list-group-disabled-text_message-color;
     }
   }
 
@@ -98,8 +98,8 @@ button.list-group-item {
     .list-group-item-heading > .small {
       color: inherit;
     }
-    .list-group-item-text {
-      color: @list-group-active-text-color;
+    .list-group-item-text_message {
+      color: @list-group-active-text_message-color;
     }
   }
 }
@@ -107,13 +107,13 @@ button.list-group-item {
 
 // Contextual variants
 //
-// Add modifier classes to change text and background color on individual items.
+// Add modifier classes to change text_message and background color on individual items.
 // Organizationally, this must come after the `:hover` states.
 
-.list-group-item-variant(success; @state-success-bg; @state-success-text);
-.list-group-item-variant(info; @state-info-bg; @state-info-text);
-.list-group-item-variant(warning; @state-warning-bg; @state-warning-text);
-.list-group-item-variant(danger; @state-danger-bg; @state-danger-text);
+.list-group-item-variant(success; @state-success-bg; @state-success-text_message);
+.list-group-item-variant(info; @state-info-bg; @state-info-text_message);
+.list-group-item-variant(warning; @state-warning-bg; @state-warning-text_message);
+.list-group-item-variant(danger; @state-danger-bg; @state-danger-text_message);
 
 
 // Custom content options
@@ -124,7 +124,7 @@ button.list-group-item {
   margin-top: 0;
   margin-bottom: 5px;
 }
-.list-group-item-text {
+.list-group-item-text_message {
   margin-bottom: 0;
   line-height: 1.3;
 }

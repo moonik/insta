@@ -27,8 +27,8 @@
 
 //** Background color for `<body>`.
 @body-bg:               #fff;
-//** Global text color on `<body>`.
-@text-color:            @gray-dark;
+//** Global text_message color on `<body>`.
+@text_message-color:            @gray-dark;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -40,7 +40,7 @@
 
 //== Typography
 //
-//## Font, line-height, and color for body text, headings, and more.
+//## Font, line-height, and color for body text_message, headings, and more.
 
 @font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
@@ -85,7 +85,7 @@
 
 //== Components
 //
-//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+//## Define common padding and border radius sizes and more. Values based on 14px text_message and 1.428 line-height (~20px to start).
 
 @padding-base-vertical:     6px;
 @padding-base-horizontal:   12px;
@@ -140,7 +140,7 @@
 
 //== Buttons
 //
-//## For each of Bootstrap's buttons, define text, background and border color.
+//## For each of Bootstrap's buttons, define text_message, background and border color.
 
 @btn-font-weight:                normal;
 
@@ -202,7 +202,7 @@
 //** Border color for inputs on focus
 @input-border-focus:             #66afe9;
 
-//** Placeholder text color
+//** Placeholder text_message color
 @input-color-placeholder:        #999;
 
 //** Default `.form-control` height
@@ -240,14 +240,14 @@
 //** Divider color for between dropdown items.
 @dropdown-divider-bg:            #e5e5e5;
 
-//** Dropdown link text color.
+//** Dropdown link text_message color.
 @dropdown-link-color:            @gray-dark;
 //** Hover color for dropdown links.
 @dropdown-link-hover-color:      darken(@gray-dark, 5%);
 //** Hover background for dropdown links.
 @dropdown-link-hover-bg:         #f5f5f5;
 
-//** Active dropdown menu item text color.
+//** Active dropdown menu item text_message color.
 @dropdown-link-active-color:     @component-active-color;
 //** Active dropdown menu item background color.
 @dropdown-link-active-bg:        @component-active-bg;
@@ -496,19 +496,19 @@
 //
 //## Define colors for form feedback states and, by default, alerts.
 
-@state-success-text:             #3c763d;
+@state-success-text_message:             #3c763d;
 @state-success-bg:               #dff0d8;
 @state-success-border:           darken(spin(@state-success-bg, -10), 5%);
 
-@state-info-text:                #31708f;
+@state-info-text_message:                #31708f;
 @state-info-bg:                  #d9edf7;
 @state-info-border:              darken(spin(@state-info-bg, -10), 7%);
 
-@state-warning-text:             #8a6d3b;
+@state-warning-text_message:             #8a6d3b;
 @state-warning-bg:               #fcf8e3;
 @state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
 
-@state-danger-text:              #a94442;
+@state-danger-text_message:              #a94442;
 @state-danger-bg:                #f2dede;
 @state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
 
@@ -519,7 +519,7 @@
 
 //** Tooltip max width
 @tooltip-max-width:           200px;
-//** Tooltip text color
+//** Tooltip text_message color
 @tooltip-color:               #fff;
 //** Tooltip background color
 @tooltip-bg:                  #000;
@@ -577,9 +577,9 @@
 //** Danger label background color
 @label-danger-bg:             @brand-danger;
 
-//** Default label text color
+//** Default label text_message color
 @label-color:                 #fff;
-//** Default text color of a linked label
+//** Default text_message color of a linked label
 @label-link-hover-color:      #fff;
 
 
@@ -625,19 +625,19 @@
 @alert-link-font-weight:      bold;
 
 @alert-success-bg:            @state-success-bg;
-@alert-success-text:          @state-success-text;
+@alert-success-text_message:          @state-success-text_message;
 @alert-success-border:        @state-success-border;
 
 @alert-info-bg:               @state-info-bg;
-@alert-info-text:             @state-info-text;
+@alert-info-text_message:             @state-info-text_message;
 @alert-info-border:           @state-info-border;
 
 @alert-warning-bg:            @state-warning-bg;
-@alert-warning-text:          @state-warning-text;
+@alert-warning-text_message:          @state-warning-text_message;
 @alert-warning-border:        @state-warning-border;
 
 @alert-danger-bg:             @state-danger-bg;
-@alert-danger-text:           @state-danger-text;
+@alert-danger-text_message:           @state-danger-text_message;
 @alert-danger-border:         @state-danger-border;
 
 
@@ -647,7 +647,7 @@
 
 //** Background color of the whole progress component
 @progress-bg:                 #f5f5f5;
-//** Progress bar text color
+//** Progress bar text_message color
 @progress-bar-color:          #fff;
 //** Variable for setting rounded corners on progress bar.
 @progress-border-radius:      @border-radius-base;
@@ -684,14 +684,14 @@
 //** Border color of active list elements
 @list-group-active-border:      @list-group-active-bg;
 //** Text color for content within active list items
-@list-group-active-text-color:  lighten(@list-group-active-bg, 40%);
+@list-group-active-text_message-color:  lighten(@list-group-active-bg, 40%);
 
 //** Text color of disabled list items
 @list-group-disabled-color:      @gray-light;
 //** Background color of disabled list items
 @list-group-disabled-bg:         @gray-lighter;
 //** Text color for content within disabled list items
-@list-group-disabled-text-color: @list-group-disabled-color;
+@list-group-disabled-text_message-color: @list-group-disabled-color;
 
 @list-group-link-color:         #555;
 @list-group-link-hover-color:   @list-group-link-color;
@@ -712,27 +712,27 @@
 @panel-inner-border:          #ddd;
 @panel-footer-bg:             #f5f5f5;
 
-@panel-default-text:          @gray-dark;
+@panel-default-text_message:          @gray-dark;
 @panel-default-border:        #ddd;
 @panel-default-heading-bg:    #f5f5f5;
 
-@panel-primary-text:          #fff;
+@panel-primary-text_message:          #fff;
 @panel-primary-border:        @brand-primary;
 @panel-primary-heading-bg:    @brand-primary;
 
-@panel-success-text:          @state-success-text;
+@panel-success-text_message:          @state-success-text_message;
 @panel-success-border:        @state-success-border;
 @panel-success-heading-bg:    @state-success-bg;
 
-@panel-info-text:             @state-info-text;
+@panel-info-text_message:             @state-info-text_message;
 @panel-info-border:           @state-info-border;
 @panel-info-heading-bg:       @state-info-bg;
 
-@panel-warning-text:          @state-warning-text;
+@panel-warning-text_message:          @state-warning-text_message;
 @panel-warning-border:        @state-warning-border;
 @panel-warning-heading-bg:    @state-warning-bg;
 
-@panel-danger-text:           @state-danger-text;
+@panel-danger-text_message:           @state-danger-text_message;
 @panel-danger-border:         @state-danger-border;
 @panel-danger-heading-bg:     @state-danger-bg;
 
@@ -750,8 +750,8 @@
 //** Thumbnail border radius
 @thumbnail-border-radius:     @border-radius-base;
 
-//** Custom text color for thumbnail captions
-@thumbnail-caption-color:     @text-color;
+//** Custom text_message color for thumbnail captions
+@thumbnail-caption-color:     @text_message-color;
 //** Padding around the thumbnail caption
 @thumbnail-caption-padding:   9px;
 
@@ -769,11 +769,11 @@
 //##
 
 @badge-color:                 #fff;
-//** Linked badge text color on hover
+//** Linked badge text_message color on hover
 @badge-link-hover-color:      #fff;
 @badge-bg:                    @gray-light;
 
-//** Badge text color in active nav link
+//** Badge text_message color in active nav link
 @badge-active-color:          @link-color;
 //** Badge background color in active nav link
 @badge-active-bg:             #fff;
@@ -791,7 +791,7 @@
 @breadcrumb-padding-horizontal: 15px;
 //** Breadcrumb background color
 @breadcrumb-bg:                 #f5f5f5;
-//** Breadcrumb text color
+//** Breadcrumb text_message color
 @breadcrumb-color:              #ccc;
 //** Text color of current page in the breadcrumb
 @breadcrumb-active-color:       @gray-light;
@@ -803,7 +803,7 @@
 //
 //##
 
-@carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6);
+@carousel-text_message-shadow:                        0 1px 2px rgba(0,0,0,.6);
 
 @carousel-control-color:                      #fff;
 @carousel-control-width:                      15%;
@@ -822,7 +822,7 @@
 
 @close-font-weight:           bold;
 @close-color:                 #000;
-@close-text-shadow:           0 1px 0 #fff;
+@close-text_message-shadow:           0 1px 0 #fff;
 
 
 //== Code
@@ -848,7 +848,7 @@
 //** Horizontal offset for forms and lists.
 @component-offset-horizontal: 180px;
 //** Text muted color
-@text-muted:                  @gray-light;
+@text_message-muted:                  @gray-light;
 //** Abbreviations and acronyms border color
 @abbr-border-color:           @gray-light;
 //** Headings small color

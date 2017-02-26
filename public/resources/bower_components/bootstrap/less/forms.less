@@ -96,7 +96,7 @@ output {
 //
 // select
 // textarea
-// input[type="text"]
+// input[type="text_message"]
 // input[type="password"]
 // input[type="datetime"]
 // input[type="datetime-local"]
@@ -177,7 +177,7 @@ input[type="search"] {
 // Special styles for iOS temporal inputs
 //
 // In Mobile Safari, setting `display: block` on temporal inputs causes the
-// text within the input to become vertically misaligned. As a workaround, we
+// text_message within the input to become vertically misaligned. As a workaround, we
 // set a pixel line-height that matches the given height of the input, but only
 // for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
 //
@@ -227,7 +227,7 @@ input[type="search"] {
   margin-bottom: 10px;
 
   label {
-    min-height: @line-height-computed; // Ensure the input doesn't jump when there is no text
+    min-height: @line-height-computed; // Ensure the input doesn't jump when there is no text_message
     padding-left: 20px;
     margin-bottom: 0;
     font-weight: normal;
@@ -297,9 +297,9 @@ input[type="checkbox"] {
 }
 
 
-// Static form control text
+// Static form control text_message
 //
-// Apply class to a `p` element to make any string of text align with labels in
+// Apply class to a `p` element to make any string of text_message align with labels in
 // a horizontal form layout.
 
 .form-control-static {
@@ -391,7 +391,7 @@ input[type="checkbox"] {
   // Enable absolute positioning
   position: relative;
 
-  // Ensure icons don't overlap text
+  // Ensure icons don't overlap text_message
   .form-control {
     padding-right: (@input-height-base * 1.25);
   }
@@ -406,7 +406,7 @@ input[type="checkbox"] {
   width: @input-height-base;
   height: @input-height-base;
   line-height: @input-height-base;
-  text-align: center;
+  text_message-align: center;
   pointer-events: none;
 }
 .input-lg + .form-control-feedback,
@@ -426,13 +426,13 @@ input[type="checkbox"] {
 
 // Feedback states
 .has-success {
-  .form-control-validation(@state-success-text; @state-success-text; @state-success-bg);
+  .form-control-validation(@state-success-text_message; @state-success-text_message; @state-success-bg);
 }
 .has-warning {
-  .form-control-validation(@state-warning-text; @state-warning-text; @state-warning-bg);
+  .form-control-validation(@state-warning-text_message; @state-warning-text_message; @state-warning-bg);
 }
 .has-error {
-  .form-control-validation(@state-danger-text; @state-danger-text; @state-danger-bg);
+  .form-control-validation(@state-danger-text_message; @state-danger-text_message; @state-danger-bg);
 }
 
 // Reposition feedback icon if input has visible label above
@@ -447,16 +447,16 @@ input[type="checkbox"] {
 }
 
 
-// Help text
+// Help text_message
 //
-// Apply to any element you wish to create light text for placement immediately
-// below a form control. Use for general help, formatting, or instructional text.
+// Apply to any element you wish to create light text_message for placement immediately
+// below a form control. Use for general help, formatting, or instructional text_message.
 
 .help-block {
   display: block; // account for any element using help-block
   margin-top: 5px;
   margin-bottom: 10px;
-  color: lighten(@text-color, 25%); // lighten the text some for contrast
+  color: lighten(@text_message-color, 25%); // lighten the text_message some for contrast
 }
 
 
@@ -560,7 +560,7 @@ input[type="checkbox"] {
     margin-bottom: 0;
     padding-top: (@padding-base-vertical + 1); // Default padding plus a border
   }
-  // Account for padding we're adding to ensure the alignment and of help text
+  // Account for padding we're adding to ensure the alignment and of help text_message
   // and other content below items
   .radio,
   .checkbox {
@@ -576,7 +576,7 @@ input[type="checkbox"] {
   // labels on narrow viewports stack the same as a default form example.
   @media (min-width: @screen-sm-min) {
     .control-label {
-      text-align: right;
+      text_message-align: right;
       margin-bottom: 0;
       padding-top: (@padding-base-vertical + 1); // Default padding plus a border
     }

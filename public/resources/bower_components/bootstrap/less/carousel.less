@@ -99,8 +99,8 @@
   .opacity(@carousel-control-opacity);
   font-size: @carousel-control-font-size;
   color: @carousel-control-color;
-  text-align: center;
-  text-shadow: @carousel-text-shadow;
+  text_message-align: center;
+  text_message-shadow: @carousel-text_message-shadow;
   background-color: rgba(0, 0, 0, 0); // Fix IE9 click-thru bug
   // We can't have this transition here because WebKit cancels the carousel
   // animation if you trip this while in the middle of another animation.
@@ -120,7 +120,7 @@
   &:focus {
     outline: 0;
     color: @carousel-control-color;
-    text-decoration: none;
+    text_message-decoration: none;
     .opacity(.9);
   }
 
@@ -180,14 +180,14 @@
   margin-left: -30%;
   padding-left: 0;
   list-style: none;
-  text-align: center;
+  text_message-align: center;
 
   li {
     display: inline-block;
     width:  10px;
     height: 10px;
     margin: 1px;
-    text-indent: -999px;
+    text_message-indent: -999px;
     border: 1px solid @carousel-indicator-border-color;
     border-radius: 10px;
     cursor: pointer;
@@ -224,10 +224,10 @@
   padding-top: 20px;
   padding-bottom: 20px;
   color: @carousel-caption-color;
-  text-align: center;
-  text-shadow: @carousel-text-shadow;
+  text_message-align: center;
+  text_message-shadow: @carousel-text_message-shadow;
   & .btn {
-    text-shadow: none; // No shadow for button elements in carousel-caption
+    text_message-shadow: none; // No shadow for button elements in carousel-caption
   }
 }
 

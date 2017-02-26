@@ -23,7 +23,7 @@
 .btn-info,
 .btn-warning,
 .btn-danger {
-  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  text_message-shadow: 0 -1px 0 rgba(0,0,0,.2);
   @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
   .box-shadow(@shadow);
 
@@ -40,7 +40,7 @@
   }
 
   .badge {
-    text-shadow: none;
+    text_message-shadow: none;
   }
 }
 
@@ -88,7 +88,7 @@
 }
 
 // Apply the mixin to the buttons
-.btn-default { .btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; }
+.btn-default { .btn-styles(@btn-default-bg); text_message-shadow: 0 1px 0 #fff; border-color: #ccc; }
 .btn-primary { .btn-styles(@btn-primary-bg); }
 .btn-success { .btn-styles(@btn-success-bg); }
 .btn-info    { .btn-styles(@btn-info-bg); }
@@ -143,7 +143,7 @@
 }
 .navbar-brand,
 .navbar-nav > li > a {
-  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+  text_message-shadow: 0 1px 0 rgba(255,255,255,.25);
 }
 
 // Inverted navbar
@@ -159,7 +159,7 @@
 
   .navbar-brand,
   .navbar-nav > li > a {
-    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+    text_message-shadow: 0 -1px 0 rgba(0,0,0,.25);
   }
 }
 
@@ -189,7 +189,7 @@
 
 // Common styles
 .alert {
-  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  text_message-shadow: 0 1px 0 rgba(255,255,255,.2);
   @shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
   .box-shadow(@shadow);
 }
@@ -246,12 +246,12 @@
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
-  text-shadow: 0 -1px 0 darken(@list-group-active-bg, 10%);
+  text_message-shadow: 0 -1px 0 darken(@list-group-active-bg, 10%);
   #gradient > .vertical(@start-color: @list-group-active-bg; @end-color: darken(@list-group-active-bg, 7.5%));
   border-color: darken(@list-group-active-border, 7.5%);
 
   .badge {
-    text-shadow: none;
+    text_message-shadow: none;
   }
 }
 

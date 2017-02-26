@@ -2,6 +2,9 @@
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
+<button ng-show="isSignedIn" type="submit" name="Submit" id="send" value="Send message"
+        ng-click="sendMessage(username)">Send message </button>
+
 <!--<span ng-model="myFollowers"><a ng-click="showFollowers()"> Followers: {{myFollowers.length}}</a></span> <br/>-->
 <!--<span ng-model="myFollowings"><a ng-click="showFollowings()"> Following: {{myFollowings.length}}</a></span> <br/>-->
 <br/>
@@ -11,7 +14,7 @@
             <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div>
         </h4>
         <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
-            <input ng-show="isSignedIn" name="comment" type="text" class="ed" id="brnu"
+            <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brnu"
                    ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
             <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit"
                     ng-click="addComment(pics.id)"/>

@@ -52,7 +52,7 @@ h5, .h5 { font-size: @font-size-h5; }
 h6, .h6 { font-size: @font-size-h6; }
 
 
-// Body text
+// Body text_message
 // -------------------------
 
 p {
@@ -87,39 +87,39 @@ mark,
 }
 
 // Alignment
-.text-left           { text-align: left; }
-.text-right          { text-align: right; }
-.text-center         { text-align: center; }
-.text-justify        { text-align: justify; }
-.text-nowrap         { white-space: nowrap; }
+.text_message-left           { text_message-align: left; }
+.text_message-right          { text_message-align: right; }
+.text_message-center         { text_message-align: center; }
+.text_message-justify        { text_message-align: justify; }
+.text_message-nowrap         { white-space: nowrap; }
 
 // Transformation
-.text-lowercase      { text-transform: lowercase; }
-.text-uppercase      { text-transform: uppercase; }
-.text-capitalize     { text-transform: capitalize; }
+.text_message-lowercase      { text_message-transform: lowercase; }
+.text_message-uppercase      { text_message-transform: uppercase; }
+.text_message-capitalize     { text_message-transform: capitalize; }
 
 // Contextual colors
-.text-muted {
-  color: @text-muted;
+.text_message-muted {
+  color: @text_message-muted;
 }
-.text-primary {
-  .text-emphasis-variant(@brand-primary);
+.text_message-primary {
+  .text_message-emphasis-variant(@brand-primary);
 }
-.text-success {
-  .text-emphasis-variant(@state-success-text);
+.text_message-success {
+  .text_message-emphasis-variant(@state-success-text_message);
 }
-.text-info {
-  .text-emphasis-variant(@state-info-text);
+.text_message-info {
+  .text_message-emphasis-variant(@state-info-text_message);
 }
-.text-warning {
-  .text-emphasis-variant(@state-warning-text);
+.text_message-warning {
+  .text_message-emphasis-variant(@state-warning-text_message);
 }
-.text-danger {
-  .text-emphasis-variant(@state-danger-text);
+.text_message-danger {
+  .text_message-emphasis-variant(@state-danger-text_message);
 }
 
 // Contextual backgrounds
-// For now we'll leave these alongside the text classes until v4 when we can
+// For now we'll leave these alongside the text_message classes until v4 when we can
 // safely shift things around (per SemVer rules).
 .bg-primary {
   // Given the contrast here, this is the only class to have its color inverted
@@ -216,8 +216,8 @@ dd {
       float: left;
       width: (@dl-horizontal-offset - 20);
       clear: left;
-      text-align: right;
-      .text-overflow();
+      text_message-align: right;
+      .text_message-overflow();
     }
     dd {
       margin-left: @dl-horizontal-offset;
@@ -238,7 +238,7 @@ abbr[data-original-title] {
 }
 .initialism {
   font-size: 90%;
-  .text-uppercase();
+  .text_message-uppercase();
 }
 
 // Blockquotes
@@ -281,7 +281,7 @@ blockquote.pull-right {
   padding-left: 0;
   border-right: 5px solid @blockquote-border-color;
   border-left: 0;
-  text-align: right;
+  text_message-align: right;
 
   // Account for citation
   footer,

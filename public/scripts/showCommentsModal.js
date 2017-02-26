@@ -37,7 +37,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
                                     $scope.picture = data.data;
                                     });
 
-     $scope.addComment = function(id) {
+     $scope.addComment = function() {
             $http.post('api/pictures/comment', {
                 content: $scope.comment.content,
                 picture_id: $scope.pictureId.id

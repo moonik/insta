@@ -8,7 +8,7 @@
             <div id="owner">Picture posted by:<a ng-href="#/userProfile/{{pics.owner}}"> {{pics.owner}}</a></div>
         </h4>
         <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
-            <input ng-show="isSignedIn" name="comment" type="text" class="ed" id="brnu"
+            <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brnu"
                    ng-model="comment[pics.id].content" placeholder="Leave a comment..."/>
             <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="Submit"
                     ng-click="addComment(pics.id)"/>

@@ -6,6 +6,7 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
    $scope.pictures = [];
    $scope.comment = {};
    $scope.comments = [];
+   $scope.message = {};
 
    $scope.username = $routeParams['username'];
 
@@ -57,7 +58,32 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
 
 
 
+//     $scope.sendMessage = function() {
+//            $http.post('api/messages/sendTo/'+ $scope.username, {
+//                text_message: $scope.message.text_message,
+//                receiver: $scope.username
+//            }).then(function(response){
+//                         });
+//                          $scope.message = {};
+//                          };
 
+
+                            $scope.sendMessage = function(username){
+                            ModalService.showModal({
+                            templateUrl: 'sendMessageModal.html',
+                            controller: 'sendMessageCtrl',
+                            inputs: {
+                            user: username
+                              }
+                            }).then(function(modal) {
+                            modal.element.modal();
+                            modal.close.then(function (result) {
+                            if (angular.isDefined(result)) {
+                            $window.location.href = "#/userProfile/"+result;
+                            }
+                              });
+                             });
+                                };
 
 
 

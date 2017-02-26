@@ -40,7 +40,7 @@
   margin: 2px 0 0; // override default ul
   list-style: none;
   font-size: @font-size-base;
-  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  text_message-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   background-color: @dropdown-bg;
   border: 1px solid @dropdown-fallback-border; // IE8 fallback
   border: 1px solid @dropdown-border;
@@ -77,7 +77,7 @@
 .dropdown-menu > li > a {
   &:hover,
   &:focus {
-    text-decoration: none;
+    text_message-decoration: none;
     color: @dropdown-link-hover-color;
     background-color: @dropdown-link-hover-bg;
   }
@@ -89,7 +89,7 @@
   &:hover,
   &:focus {
     color: @dropdown-link-active-color;
-    text-decoration: none;
+    text_message-decoration: none;
     outline: 0;
     background-color: @dropdown-link-active-bg;
   }
@@ -97,7 +97,7 @@
 
 // Disabled state
 //
-// Gray out text and ensure the hover/focus state remains gray
+// Gray out text_message and ensure the hover/focus state remains gray
 
 .dropdown-menu > .disabled > a {
   &,
@@ -109,7 +109,7 @@
   // Nuke hover/focus effects
   &:hover,
   &:focus {
-    text-decoration: none;
+    text_message-decoration: none;
     background-color: transparent;
     background-image: none; // Remove CSS gradient
     .reset-filter();
