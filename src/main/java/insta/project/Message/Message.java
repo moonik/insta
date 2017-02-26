@@ -1,8 +1,11 @@
 package insta.project.Message;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -15,13 +18,23 @@ public class Message {
     private String receiver;
     private String text_message;
 
+    @DateTimeFormat
+    private Date date;
+
     public Message() {
     }
 
-    public Message(String sender, String receiver, String text_message) {
+//    public Message(String sender, String receiver, String text_message) {
+//        this.sender = sender;
+//        this.receiver = receiver;
+//        this.text_message = text_message;
+//    }
+
+    public Message(String sender, String receiver, String text_message, Date date) {
         this.sender = sender;
         this.receiver = receiver;
         this.text_message = text_message;
+        this.date = date;
     }
 
     public Long getId() {
@@ -54,5 +67,13 @@ public class Message {
 
     public void setText_message(String text_message) {
         this.text_message = text_message;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

@@ -11,7 +11,7 @@ public class MessageService {
 
     public Message sendMessage(MessageDTO messageDTO)
     {
-        Message message = new Message (messageDTO.getSender(), messageDTO.getReceiver(), messageDTO.getText_message());
+        Message message = new Message (messageDTO.getSender(), messageDTO.getReceiver(), messageDTO.getText_message(), messageDTO.getDate());
 
         return messageRepository.save(message);
     }

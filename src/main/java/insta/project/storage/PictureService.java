@@ -47,14 +47,14 @@ public class PictureService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
-        Picture picture = new Picture(pictureDTO.getName(), owner, token);
+        Picture picture = new Picture(pictureDTO.getDate(), pictureDTO.getName(), token, owner);
         storageService.store(file, token);
         return pictureRepository.save(picture);
     }
 
     public Comment create(CommentDTO commentDTO) {
 
-        Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id());
+        Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id(), commentDTO.getDate());
 
         return commentRepository.save(comment);
     }

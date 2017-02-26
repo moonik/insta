@@ -7,11 +7,13 @@ package insta.project.storage;
 import insta.project.Like.PictureLikes;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,9 @@ public class Picture {
     @Id
     @GeneratedValue
     private Long id;
+
+    @DateTimeFormat
+    private Date date;
 
     private String name;
     private String token;
@@ -44,6 +49,13 @@ public class Picture {
         this.token = token;
         this.owner = owner;
         this.pictureLikes = pictureLikes;
+    }
+
+    public Picture(Date date, String name, String token, String owner) {
+        this.date = date;
+        this.name = name;
+        this.token = token;
+        this.owner = owner;
     }
 
     public String getOwner() {
@@ -84,5 +96,13 @@ public class Picture {
 
     public void setPictureLikes(List<PictureLikes> pictureLikes) {
         this.pictureLikes = pictureLikes;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

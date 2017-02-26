@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,7 +74,9 @@ public class PictureController {
 
     @PostMapping("upload")
     public Picture upload(@RequestParam("name") String name, @RequestParam("owner") String owner, @RequestParam("file") MultipartFile file) {
-        Picture picture = pictureService.upload(new PictureDTO(name, owner), file);
+        Date date = new Date();
+
+        Picture picture = pictureService.upload(new PictureDTO(name, owner, date), file);
         return picture;
     }
 
@@ -98,7 +101,10 @@ public class PictureController {
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
+        Date date = new Date();
+
         commentDTO.setOwner(owner);
+        commentDTO.setDate(date);
 
         return pictureService.create(commentDTO);
     }

@@ -1,10 +1,20 @@
 package insta.project.Message;
 
+import java.util.Date;
+
 public class MessageDTO {
 
     private String receiver;
     private String sender;
     private String text_message;
+    private Date date;
+
+    public MessageDTO(String receiver, String sender, String text_message, Date date) {
+        this.receiver = receiver;
+        this.sender = sender;
+        this.text_message = text_message;
+        this.date = date;
+    }
 
     public MessageDTO(){}
 
@@ -36,5 +46,13 @@ public class MessageDTO {
 
     public void setText_message(String text_message) {
         this.text_message = text_message;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

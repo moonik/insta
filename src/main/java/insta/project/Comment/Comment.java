@@ -1,9 +1,12 @@
 package insta.project.Comment;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * Created by Роман on 03.02.2017.
@@ -21,6 +24,8 @@ public class Comment {
     private String content;
     private String owner;
     private Long picture_id;
+    @DateTimeFormat
+    private Date date;
 
     public Comment() {
 
@@ -30,6 +35,21 @@ public class Comment {
         this.content = content;
         this.owner = owner;
         this.picture_id = picture_id;
+    }
+
+    public Comment(String content, String owner, Long picture_id, Date date) {
+        this.content = content;
+        this.owner = owner;
+        this.picture_id = picture_id;
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Long getId() {
