@@ -116,13 +116,13 @@ public class PictureController {
     }
 
     @PostMapping("updateComments/{picture_id}")
-    public ResponseEntity<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
+    public ResponseEntity<List<Comment>> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
     {
-        if(!(commentRepo.checkIfNewComment(picture_id, lastComment)))
+        if(!(commentRepo.checkIfNewComment(picture_id, lastComment.getId())))
         {
-            return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Comment>(commentRepo.findNewComments(picture_id, lastComment), HttpStatus.OK);
+        return new ResponseEntity<List<Comment>>(commentRepo.findNewComments(picture_id, lastComment.getId()), HttpStatus.OK);
     }
 
     @PostMapping("like/{id}")

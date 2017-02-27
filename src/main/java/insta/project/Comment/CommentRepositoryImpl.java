@@ -19,32 +19,21 @@ public class CommentRepositoryImpl implements CommentRepo{
     }
 
     @Override
-    public Comment findNewComments(Long id, Comment lastComment) {
-        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 ORDER BY id DESC");
+    public List<Comment> findNewComments(Long id, Long commentId) {
+        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 AND c.id>?2 ORDER BY id DESC");
         query.setParameter(1, id);
+        query.setParameter(2, commentId);
 
-        List<Comment> newComment = query.getResultList();
-
-        return newComment.get(0);
+        return query.getResultList();
     }
 
-    @Override
-    public Comment findLastComment(Long id) {
+    public Boolean checkIfNewComment(Long id, Long commentId) {
         Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 ORDER BY id DESC");
         query.setParameter(1, id);
 
         List<Comment> newComment = query.getResultList();
 
-        return newComment.get(0);
-    }
-
-    public Boolean checkIfNewComment(Long id, Comment lastComment) {
-        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 ORDER BY id DESC");
-        query.setParameter(1, id);
-
-        List<Comment> newComment = query.getResultList();
-
-        if(newComment.get(0).getId().equals(lastComment.getId()))
+        if(newComment.get(0).getId().equals(commentId))
         {
             return false;
         }

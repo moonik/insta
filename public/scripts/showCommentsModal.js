@@ -6,7 +6,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
    $scope.comment = {};
    $scope.picture = picture;
    $scope.data = [];
-   $scope.newComment = {};
+   $scope.newComments = [];
 
     $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data){
         $scope.comments = data.data;
@@ -20,11 +20,12 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 
    var myVar = setInterval(function(){
         $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
-        $scope.newComment = data.data;
-        $scope.comments.push($scope.newComment);
-        console.log($scope.newComment);
+        $scope.newComments = data.data;
+        $scope.comments = $scope.comments.concat($scope.newComments);
+//        $scope.comments.push($scope.newComments);
+//        console.log($scope.newComments);
         });
-     }, 1500);
+     }, 1000);
 
 
     function myStopFunction() {
@@ -41,9 +42,6 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
                 content: $scope.comment.content,
                 picture_id: $scope.pictureId.id
             }).then(function(response){
-//              $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data) {
-//                                             $scope.comments = data.data;
-//                                             });
                          });
                          $scope.comment = {};
                           };
