@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/messages/")
@@ -16,6 +17,9 @@ public class MessageController {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private MessageRepo messageRepo;
 
     @PostMapping("sendTo/{userName}")
     public Message sendMessage(@PathVariable("userName") String userName, @RequestBody MessageDTO messageDTO){
@@ -29,6 +33,15 @@ public class MessageController {
         messageDTO.setDate(date);
         
         return messageService.sendMessage(messageDTO);
+    }
+
+    @GetMapping("myDialogs")
+    public List<Message> converstations()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+
+        return messageRepo.findMyConverstations(currentUser);
     }
 
 }

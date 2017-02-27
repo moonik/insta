@@ -1,11 +1,12 @@
 <header class="top_header" ng-controller="MainCtrl">
     <div class="container-fluid">
         <div class="row">
-            <dov class="col-md-8 col-xs-6">
+            <dov class="col-md-10 col-xs-6">
                 <div class="nav_menu">
                     <ul>
                         <li><a ng-href="#/home"> HOME</a></li>
                         <li ng-show="isSignedIn"><a ng-href="#/news">My news</a></li>
+                        <li ng-show="isSignedIn"><a ng-href="#/conversations"> My messages</a></li>
                         <li ng-show="isSignedIn"><a ng-href="#/pictureUpload"><img src="img/Livello.png" alt="photoapp"></a>
                         </li>
                         <li ng-show="isSignedIn"><a ng-href="#/gallery"> My gallery</a></li>
@@ -13,7 +14,7 @@
                     </ul>
                 </div>
             </dov>
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-2 col-xs-6">
                 <div class="sign_in_up">
                     <ul>
                         <li ng-show="!isSignedIn"><a ng-href="#/login"> Sign in</a></li>

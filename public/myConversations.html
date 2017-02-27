@@ -1,0 +1,15 @@
+<style>
+.messages {
+ border-bottom: 2px solid gray;
+ background-color: white;
+}
+<!--p.groove a{-->
+    <!--border-style: groove;-->
+<!--}-->
+</style>
+<div ng-repeat="dialogs in conversations | unique:'sender'">
+     <div class="messages">
+         <p><a ng-href="#/userProfile/{{dialogs.sender}}"> <b>{{dialogs.sender}}</b></a>:<a ng-click="showMessages()"> <div id="msg">{{dialogs.text_message}}</div></a></p>
+     </div>
+
+</div>

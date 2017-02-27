@@ -1,6 +1,5 @@
 angular.module('testApp').controller('sendMessageCtrl', function ($scope, $rootScope, $http, $window, close, user) {
 
-$scope.showMyFollowers = [];
 $scope.username = user;
 $scope.message;
 

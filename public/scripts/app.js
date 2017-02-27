@@ -1,4 +1,4 @@
-var testProject = angular.module('testApp', ['ngRoute', 'angularModalService'])
+var testProject = angular.module('testApp', ['ngRoute', 'angularModalService', 'angular.filter'])
 
 testProject.config(function($routeProvider, $httpProvider){
 
@@ -32,6 +32,12 @@ $routeProvider.when('/registration', {
                           templateUrl: 'userProfile.html',
                           controller: 'UserProfileCtrl'
                           })
+
+                              .when('/conversations',{
+
+                                                    templateUrl: 'myConversations.html',
+                                                    controller: 'myConversationsCtrl'
+                                                    })
 
                          .when('/news',{
 
