@@ -18,18 +18,16 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 //                                        });
 //     }, 1500);
 
-   var myVar = setInterval(function(){
+   var updateData = setInterval(function(){
         $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
         $scope.newComments = data.data;
         $scope.comments = $scope.comments.concat($scope.newComments);
-//        $scope.comments.push($scope.newComments);
-//        console.log($scope.newComments);
         });
      }, 1000);
 
 
     function myStopFunction() {
-    clearInterval(myVar);
+    clearInterval(updateData);
     };
 
 

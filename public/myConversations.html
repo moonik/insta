@@ -7,7 +7,7 @@
     <!--border-style: groove;-->
 <!--}-->
 </style>
-<div ng-repeat="dialogs in conversations | unique:'sender'">
+<div ng-repeat="dialogs in conversations | orderBy: '-id' | unique:'sender'">
      <div class="messages">
          <p><a ng-href="#/userProfile/{{dialogs.sender}}"> <b>{{dialogs.sender}}</b></a>:<a ng-click="showMessages()"> <div id="msg">{{dialogs.text_message}}</div></a></p>
      </div>
