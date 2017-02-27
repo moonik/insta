@@ -33,6 +33,12 @@ $routeProvider.when('/registration', {
                           controller: 'UserProfileCtrl'
                           })
 
+                             .when('/chatWith/:username',{
+
+                                                    templateUrl: 'myMessagesWithUser.html',
+                                                    controller: 'myMessagesCtrl'
+                                                    })
+
                               .when('/conversations',{
 
                                                     templateUrl: 'myConversations.html',

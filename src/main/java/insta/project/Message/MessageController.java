@@ -59,4 +59,26 @@ public class MessageController {
         return new ResponseEntity<List<Message>>(messageRepo.findNewMessages(currentUser, lastMessage.getId()), HttpStatus.OK);
     }
 
+    @GetMapping("getMessages/{{username}}")
+    public List<Message> getMessages(@PathVariable("username") String username)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+
+        return messageRepo.findMyMessagesWithUser(currentUser, username);
+    }
+
+    @PostMapping("updateMessages/{{username}}")
+    public ResponseEntity<List<Message>> getNewMessages(@PathVariable("username") String username, @RequestBody Message lastMessage)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+
+        if(!(messageRepo.checkIfNewMessages(username, currentUser, lastMessage.getId())))
+        {
+            return new ResponseEntity<List<Message>>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Message>>(messageRepo.findMyNewMessagesWithUser(username, currentUser, lastMessage.getId()), HttpStatus.OK);
+    }
+
 }
