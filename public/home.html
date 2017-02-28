@@ -17,6 +17,7 @@
             <button type="submit" ng-show="isSignedIn" class="glyphicon glyphicon-thumbs-up" name="Submit" id="like"
                     ng-click="likePhoto(pics)"/>
             <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}}</span> <span ng-show="!isSignedIn">people like this photo</span>
+            <button ng-click="saveToMyAlbom(pics.id)">Save</button>
 
         </p>
         <br/>

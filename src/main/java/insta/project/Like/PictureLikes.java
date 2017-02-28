@@ -13,6 +13,16 @@ public class PictureLikes {
     private String owner;
     private Long picture_id;
 
+//    @OneToMany(mappedBy = "picture_id")
+//    @Cascade(CascadeType.DELETE)
+//    private List<LikedPictures> likedPictures;
+
+//    public PictureLikes(String owner, Long picture_id, List<LikedPictures> likedPictures) {
+//        this.owner = owner;
+//        this.picture_id = picture_id;
+//        this.likedPictures = likedPictures;
+//    }
+
     public PictureLikes() {
     }
 
@@ -44,4 +54,12 @@ public class PictureLikes {
     public void setPicture_id(Long picture_id) {
         this.picture_id = picture_id;
     }
+
+//    public List<LikedPictures> getLikedPictures() {
+//        return likedPictures;
+//    }
+//
+//    public void setLikedPictures(List<LikedPictures> likedPictures) {
+//        this.likedPictures = likedPictures;
+//    }
 }

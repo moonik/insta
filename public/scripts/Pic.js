@@ -12,7 +12,12 @@ angular.module('testApp')
   $http.get('api/pictures/home', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 
+   $scope.saveToMyAlbom = function(id)
+   {
+       $http.post('api/pictures/savePicture/' + id, $scope.picture).then(function(data){
 
+       });
+   }
    $scope.upload = function () {
     $scope.isUploadComplete = true;
      var fd = new FormData();

@@ -3,15 +3,19 @@ package insta.project.storage;
 import insta.project.Comment.Comment;
 import insta.project.Comment.CommentDTO;
 import insta.project.Comment.CommentRepository;
+import insta.project.InstaUtils;
 import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
-import insta.project.InstaUtils;
+import insta.project.LikedPictures.LikedPictures;
+import insta.project.LikedPictures.LikedPicturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 /**
  * Created by Роман on 27.01.2017.
@@ -33,6 +37,9 @@ public class PictureService {
 
     @Autowired
     private PictureLikesRepo pictureLikesRepo;
+
+    @Autowired
+    private LikedPicturesRepository likedPicturesRepository;
 
     public Picture upload(PictureDTO pictureDTO, MultipartFile file) {
         if (file == null) {
@@ -62,8 +69,15 @@ public class PictureService {
     public PictureLikes saveLike(Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
+        Date date = new Date();
 
         PictureLikes pictureLikes = new PictureLikes(owner, picture_id);
+
+        Picture picture = pictureRepository.findOne(picture_id);
+
+        LikedPictures likedPicture = new LikedPictures(date, picture.getToken(), picture.getOwner(), picture.getId());
+
+        likedPicturesRepository.save(likedPicture);
 
         return pictureLikesRepository.save(pictureLikes);
     }

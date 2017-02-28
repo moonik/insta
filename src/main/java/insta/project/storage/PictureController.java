@@ -9,6 +9,7 @@ import insta.project.Follower.FollowerRepo;
 import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
+import insta.project.LikedPictures.LikedPicturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,9 @@ public class PictureController {
 
     @Autowired
     private FollowerRepo followerRepo;
+
+    @Autowired
+    private LikedPicturesRepository likedPicturesRepository;
 
     @GetMapping("getAll")
     public List<Picture> get(){
@@ -135,6 +139,7 @@ public class PictureController {
         if(pictureLikesRepo.findByPicId(picture_id, owner)){
             PictureLikes pictureLikes = pictureLikesRepo.findByPicIdAndOwner(picture_id, owner);
             pictureLikesRepository.delete(pictureLikes);
+            likedPicturesRepository.delete(picture_id);
             return new ResponseEntity<PictureLikes>(HttpStatus.CONFLICT);
         }else{
             return new ResponseEntity<PictureLikes>(pictureService.saveLike(picture_id), HttpStatus.OK);}
@@ -163,5 +168,15 @@ public class PictureController {
         }
 
         return myFollowingsPictures;
+    }
+
+    @PostMapping("savePicture/{id}")
+    public Picture savePicture(@PathVariable("id") Long id)
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+        Picture findPicture = pictureRepository.findOne(id);
+        Picture savedPicture = new Picture("saved", owner, findPicture.getToken());
+        return pictureRepository.save(savedPicture);
     }
 }
