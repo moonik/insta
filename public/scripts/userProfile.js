@@ -8,6 +8,8 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
    $scope.comments = [];
    $scope.message = {};
 
+    clearInterval($rootScope.updateData);
+
    $scope.username = $routeParams['username'];
 
 

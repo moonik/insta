@@ -67,6 +67,17 @@ public class MessageRepositoryImpl implements MessageRepo{
 
     @Override
     public Boolean checkIfNewMessages(String receiver, String sender, Long messageId) {
-        return null;
+        Query query = em.createQuery("SELECT m FROM Message m where m.receiver=?1 AND m.sender=?2 ORDER BY id DESC");
+        query.setParameter(1, receiver);
+        query.setParameter(2, sender);
+
+        List<Message> newMessages = query.getResultList();
+
+        if(newMessages.get(0).getId().equals(messageId))
+        {
+            return false;
+        }
+
+        return true;
     }
 }

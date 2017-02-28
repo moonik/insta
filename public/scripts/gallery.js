@@ -6,6 +6,8 @@ angular.module('testApp')
     $scope.myFollowings = [];
     $scope.comments = [];
 
+    clearInterval($rootScope.updateData);
+
       $http.get('api/pictures/my', $scope.pictures).then(function(data) {
                          $scope.pictures = data.data;});
 

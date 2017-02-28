@@ -4,11 +4,13 @@ angular.module('testApp')
    $scope.conversations = [];
    $scope.newConversations = [];
 
+    clearInterval($rootScope.updateData);
+
    $http.get('api/messages/myDialogs/', $scope.conversations).then(function(data) {
                            $scope.conversations = data.data;});
 
 
-                             var updateData = setInterval(function(){
+                             $rootScope.updateData = setInterval(function(){
                                    $http.post('api/messages/updateConversations/', $scope.conversations[$scope.conversations.length-1]).then(function(data) {
                                    $scope.newConversations = data.data;
                                    $scope.conversations = $scope.conversations.concat($scope.newConversations);
@@ -16,9 +18,17 @@ angular.module('testApp')
                                 }, 2000);
 
 
-                               function myStopFunction() {
-                               clearInterval(updateData);
+                               $scope.myStopFunction = function(userName) {
+                               clearInterval($rootScope.updateData);
+                               $window.location.href = "#/userProfile/" + userName;
                                };
+
+                               $scope.goTotheConversation = function(userName){
+                                clearInterval($rootScope.updateData);
+                                $window.location.href = "#/chatWith/" + userName;
+                                };
+
+
 
 
 });

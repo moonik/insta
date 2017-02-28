@@ -10,7 +10,7 @@ angular.module('testApp')
                            $scope.messages = data.data;});
 
 
-                             var updateData = setInterval(function(){
+                            $rootScope.updateData = setInterval(function(){
                                    $http.post('api/messages/updateMessages/' + $scope.username, $scope.messages[$scope.messages.length-1]).then(function(data) {
                                    $scope.newMessages = data.data;
                                    $scope.messages = $scope.messages.concat($scope.newMessages);
@@ -18,8 +18,9 @@ angular.module('testApp')
                                 }, 1000);
 
 
-                               function myStopFunction() {
-                               clearInterval(updateData);
+                               $scope.myStopFunction = function(userName) {
+                               clearInterval($rootScope.updateData);
+                               $window.location.href = "#/userProfile/" + userName;
                                };
 
 

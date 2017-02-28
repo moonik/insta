@@ -9,7 +9,7 @@
 </style>
 <div ng-repeat="dialogs in conversations | orderBy: '-id' | unique:'sender'">
      <div class="messages">
-         <p><a ng-click="myStopFunction()" ng-href="#/userProfile/{{dialogs.sender}}"> <b>{{dialogs.sender}}</b></a>:<a ng-click="myStopFunction()" ng-href="#/chatWith/{{dialogs.sender}}"> <div id="msg">{{dialogs.text_message}}</div></a></p>
+         <p><a ng-click="myStopFunction(dialogs.sender)"> <b>{{dialogs.sender}}</b></a>:<a ng-click="goTotheConversation(dialogs.sender)"> <div id="msg">{{dialogs.text_message}}</div></a></p>
      </div>
 
 </div>

@@ -9,6 +9,8 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $rootScope.getPictures = [];
     //var search = $routeParams['search'];
 
+    clearInterval($rootScope.updateData);
+
     $rootScope.getUser = function () {
         $http.get('api/users/me').then(function (response) {
             $rootScope.user = response.data;

@@ -7,6 +7,8 @@ angular.module('testApp')
   $scope.comments = [];
   $scope.isUploadComplete = false;
 
+    clearInterval($rootScope.updateData);
+
   $http.get('api/pictures/home', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 

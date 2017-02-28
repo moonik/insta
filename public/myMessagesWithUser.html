@@ -1,6 +1,7 @@
 <div ng-repeat="message in messages">
-    {{message.sender}}: {{message.text_message}}
+    {{message.date | date:'yyyy-MM-dd HH:mm'}}  <a ng-click="myStopFunction(message.sender)" ><b>{{message.sender}}</b></a>: {{message.text_message}}
 </div>
+    <br>
     <p>
         <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brn"
                ng-model="message.text_message" placeholder="Send a message..."/>
