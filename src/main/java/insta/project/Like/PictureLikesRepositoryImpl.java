@@ -10,6 +10,7 @@ public class PictureLikesRepositoryImpl implements PictureLikesRepo {
     @PersistenceContext
     private EntityManager em;
 
+    @Override
     public List<PictureLikes> findBypicture_id(Long id) {
 
         Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1");
@@ -30,6 +31,7 @@ public class PictureLikesRepositoryImpl implements PictureLikesRepo {
         }
     }
 
+    @Override
     public PictureLikes findByPicIdAndOwner(Long id, String owner) {
 
         Query query = em.createQuery("SELECT pl from PictureLikes pl where pl.picture_id=?1 AND pl.owner=?2");

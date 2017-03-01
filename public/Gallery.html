@@ -1,3 +1,17 @@
+<style>
+#imagelist{
+border: thin solid silver;
+float:left;
+padding:5px;
+width:auto;
+margin: 0 5px 0 0;
+margin-left: 5px;
+}
+#imagelist img{
+height: 225px;
+}
+
+</style>
 <br>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -7,7 +21,7 @@
 <br/>
 
 <div id="imagelist" ng-repeat="pics in pictures | orderBy: '-id'">
-    <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}">
+    <p><img ng-src="http://localhost:8080/api/files/{{pics.token}}"></p>
     <button type="submit" id="delete" name="delete" class="glyphicon glyphicon-remove" ng-click="delete(pics)"></button>
     <br>
     <span ng-model="like[pics.id].likeCounter">{{pics.pictureLikes.length}} people like this photo</span><br>

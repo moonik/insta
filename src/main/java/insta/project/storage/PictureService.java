@@ -69,6 +69,7 @@ public class PictureService {
     public PictureLikes saveLike(Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
+
         Date date = new Date();
 
         PictureLikes pictureLikes = new PictureLikes(owner, picture_id);

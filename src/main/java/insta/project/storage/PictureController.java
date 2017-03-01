@@ -9,6 +9,7 @@ import insta.project.Follower.FollowerRepo;
 import insta.project.Like.PictureLikes;
 import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
+import insta.project.LikedPictures.LikedPictures;
 import insta.project.LikedPictures.LikedPicturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -180,7 +181,24 @@ public class PictureController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
         Picture findPicture = pictureRepository.findOne(id);
-        Picture savedPicture = new Picture("saved", owner, findPicture.getToken());
+        Date date = new Date();
+        Picture savedPicture = new Picture(date, "saved", findPicture.getToken(), owner);
         return pictureRepository.save(savedPicture);
+    }
+
+    @GetMapping("savedPictures")
+    public List<Picture> getSavedPictures()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+        return pictureRepo.findSavedPictures(currentUser);
+    }
+
+    @GetMapping("likedPictures")
+    public List<LikedPictures> getLikedPictures()
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+        return likedPicturesRepository.findAllByOwnerOrderByIdDesc(currentUser);
     }
 }
