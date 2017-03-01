@@ -144,7 +144,7 @@ public class PictureController {
         if(pictureLikesRepo.findByPicId(picture_id, owner)){
             PictureLikes pictureLikes = pictureLikesRepo.findByPicIdAndOwner(picture_id, owner);
             pictureLikesRepository.delete(pictureLikes);
-            likedPicturesRepository.delete(picture_id);
+
             return new ResponseEntity<PictureLikes>(HttpStatus.CONFLICT);
         }else{
             return new ResponseEntity<PictureLikes>(pictureService.saveLike(picture_id), HttpStatus.OK);}
