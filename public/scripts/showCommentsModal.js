@@ -19,11 +19,16 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 //     }, 1500);
 
    var updateData = setInterval(function(){
-        $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
-        $scope.newComments = data.data;
-        $scope.comments = $scope.comments.concat($scope.newComments);
-        });
-     }, 1000);
+              if($scope.comments.length != 0){
+                          $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
+                           $scope.newComments = data.data;
+                           $scope.comments = $scope.comments.concat($scope.newComments);
+                           });
+                   }else
+                      $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data){
+                           $scope.comments = data.data;
+                       });
+                   }, 1000);
 
 
     function myStopFunction() {

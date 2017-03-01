@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -120,13 +121,16 @@ public class PictureController {
     }
 
     @PostMapping("updateComments/{picture_id}")
-    public ResponseEntity<List<Comment>> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
+    public List<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
     {
         if(!(commentRepo.checkIfNewComment(picture_id, lastComment.getId())))
         {
-            return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
+            //return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
+            return Collections.emptyList();
         }
-        return new ResponseEntity<List<Comment>>(commentRepo.findNewComments(picture_id, lastComment.getId()), HttpStatus.OK);
+        //return new ResponseEntity<List<Comment>>(commentRepo.findNewComments(picture_id, lastComment.getId()), HttpStatus.OK);
+
+        return commentRepo.findNewComments(picture_id, lastComment.getId());
     }
 
     @PostMapping("like/{id}")
