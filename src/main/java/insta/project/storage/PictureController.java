@@ -11,9 +11,8 @@ import insta.project.Like.PictureLikesRepo;
 import insta.project.Like.PictureLikesRepository;
 import insta.project.LikedPictures.LikedPictures;
 import insta.project.LikedPictures.LikedPicturesRepository;
+import insta.project.storage.exceptions.LikeException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -63,16 +62,17 @@ public class PictureController {
     private LikedPicturesRepository likedPicturesRepository;
 
     @GetMapping("getAll")
-    public List<Picture> get(){
+    public List<Picture> get() {
         return pictureRepository.findAll();
     }
 
     @GetMapping("getOne/{picture_id}")
-    public Picture getOne(@PathVariable("picture_id") Long id){return pictureRepository.findOne(id);}
+    public Picture getOne(@PathVariable("picture_id") Long id) {
+        return pictureRepository.findOne(id);
+    }
 
     @GetMapping("home")
-    public List<Picture> getHomePage()
-    {
+    public List<Picture> getHomePage() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return pictureRepo.findPictures(name);
@@ -80,52 +80,44 @@ public class PictureController {
 
     @PostMapping("upload")
     public Picture upload(@RequestParam("name") String name, @RequestParam("owner") String owner, @RequestParam("file") MultipartFile file) {
-        Date date = new Date();
 
-        Picture picture = pictureService.upload(new PictureDTO(name, owner, date), file);
+        Picture picture = pictureService.upload(new PictureDTO(name, owner, new Date()), file);
         return picture;
     }
 
     @DeleteMapping("delete/{id}")
-    public void delete(@PathVariable("id") Long id)
-    {
+    public void delete(@PathVariable("id") Long id) {
         Picture picture = pictureRepository.findOne(id);
         pictureRepository.delete(id);
         storageService.delete(picture.getToken());
     }
 
     @GetMapping("my")
-    public  List<Picture> getPictures()
-    {
+    public List<Picture> getPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return pictureRepository.findAllByOwnerOrderByIdDesc(name);
     }
 
     @PostMapping("comment")
-    public Comment save(@RequestBody CommentDTO commentDTO)
-    {
+    public Comment save(@RequestBody CommentDTO commentDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
-        Date date = new Date();
 
         commentDTO.setOwner(owner);
-        commentDTO.setDate(date);
+        commentDTO.setDate(new Date());
 
         return pictureService.create(commentDTO);
     }
 
     @GetMapping("{picture_id}")
-    public List<Comment> getComments(@PathVariable("picture_id") Long picture_id)
-    {
+    public List<Comment> getComments(@PathVariable("picture_id") Long picture_id) {
         return commentRepo.findBypicture_id(picture_id);
     }
 
     @PostMapping("updateComments/{picture_id}")
-    public List<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment)
-    {
-        if(!(commentRepo.checkIfNewComment(picture_id, lastComment.getId())))
-        {
+    public List<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment) {
+        if (!(commentRepo.checkIfNewComment(picture_id, lastComment.getId()))) {
             //return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
             return Collections.emptyList();
         }
@@ -135,40 +127,36 @@ public class PictureController {
     }
 
     @PostMapping("like/{id}")
-    public ResponseEntity<PictureLikes> like(@PathVariable("id") Long picture_id)
-    {
+    public PictureLikes like(@PathVariable("id") Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
 
-        if(pictureLikesRepo.findByPicId(picture_id, owner)){
+        if (pictureLikesRepo.findByPicId(picture_id, owner)) {
             PictureLikes pictureLikes = pictureLikesRepo.findByPicIdAndOwner(picture_id, owner);
             pictureLikesRepository.delete(pictureLikes);
 
-            return new ResponseEntity<PictureLikes>(HttpStatus.CONFLICT);
-        }else{
-            return new ResponseEntity<PictureLikes>(pictureService.saveLike(picture_id), HttpStatus.OK);}
+            throw new LikeException();
+        } else
+            return pictureService.saveLike(picture_id);
 
 
     }
 
     @GetMapping("profile/{userName}")
-    public List<Picture> getUsersPictures(@PathVariable("userName") String userName)
-    {
+    public List<Picture> getUsersPictures(@PathVariable("userName") String userName) {
         return pictureRepository.findAllByOwnerOrderByIdDesc(userName);
 
     }
 
     @GetMapping("myNews")
-    public List<Picture>  getMyNews()
-    {
+    public List<Picture> getMyNews() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         List<Follower> myFollowings = followerRepo.findFollowingByName(owner);
         List<Picture> myFollowingsPictures = new ArrayList<>();
-        for(int i = 0; i < myFollowings.size(); i++)
-        {
+        for (int i = 0; i < myFollowings.size(); i++) {
             myFollowingsPictures.addAll(pictureRepo.findByFollowing(myFollowings.get(i).getFollowing()));
         }
 
@@ -176,27 +164,23 @@ public class PictureController {
     }
 
     @PostMapping("savePicture/{id}")
-    public Picture savePicture(@PathVariable("id") Long id)
-    {
+    public Picture savePicture(@PathVariable("id") Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
         Picture findPicture = pictureRepository.findOne(id);
-        Date date = new Date();
-        Picture savedPicture = new Picture(date, "saved", findPicture.getToken(), owner);
+        Picture savedPicture = new Picture(new Date(), "saved", findPicture.getToken(), owner);
         return pictureRepository.save(savedPicture);
     }
 
     @GetMapping("savedPictures")
-    public List<Picture> getSavedPictures()
-    {
+    public List<Picture> getSavedPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
         return pictureRepo.findSavedPictures(currentUser);
     }
 
     @GetMapping("likedPictures")
-    public List<LikedPictures> getLikedPictures()
-    {
+    public List<LikedPictures> getLikedPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
         return likedPicturesRepository.findAllByOwnerOrderByIdDesc(currentUser);

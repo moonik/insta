@@ -70,13 +70,11 @@ public class PictureService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
-        Date date = new Date();
-
         PictureLikes pictureLikes = new PictureLikes(owner, picture_id);
 
         Picture picture = pictureRepository.findOne(picture_id);
 
-        LikedPictures likedPicture = new LikedPictures(date, picture.getToken(), picture.getOwner(), picture.getId());
+        LikedPictures likedPicture = new LikedPictures(new Date(), picture.getToken(), picture.getOwner(), picture.getId());
 
         likedPicturesRepository.save(likedPicture);
 

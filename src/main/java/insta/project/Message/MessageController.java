@@ -27,11 +27,9 @@ public class MessageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
 
-        Date date = new Date();
-
         messageDTO.setReceiver(userName);
         messageDTO.setSender(currentUser);
-        messageDTO.setDate(date);
+        messageDTO.setDate(new Date());
         
         return messageService.sendMessage(messageDTO);
     }

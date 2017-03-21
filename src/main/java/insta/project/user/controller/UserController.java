@@ -5,6 +5,7 @@ import insta.project.Follower.FollowerDTO;
 import insta.project.Follower.FollowerRepo;
 import insta.project.Follower.FollowerService;
 import insta.project.user.domain.UserAccount;
+import insta.project.user.exceptions.UserFollowException;
 import insta.project.user.model.UserDTO;
 import insta.project.user.model.UserParams;
 import insta.project.user.repository.UserRepository;
@@ -12,7 +13,6 @@ import insta.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -56,16 +56,16 @@ public class UserController {
     }
 
     @GetMapping("search/{search}")
-    public ResponseEntity<UserAccount> getUser(@PathVariable("search") String search) {
+    public UserAccount getUser(@PathVariable("search") String search) {
         UserAccount userAccount = userRepository.findByUsername(search);
         if (userAccount == null) {
-            return new ResponseEntity<UserAccount>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<UserAccount>(userAccount, HttpStatus.OK);
+            throw new UserNotFoundException();
+        }else
+        return userAccount;
     }
 
     @PostMapping("follow/{following}")
-    public ResponseEntity<Follower> follow(@PathVariable("following") String following) {
+    public Follower follow(@PathVariable("following") String following) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
@@ -73,12 +73,12 @@ public class UserController {
         UserAccount userFollow = userRepository.findByUsername(following);
         if (currentUser.getUsername().equals(userFollow.getUsername()) || userFollow.getUsername() == null || followerRepo.ifFollowed(currentUser.getUsername(), userFollow.getUsername())) {
 
-            return new ResponseEntity<Follower>(HttpStatus.CONFLICT);
+            throw new UserFollowException();
         }
 
         FollowerDTO followerDTO = new FollowerDTO(currentUser.getUsername(), userFollow.getUsername());
 
-        return new ResponseEntity<Follower>(followerService.saveFollowers(followerDTO), HttpStatus.OK);
+        return followerService.saveFollowers(followerDTO);
 
     }
 
