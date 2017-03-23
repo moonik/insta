@@ -18,6 +18,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 //                                        });
 //     }, 1500);
 
+    // function checks if there are new comments
    var updateData = setInterval(function(){
               if($scope.comments.length != 0){
                           $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {

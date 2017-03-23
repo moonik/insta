@@ -5,11 +5,11 @@ angular.module('testApp')
    $scope.newMessages = [];
 
    $scope.username = $routeParams['username'];
-
+    // gets all messages with user
    $http.get('api/messages/getMessages/' + $scope.username, $scope.messages).then(function(data) {
                            $scope.messages = data.data;});
 
-
+                            // function that checks if there are new messages with user
                             $rootScope.updateData = setInterval(function(){
                             if($scope.messages.length != 0){
                               $http.post('api/messages/updateMessages/' + $scope.username, $scope.messages[$scope.messages.length-1]).then(function(data) {

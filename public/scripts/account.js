@@ -4,13 +4,14 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $scope.searchUser = {};
     $rootScope.searchText = '';
     $scope.following = {};
-    $rootScope.showBttn = false;
+    $rootScope.showBttn = false; // but for follow if false don't show button
     $rootScope.isFollowed = false;
     $rootScope.getPictures = [];
     //var search = $routeParams['search'];
 
     clearInterval($rootScope.updateData);
 
+    //gets logged user
     $rootScope.getUser = function () {
         $http.get('api/users/me').then(function (response) {
             $rootScope.user = response.data;

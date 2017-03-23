@@ -12,7 +12,7 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
 
    $scope.username = $routeParams['username'];
 
-
+              // gets users picture
              $http.get('api/pictures/profile/' + $scope.username, $scope.pictures).then(function(data) {
                                     $scope.pictures = data.data;});
 

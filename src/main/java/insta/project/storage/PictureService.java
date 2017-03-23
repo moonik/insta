@@ -41,6 +41,12 @@ public class PictureService {
     @Autowired
     private LikedPicturesRepository likedPicturesRepository;
 
+    /**
+     * uploads picture
+     * @param pictureDTO - object from front end
+     * @param file - picture
+     * @return save picture
+     */
     public Picture upload(PictureDTO pictureDTO, MultipartFile file) {
         if (file == null) {
             return null;
@@ -59,6 +65,11 @@ public class PictureService {
         return pictureRepository.save(picture);
     }
 
+    /**
+     * save new comment
+     * @param commentDTO - object from fron end
+     * @return save new comment
+     */
     public Comment create(CommentDTO commentDTO) {
 
         Comment comment = new Comment(commentDTO.getContent(), commentDTO.getOwner(), commentDTO.getPicture_id(), commentDTO.getDate());
@@ -66,6 +77,11 @@ public class PictureService {
         return commentRepository.save(comment);
     }
 
+    /**
+     * adds like
+     * @param picture_id
+     * @return save like
+     */
     public PictureLikes saveLike(Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();

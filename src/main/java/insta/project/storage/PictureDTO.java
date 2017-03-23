@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class PictureDTO {
 
-    private String name;
-    private String owner;
+    private String name; // picture name
+    private String owner; // picture owner
 
     @DateTimeFormat
     private Date date;

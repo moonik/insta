@@ -11,6 +11,11 @@ import java.util.List;
 @Repository
 public interface PictureRepository extends JpaRepository<Picture, Long> {
 
+    /**
+     * searches pictures by owner
+     * @param owner - picture owner
+     * @return list of pictures
+     */
     List<Picture> findAllByOwnerOrderByIdDesc(String owner);
     List<Picture> findById(Long id);
 

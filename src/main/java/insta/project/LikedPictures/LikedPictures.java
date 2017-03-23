@@ -17,8 +17,8 @@ public class LikedPictures {
     @DateTimeFormat
     private Date date;
 
-    private String token;
-    private String owner;
+    private String token; // picture path
+    private String owner; // picture owner
     private Long picture_id;
 
     public LikedPictures(){}

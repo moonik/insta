@@ -30,7 +30,6 @@ import java.util.List;
 @RequestMapping("api/pictures/")
 public class PictureController {
 
-
     @Autowired
     private PictureRepository pictureRepository;
 
@@ -61,23 +60,43 @@ public class PictureController {
     @Autowired
     private LikedPicturesRepository likedPicturesRepository;
 
+    /**
+     *
+     * @return all pictures
+     */
     @GetMapping("getAll")
     public List<Picture> get() {
         return pictureRepository.findAll();
     }
 
+    /**
+     * searches picture by id
+     * @param id - picture id
+     * @return picture
+     */
     @GetMapping("getOne/{picture_id}")
     public Picture getOne(@PathVariable("picture_id") Long id) {
         return pictureRepository.findOne(id);
     }
 
+    /**
+     * fuction returns all pictures but not yours
+     * @return pictures
+     */
     @GetMapping("home")
     public List<Picture> getHomePage() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        return pictureRepo.findPictures(name);
+        return pictureRepo.findPictures(name); // searches pictures where you're not owner
     }
 
+    /**
+     * fuction uploads picture
+     * @param name - picture name
+     * @param owner - picture owner(who uploaded picture)
+     * @param file - picture
+     * @return picture
+     */
     @PostMapping("upload")
     public Picture upload(@RequestParam("name") String name, @RequestParam("owner") String owner, @RequestParam("file") MultipartFile file) {
 
@@ -85,6 +104,10 @@ public class PictureController {
         return picture;
     }
 
+    /**
+     * deletes picture
+     * @param id - picture id
+     */
     @DeleteMapping("delete/{id}")
     public void delete(@PathVariable("id") Long id) {
         Picture picture = pictureRepository.findOne(id);
@@ -92,6 +115,10 @@ public class PictureController {
         storageService.delete(picture.getToken());
     }
 
+    /**
+     * function gets pictures bot only yours
+     * @return pictures of logged user
+     */
     @GetMapping("my")
     public List<Picture> getPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -99,6 +126,11 @@ public class PictureController {
         return pictureRepository.findAllByOwnerOrderByIdDesc(name);
     }
 
+    /**
+     * function adds new comment
+     * @param commentDTO - object that transfers from front end by method POST
+     * @return new comment
+     */
     @PostMapping("comment")
     public Comment save(@RequestBody CommentDTO commentDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -110,11 +142,22 @@ public class PictureController {
         return pictureService.create(commentDTO);
     }
 
+    /**
+     *
+     * @param picture_id
+     * @return comments
+     */
     @GetMapping("{picture_id}")
     public List<Comment> getComments(@PathVariable("picture_id") Long picture_id) {
-        return commentRepo.findBypicture_id(picture_id);
+        return commentRepo.findBypicture_id(picture_id); // searches comments for picture
     }
 
+    /**
+     *function check and return new comments or if there aren't new comments it returns empty list
+     * @param picture_id
+     * @param lastComment
+     * @return new comments
+     */
     @PostMapping("updateComments/{picture_id}")
     public List<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment) {
         if (!(commentRepo.checkIfNewComment(picture_id, lastComment.getId()))) {
@@ -126,6 +169,12 @@ public class PictureController {
         return commentRepo.findNewComments(picture_id, lastComment.getId());
     }
 
+    /**
+     * like picture
+     * searches like by picture id then returns new like or if like already exists then delete like
+     * @param picture_id
+     * @return new like
+     */
     @PostMapping("like/{id}")
     public PictureLikes like(@PathVariable("id") Long picture_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -143,12 +192,21 @@ public class PictureController {
 
     }
 
+    /**
+     * returns other users pictures
+     * @param userName - user profile name
+     * @return user's pictures
+     */
     @GetMapping("profile/{userName}")
     public List<Picture> getUsersPictures(@PathVariable("userName") String userName) {
         return pictureRepository.findAllByOwnerOrderByIdDesc(userName);
 
     }
 
+    /**
+     * gets pictures of people that you'are following
+     * @return pictures
+     */
     @GetMapping("myNews")
     public List<Picture> getMyNews() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -163,6 +221,11 @@ public class PictureController {
         return myFollowingsPictures;
     }
 
+    /**
+     * saving pictures to your album
+     * @param id - picture id
+     * @return picture
+     */
     @PostMapping("savePicture/{id}")
     public Picture savePicture(@PathVariable("id") Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -172,6 +235,10 @@ public class PictureController {
         return pictureRepository.save(savedPicture);
     }
 
+    /**
+     * gets saved pictures
+     * @return pictures
+     */
     @GetMapping("savedPictures")
     public List<Picture> getSavedPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -179,6 +246,10 @@ public class PictureController {
         return pictureRepo.findSavedPictures(currentUser);
     }
 
+    /**
+     * gets pictures that you liked
+     * @return pictures
+     */
     @GetMapping("likedPictures")
     public List<LikedPictures> getLikedPictures() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

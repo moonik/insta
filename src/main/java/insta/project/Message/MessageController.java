@@ -22,6 +22,12 @@ public class MessageController {
     @Autowired
     private MessageRepo messageRepo;
 
+    /**
+     * sends message to user
+     * @param userName - receiver
+     * @param messageDTO - object from front end
+     * @return new message
+     */
     @PostMapping("sendTo/{userName}")
     public Message sendMessage(@PathVariable("userName") String userName, @RequestBody MessageDTO messageDTO){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -34,6 +40,10 @@ public class MessageController {
         return messageService.sendMessage(messageDTO);
     }
 
+    /**
+     * gets conversations with users
+     * @return logged user's conversations
+     */
     @GetMapping("myDialogs")
     public List<Message> converstations()
     {
@@ -43,6 +53,11 @@ public class MessageController {
         return messageRepo.findMyConverstations(currentUser);
     }
 
+    /**
+     * checks if there are new conversations
+     * @param lastMessage - last message from user
+     * @return new messages
+     */
     @PostMapping("updateConversations")
     public List<Message> getNewMessages(@RequestBody Message lastMessage)
     {
@@ -58,6 +73,11 @@ public class MessageController {
         return messageRepo.findNewMessages(currentUser, lastMessage.getId());
     }
 
+    /**
+     * gets messages from user
+     * @param userName - user that you are in conversation
+     * @return new messages
+     */
     @GetMapping("getMessages/{userName}")
     public List<Message> getMessages(@PathVariable("userName") String userName)
     {
@@ -67,6 +87,12 @@ public class MessageController {
         return messageRepo.findMyMessagesWithUser(currentUser, userName);
     }
 
+    /**
+     * check if there are new messages from user that you are in conversation
+     * @param userName - sender
+     * @param lastMessage - last message from sender
+     * @return new messages
+     */
     @PostMapping("updateMessages/{userName}")
     public List<Message> getNewMessages(@PathVariable("userName") String userName, @RequestBody Message lastMessage)
     {

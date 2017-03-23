@@ -8,7 +8,7 @@ angular.module('testApp')
   $scope.isUploadComplete = false;
 
     clearInterval($rootScope.updateData);
-
+    // gets all picture but not yours
   $http.get('api/pictures/home', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 

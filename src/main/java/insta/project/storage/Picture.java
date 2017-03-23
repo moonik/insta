@@ -26,13 +26,13 @@ public class Picture {
     @DateTimeFormat
     private Date date;
 
-    private String name;
-    private String token;
-    private String owner;
+    private String name; // picture name
+    private String token; // picture path
+    private String owner; // picture owner
 
     @OneToMany(mappedBy = "picture_id")
     @Cascade(CascadeType.DELETE)
-    private List<PictureLikes> pictureLikes;
+    private List<PictureLikes> pictureLikes; // picture likes
 
     public  Picture(){
 

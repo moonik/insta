@@ -3,13 +3,13 @@ angular.module('testApp')
 
    $scope.conversations = [];
    $scope.newConversations = [];
-
+    //stops interval function
     clearInterval($rootScope.updateData);
 
    $http.get('api/messages/myDialogs/', $scope.conversations).then(function(data) {
                            $scope.conversations = data.data;});
 
-
+                             // function that checks if there are new conversations
                              $rootScope.updateData = setInterval(function(){
                                    if($scope.conversations.length != 0)
                                    {

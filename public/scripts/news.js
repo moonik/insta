@@ -7,7 +7,7 @@ angular.module('testApp')
   $scope.comments = [];
 
     clearInterval($rootScope.updateData);
-
+// gets pictures of people that you are following
   $http.get('api/pictures/myNews', $scope.pictures).then(function(data) {
                      $scope.pictures = data.data;});
 

@@ -55,6 +55,11 @@ public class UserController {
     private class UserNotFoundException extends RuntimeException {
     }
 
+    /**
+     * searches user by name
+     * @param search - user name
+     * @return user
+     */
     @GetMapping("search/{search}")
     public UserAccount getUser(@PathVariable("search") String search) {
         UserAccount userAccount = userRepository.findByUsername(search);
@@ -64,6 +69,11 @@ public class UserController {
         return userAccount;
     }
 
+    /**
+     * follows user
+     * @param following - whos follow(current user)
+     * @return save followers
+     */
     @PostMapping("follow/{following}")
     public Follower follow(@PathVariable("following") String following) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -82,6 +92,10 @@ public class UserController {
 
     }
 
+    /**
+     * gets my followers
+     * @return followers
+     */
     @GetMapping("myFollowers")
     public List<Follower> getFollowers() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -94,6 +108,10 @@ public class UserController {
         return followers;
     }
 
+    /**
+     * gets people that i follow
+     * @return followings
+     */
     @GetMapping("iFollow")
     public List<Follower> getFollowings() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

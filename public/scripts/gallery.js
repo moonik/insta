@@ -7,14 +7,14 @@ angular.module('testApp')
     $scope.comments = [];
 
     clearInterval($rootScope.updateData);
-
+       // gets my pictures
       $http.get('api/pictures/my', $scope.pictures).then(function(data) {
                          $scope.pictures = data.data;});
-
+        // gets my followers
         $http.get('api/users/myFollowers', $scope.myFollowers).then(function(data) {
                              $scope.myFollowers = data.data;
                              });
-
+                               // gets users that i'm following
                              $http.get('api/users/iFollow', $scope.myFollowings).then(function(data) {
                                                           $scope.myFollowings = data.data;
                                                           });
