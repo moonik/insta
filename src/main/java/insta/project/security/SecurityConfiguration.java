@@ -40,8 +40,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/api/users/**").hasRole("USER")
-				.antMatchers("/api/pictures/like/{id}").hasRole("USER")
-				.antMatchers("/api/pictures/comment").hasRole("USER");
+				.antMatchers(HttpMethod.POST, "/api/pictures/like/{id}").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/api/pictures/comment").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/api/pictures/savePicture/{id}").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/api/follow/{following}").hasRole("USER");
 
 		http.addFilterBefore(
 				new StatelessLoginFilter(
