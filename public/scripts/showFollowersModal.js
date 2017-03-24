@@ -3,22 +3,19 @@ angular.module('testApp').controller('showFollowersCtrl', function ($scope, $roo
 $scope.showMyFollowers = [];
 
 $http.get('api/users/myFollowers', $scope.showMyFollowers).then(function(data) {
-                             $scope.showMyFollowers = data.data;
-                             });
+    $scope.showMyFollowers = data.data;
+    });
 
-
-
-    $scope.closeAndGo = function(username){
+$scope.closeAndGo = function(username){
     closeModal(username);
     };
 
-  $scope.close = function () {
-        closeModal(undefined);
+$scope.close = function () {
+    closeModal(undefined);
     };
 
-
-    function closeModal(data) {
-        close(data, 500);
+function closeModal(data) {
+    close(data, 500);
     }
 
 });

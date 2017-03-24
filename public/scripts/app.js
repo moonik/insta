@@ -5,66 +5,50 @@ testProject.config(function($routeProvider, $httpProvider){
 $routeProvider.when('/registration', {
     templateUrl: 'registration.html',
     controller: 'MainCtrl'
-
-}).when('/pictureUpload',{
-
+    })
+    .when('/pictureUpload',{
     templateUrl: 'pictureUpload.html',
     controller: 'AddPicCtrl'
-
-    }).when('/intro',{
-
+    })
+    .when('/intro',{
         templateUrl: 'intro.html'
         })
-    .when('/gallery',{
-
+        .when('/gallery',{
         templateUrl: 'Gallery.html',
         controller: 'myGallery'
         })
-
-          .when('/home',{
-
-                templateUrl: 'home.html',
-                controller: 'AddPicCtrl'
-                })
-
-            .when('/userProfile/:username',{
-
-                          templateUrl: 'userProfile.html',
-                          controller: 'UserProfileCtrl'
-                          })
-
-                             .when('/chatWith/:username',{
-
-                                                    templateUrl: 'myMessagesWithUser.html',
-                                                    controller: 'myMessagesCtrl'
-                                                    })
-
-                              .when('/conversations',{
-
-                                                    templateUrl: 'myConversations.html',
-                                                    controller: 'myConversationsCtrl'
-                                                    })
-
-                         .when('/news',{
-
-                                                   templateUrl: 'News.html',
-                                                   controller: 'NewsCtrl'
-                                                   })
-                .when('/login',{
-
-                                templateUrl: 'enter.html',
-                                controller: 'MainCtrl'
-                                })
-                                 .when('/search',{
-
-                                                                templateUrl: 'search.html',
-                                                                controller: 'MainCtrl'
-                                                                })
-                                 .otherwise({
-                                    redirectTo: '/intro'
-                                });
-
-                                $httpProvider.interceptors.push('httpRequestInterceptor');
+        .when('/home',{
+        templateUrl: 'home.html',
+        controller: 'AddPicCtrl'
+        })
+        .when('/userProfile/:username',{
+        templateUrl: 'userProfile.html',
+        controller: 'UserProfileCtrl'
+        })
+        .when('/chatWith/:username',{
+        templateUrl: 'myMessagesWithUser.html',
+        controller: 'myMessagesCtrl'
+        })
+        .when('/conversations',{
+        templateUrl: 'myConversations.html',
+        controller: 'myConversationsCtrl'
+        })
+        .when('/news',{
+        templateUrl: 'News.html',
+        controller: 'NewsCtrl'
+        })
+        .when('/login',{
+        templateUrl: 'enter.html',
+        controller: 'MainCtrl'
+        })
+        .when('/search',{
+        templateUrl: 'search.html',
+        controller: 'MainCtrl'
+        })
+        .otherwise({
+        redirectTo: '/intro'
+        });
+        $httpProvider.interceptors.push('httpRequestInterceptor');
 });
 
 //testProject.run(function ($rootScope, $location, ModalService, $http) {

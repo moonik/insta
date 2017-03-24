@@ -51,15 +51,15 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
         $rootScope.search = function(search)
         {
              if (angular.isDefined(search) && search !== "") {
-                         $http.get('api/users/search/' + search).then(function (response) {
-                         $scope.searchUser = response.data;
-                         $rootScope.showBttn = true;
-                       },
-                       function(response){
-                       $rootScope.showBttn = false;
-                       alert("User not found");
-                       });
-                       };
+              $http.get('api/users/search/' + search).then(function (response) {
+              $scope.searchUser = response.data;
+              $rootScope.showBttn = true;
+              },
+              function(response){
+              $rootScope.showBttn = false;
+              alert("User not found");
+              });
+              };
         };
 
 

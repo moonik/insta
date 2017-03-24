@@ -20,16 +20,17 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 
     // function checks if there are new comments
    var updateData = setInterval(function(){
-              if($scope.comments.length != 0){
-                          $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1]).then(function(data) {
-                           $scope.newComments = data.data;
-                           $scope.comments = $scope.comments.concat($scope.newComments);
-                           });
-                   }else
-                      $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data){
-                           $scope.comments = data.data;
-                       });
-                   }, 1000);
+    if($scope.comments.length != 0){
+    $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1])
+    .then(function(data) {
+    $scope.newComments = data.data;
+    $scope.comments = $scope.comments.concat($scope.newComments);
+    });
+    }else
+        $http.get('api/pictures/' + $scope.pictureId.id, $scope.comments).then(function(data){
+        $scope.comments = data.data;
+        });
+        }, 1000);
 
 
     function myStopFunction() {
@@ -38,17 +39,17 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
 
 
      $http.get('api/pictures/getOne/' + $scope.pictureId.id).then(function(data) {
-                                    $scope.picture = data.data;
-                                    });
+        $scope.picture = data.data;
+        });
 
      $scope.addComment = function() {
-            $http.post('api/pictures/comment', {
-                content: $scope.comment.content,
-                picture_id: $scope.pictureId.id
-            }).then(function(response){
-                         });
-                         $scope.comment = {};
-                          };
+        $http.post('api/pictures/comment', {
+        content: $scope.comment.content,
+        picture_id: $scope.pictureId.id
+        }).then(function(response){
+        });
+        $scope.comment = {};
+        };
 
     $scope.closeAndGo = function(username){
        closeModal(username);

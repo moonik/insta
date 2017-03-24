@@ -10,14 +10,14 @@ angular.module('testApp')
     clearInterval($rootScope.updateData);
     // gets all picture but not yours
   $http.get('api/pictures/home', $scope.pictures).then(function(data) {
-                     $scope.pictures = data.data;});
+    $scope.pictures = data.data;});
 
    $scope.saveToMyAlbom = function(id)
    {
-       $http.post('api/pictures/savePicture/' + id, $scope.picture).then(function(data){
+    $http.post('api/pictures/savePicture/' + id, $scope.picture).then(function(data){
+        });
+   };
 
-       });
-   }
    $scope.upload = function () {
     $scope.isUploadComplete = true;
      var fd = new FormData();
@@ -39,42 +39,39 @@ angular.module('testApp')
 
     $scope.addComment = function(id) {
         $http.post('api/pictures/comment', {
-            content: $scope.comment[id].content,
-            picture_id: id
+        content: $scope.comment[id].content,
+        picture_id: id
         }).then(function(response){
-                         alert("Comment sent :)");
-                     });
-                      $scope.comment = {};
-                      };
+        alert("Comment sent :)");
+        });
+        $scope.comment = {};
+        };
 
-
-       $scope.showComments = function(picture){
-                                   ModalService.showModal({
-                                   templateUrl: 'showCommentsModal.html',
-                                   controller: 'showCommentsCtrl',
-                                   inputs: {
-                                   picture: jQuery.extend({}, picture)
-                                   }
-                                   }).then(function(modal) {
-                                   modal.element.modal();
-                                   modal.close.then(function (result) {
-                                   if (angular.isDefined(result)) {
-                                   $window.location.href = "#/userProfile/"+result;
-                                   }
-                                   });
-                                    });
-                                    };
+    $scope.showComments = function(picture){
+        ModalService.showModal({
+        templateUrl: 'showCommentsModal.html',
+        controller: 'showCommentsCtrl',
+        inputs: {
+        picture: jQuery.extend({}, picture)
+        }
+        }).then(function(modal) {
+        modal.element.modal();
+        modal.close.then(function (result) {
+        if (angular.isDefined(result)) {
+            $window.location.href = "#/userProfile/"+result;
+            }
+            });
+            });
+            };
 
 
      $scope.likePhoto = function(pics){
         $http.post('api/pictures/like/' + pics.id).then(function(data){
-                              pics.pictureLikes.push(data.data);
-                          },
-                          function(response){
-                          pics.pictureLikes.pop(response.data)
-                          });
-
-
+        pics.pictureLikes.push(data.data);
+        },
+        function(response){
+        pics.pictureLikes.pop(response.data)
+        });
      };
 
 
