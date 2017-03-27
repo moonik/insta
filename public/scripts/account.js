@@ -4,7 +4,7 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $scope.searchUser = {};
     $rootScope.searchText = '';
     $scope.following = {};
-    $rootScope.showBttn = false; // but for follow if false don't show button
+    $rootScope.showBttn = false; // if false don't show follow button
     $rootScope.isFollowed = false;
     $rootScope.getPictures = [];
     //var search = $routeParams['search'];
@@ -16,11 +16,11 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
         $http.get('api/users/me').then(function (response) {
             $rootScope.user = response.data;
             $rootScope.isSignedIn = true;
-        }, function(response) {
-            localStorage.removeItem('jwt');
-            $rootScope.isSignedIn = false;
-        })
-    };
+            }, function(response) {
+                localStorage.removeItem('jwt');
+                $rootScope.isSignedIn = false;
+                })
+        };
 
     $scope.signUp = function () {
         $http.post('api/users', $scope.userForm).then(function (response) {
@@ -50,17 +50,17 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 
         $rootScope.search = function(search)
         {
-             if (angular.isDefined(search) && search !== "") {
-              $http.get('api/users/search/' + search).then(function (response) {
-              $scope.searchUser = response.data;
-              $rootScope.showBttn = true;
-              },
-              function(response){
-              $rootScope.showBttn = false;
-              alert("User not found");
-              });
-              };
-        };
+            if (angular.isDefined(search) && search !== "") {
+                $http.get('api/users/search/' + search).then(function (response) {
+                    $scope.searchUser = response.data;
+                    $rootScope.showBttn = true;
+                    },
+                function(response){
+                    $rootScope.showBttn = false;
+                    alert("User not found");
+                    });
+                };
+            };
 
 
 

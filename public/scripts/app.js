@@ -2,53 +2,54 @@ var testProject = angular.module('testApp', ['ngRoute', 'angularModalService', '
 
 testProject.config(function($routeProvider, $httpProvider){
 
-$routeProvider.when('/registration', {
-    templateUrl: 'registration.html',
-    controller: 'MainCtrl'
+    $routeProvider
+    .when('/registration', {
+        templateUrl: 'registration.html',
+        controller: 'MainCtrl'
     })
     .when('/pictureUpload',{
-    templateUrl: 'pictureUpload.html',
-    controller: 'AddPicCtrl'
+        templateUrl: 'pictureUpload.html',
+        controller: 'AddPicCtrl'
     })
     .when('/intro',{
         templateUrl: 'intro.html'
-        })
-        .when('/gallery',{
-        templateUrl: 'Gallery.html',
+    })
+    .when('/gallery',{
+        templateUrl: 'gallery.html',
         controller: 'myGallery'
-        })
-        .when('/home',{
+    })
+    .when('/home',{
         templateUrl: 'home.html',
         controller: 'AddPicCtrl'
-        })
-        .when('/userProfile/:username',{
+    })
+    .when('/userProfile/:username',{
         templateUrl: 'userProfile.html',
         controller: 'UserProfileCtrl'
-        })
-        .when('/chatWith/:username',{
+    })
+    .when('/chatWith/:username',{
         templateUrl: 'myMessagesWithUser.html',
         controller: 'myMessagesCtrl'
-        })
-        .when('/conversations',{
+    })
+    .when('/conversations',{
         templateUrl: 'myConversations.html',
         controller: 'myConversationsCtrl'
-        })
-        .when('/news',{
-        templateUrl: 'News.html',
+    })
+    .when('/news',{
+        templateUrl: 'news.html',
         controller: 'NewsCtrl'
-        })
-        .when('/login',{
+    })
+    .when('/login',{
         templateUrl: 'enter.html',
         controller: 'MainCtrl'
-        })
-        .when('/search',{
+    })
+    .when('/search',{
         templateUrl: 'search.html',
         controller: 'MainCtrl'
-        })
-        .otherwise({
+    })
+    .otherwise({
         redirectTo: '/intro'
-        });
-        $httpProvider.interceptors.push('httpRequestInterceptor');
+    });
+    $httpProvider.interceptors.push('httpRequestInterceptor');
 });
 
 //testProject.run(function ($rootScope, $location, ModalService, $http) {

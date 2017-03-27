@@ -1,10 +1,10 @@
 <div ng-repeat="message in messages">
     {{message.date | date:'yyyy-MM-dd HH:mm'}}  <a ng-click="myStopFunction(message.sender)" ><b>{{message.sender}}</b></a>: {{message.text_message}}
 </div>
-    <br>
-    <p>
-        <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brn"
+<br>
+<p>
+    <input ng-show="isSignedIn" name="comment" type="text_message" class="ed" id="brn"
                ng-model="message.text_message" placeholder="Send a message..."/>
-        <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="send"
-                ng-click="sendMessage()"/>
-    </p>
+    <button ng-show="isSignedIn" type="submit" class="glyphicon glyphicon-send" name="Submit" id="send"
+            ng-click="sendMessage()"/>
+</p>

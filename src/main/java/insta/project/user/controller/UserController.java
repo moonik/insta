@@ -1,9 +1,9 @@
 package insta.project.user.controller;
 
-import insta.project.Follower.Follower;
-import insta.project.Follower.FollowerDTO;
-import insta.project.Follower.FollowerRepo;
-import insta.project.Follower.FollowerService;
+import insta.project.follower.Follower;
+import insta.project.follower.FollowerDTO;
+import insta.project.follower.FollowerRepo;
+import insta.project.follower.FollowerService;
 import insta.project.user.domain.UserAccount;
 import insta.project.user.exceptions.UserFollowException;
 import insta.project.user.model.UserDTO;

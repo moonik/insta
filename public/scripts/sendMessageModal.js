@@ -5,20 +5,19 @@ $scope.message;
 
 $scope.sendMessage = function() {
     $http.post('api/messages/sendTo/'+ $scope.username, {
-    text_message: $scope.message.text_message,
-    receiver: $scope.username
-    }).then(function(response){
-    });
+        text_message: $scope.message.text_message,
+        receiver: $scope.username
+        }).then(function(response){
+            });
     $scope.message = {};
     };
 
-  $scope.close = function () {
-        closeModal(undefined);
+$scope.close = function () {
+    closeModal(undefined);
     };
 
-
-    function closeModal(data) {
-        close(data, 500);
+function closeModal(data) {
+    close(data, 500);
     }
 
 });
