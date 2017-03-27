@@ -1,0 +1,8 @@
+/target
+/.idea
+/.settings
+.classpath
+.project
+/public/resources/bower_components
+/upload-dir
+/*.iml
