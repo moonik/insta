@@ -16,15 +16,15 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
         $http.get('api/users/me').then(function (response) {
             $rootScope.user = response.data;
             $rootScope.isSignedIn = true;
-            }, function(response) {
-                localStorage.removeItem('jwt');
-                $rootScope.isSignedIn = false;
-                })
-        };
+        }, function(response) {
+            localStorage.removeItem('jwt');
+            $rootScope.isSignedIn = false;
+        })
+    };
 
     $scope.signUp = function () {
         $http.post('api/users', $scope.userForm).then(function (response) {
-         $window.location.href = "#/login"
+            $window.location.href = "#/login"
             console.log('signed up');
             alert("Registration completed, you can log in now");
         });
@@ -48,19 +48,18 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 
     $scope.getUser();
 
-        $rootScope.search = function(search)
-        {
-            if (angular.isDefined(search) && search !== "") {
-                $http.get('api/users/search/' + search).then(function (response) {
-                    $scope.searchUser = response.data;
-                    $rootScope.showBttn = true;
-                    },
-                function(response){
-                    $rootScope.showBttn = false;
-                    alert("User not found");
-                    });
-                };
-            };
+    $rootScope.search = function(search)
+    {
+        if (angular.isDefined(search) && search !== "") {
+            $http.get('api/users/search/' + search).then(function (response) {
+                $scope.searchUser = response.data;
+                $rootScope.showBttn = true;
+            },function(response){
+                $rootScope.showBttn = false;
+                alert("User not found");
+            });
+        };
+    };
 
 
 
@@ -74,12 +73,11 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 //             });
 //           }
 
-        $scope.followUser = function(username){
+    $scope.followUser = function(username){
+        $http.post('api/users/follow/' + username).then(function(response){
+            console.log('followed');
+            $rootScope.showBttn = false;
+        });
 
-            $http.post('api/users/follow/' + username).then(function(response){
-                console.log('followed');
-                 $rootScope.showBttn = false;
-            });
-
-        };
+    };
 });

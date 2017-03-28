@@ -12,7 +12,7 @@ public class FollowerRepositoryImpl implements FollowerRepo {
 
     @Override
     public List<Follower> findFollowersByName(String currentUser) {
-        Query query = em.createQuery("SELECT fr from follower fr where fr.following=?1");
+        Query query = em.createQuery("SELECT fr from Follower fr where fr.following=?1");
         query.setParameter(1, currentUser);
         List<Follower> followers = query.getResultList();
         return followers;
@@ -20,7 +20,7 @@ public class FollowerRepositoryImpl implements FollowerRepo {
 
     @Override
     public List<Follower> findFollowingByName(String currentUser) {
-        Query query = em.createQuery("SELECT fr from follower fr where fr.follower=?1");
+        Query query = em.createQuery("SELECT fr from Follower fr where fr.follower=?1");
         query.setParameter(1, currentUser);
         List<Follower> following = query.getResultList();
         return following;
@@ -28,7 +28,7 @@ public class FollowerRepositoryImpl implements FollowerRepo {
 
     @Override
     public Boolean ifFollowed(String currentUser, String following) {
-        Query query = em.createQuery("SELECT fr from follower fr where fr.follower=?1 AND fr.following=?2");
+        Query query = em.createQuery("SELECT fr from Follower fr where fr.follower=?1 AND fr.following=?2");
         query.setParameter(1, currentUser);
         query.setParameter(2, following);
         List<Follower> followers = query.getResultList();

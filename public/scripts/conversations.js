@@ -1,13 +1,12 @@
 angular.module('testApp')
 .controller('myConversationsCtrl', function($scope, $http, $rootScope, ModalService, $window) {
-
-   $scope.conversations = [];
-   $scope.newConversations = [];
+    $scope.conversations = [];
+    $scope.newConversations = [];
     //stops interval function
-   clearInterval($rootScope.updateData);
+    clearInterval($rootScope.updateData);
 
-   $http.get('api/messages/myDialogs/', $scope.conversations).then(function(data) {
-    $scope.conversations = data.data;
+    $http.get('api/messages/myDialogs/', $scope.conversations).then(function(data) {
+        $scope.conversations = data.data;
     });
 
     // function that checks if there are new conversations
@@ -17,12 +16,12 @@ angular.module('testApp')
             .then(function(data) {
                 $scope.newConversations = data.data;
                 $scope.conversations = $scope.conversations.concat($scope.newConversations);
-                });
+            });
         }else
             $http.get('api/messages/myDialogs/', $scope.conversations).then(function(data) {
                 $scope.conversations = data.data;
             });
-        }, 2000);
+    }, 2000);
 
     $scope.myStopFunction = function(userName) {
         clearInterval($rootScope.updateData);

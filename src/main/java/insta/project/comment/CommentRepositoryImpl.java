@@ -12,7 +12,7 @@ public class CommentRepositoryImpl implements CommentRepo{
 
     public List<Comment> findBypicture_id(Long id){
 
-        Query query = em.createQuery("SELECT c from comment c where c.picture_id=?1");
+        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1");
         query.setParameter(1, id);
         return query.getResultList();
 
@@ -20,7 +20,7 @@ public class CommentRepositoryImpl implements CommentRepo{
 
     @Override
     public List<Comment> findNewComments(Long id, Long commentId) {
-        Query query = em.createQuery("SELECT c from comment c where c.picture_id=?1 AND c.id>?2 ORDER BY id DESC");
+        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 AND c.id>?2 ORDER BY id DESC");
         query.setParameter(1, id);
         query.setParameter(2, commentId);
 
@@ -28,7 +28,7 @@ public class CommentRepositoryImpl implements CommentRepo{
     }
 
     public Boolean checkIfNewComment(Long id, Long commentId) {
-        Query query = em.createQuery("SELECT c from comment c where c.picture_id=?1 ORDER BY id DESC");
+        Query query = em.createQuery("SELECT c from Comment c where c.picture_id=?1 ORDER BY id DESC");
         query.setParameter(1, id);
 
         List<Comment> newComment = query.getResultList();

@@ -1,19 +1,19 @@
-angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootScope, $http, $window, $routeParams, ModalService) {
-   $scope.pic = {};
-   $scope.file = {};
-   $scope.pictures = [];
-   $scope.comment = {};
-   $scope.comments = [];
-   $scope.message = {};
+angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootScope, $http, $window, $routeParams, ModalService){
+    $scope.pic = {};
+    $scope.file = {};
+    $scope.pictures = [];
+    $scope.comment = {};
+    $scope.comments = [];
+    $scope.message = {};
 
-   clearInterval($rootScope.updateData);
+    clearInterval($rootScope.updateData);
 
-   $scope.username = $routeParams['username'];
+    $scope.username = $routeParams['username'];
 
     // gets users picture
     $http.get('api/pictures/profile/' + $scope.username, $scope.pictures).then(function(data) {
         $scope.pictures = data.data;
-        });
+    });
 
 
 
@@ -21,11 +21,11 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         $http.post('api/pictures/comment', {
             content: $scope.comment[id].content,
             picture_id: id
-            }).then(function(response){
-                alert("Comment sent :)");
-                });
+        }).then(function(response){
+            alert("Comment sent :)");
+        });
         $scope.comment = {};
-        };
+    };
 
 
     $scope.showComments = function(picture){
@@ -34,25 +34,25 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
             controller: 'showCommentsCtrl',
             inputs: {
                 picture: jQuery.extend({}, picture)
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                if (angular.isDefined(result)) {
+                    $window.location.href = "#/userProfile/"+result;
                 }
-            }).then(function(modal) {
-                modal.element.modal();
-                modal.close.then(function (result) {
-                    if (angular.isDefined(result)) {
-                        $window.location.href = "#/userProfile/"+result;
-                        }
-                    });
-                });
-        };
+            });
+        });
+    };
 
 
     $scope.likePhoto = function(pics){
         $http.post('api/pictures/like/' + pics.id).then(function(data){
             pics.pictureLikes.push(data.data);
-            },function(response){
-                pics.pictureLikes.pop(response.data)
-                });
-        };
+        },function(response){
+            pics.pictureLikes.pop(response.data)
+        });
+    };
 
 
 
@@ -68,20 +68,20 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
 
     $scope.sendMessage = function(username){
         ModalService.showModal({
-        templateUrl: 'sendMessageModal.html',
-        controller: 'sendMessageCtrl',
-        inputs: {
-            user: username
+            templateUrl: 'sendMessageModal.html',
+            controller: 'sendMessageCtrl',
+            inputs: {
+                user: username
             }
         }).then(function(modal) {
             modal.element.modal();
             modal.close.then(function (result) {
                 if (angular.isDefined(result)) {
                     $window.location.href = "#/userProfile/"+result;
-                    }
-                });
+                }
             });
-        };
+        });
+    };
 
 
 
