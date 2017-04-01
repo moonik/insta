@@ -17,6 +17,8 @@ angular.module('testApp').controller('showFollowingsCtrl', function ($scope, $ro
 
     function closeModal(data) {
         close(data, 500);
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     }
 
 });

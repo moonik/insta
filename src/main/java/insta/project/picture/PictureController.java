@@ -4,8 +4,6 @@ import insta.project.comment.Comment;
 import insta.project.comment.CommentDTO;
 import insta.project.comment.CommentRepo;
 import insta.project.comment.CommentRepository;
-import insta.project.follower.Follower;
-import insta.project.follower.FollowerRepo;
 import insta.project.like.PictureLikes;
 import insta.project.like.PictureLikesRepo;
 import insta.project.like.PictureLikesRepository;
@@ -13,6 +11,8 @@ import insta.project.likedPictures.LikedPictures;
 import insta.project.likedPictures.LikedPicturesRepository;
 import insta.project.storage.StorageService;
 import insta.project.storage.exceptions.LikeException;
+import insta.project.user.domain.UserAccount;
+import insta.project.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,10 +56,10 @@ public class PictureController {
     private PictureLikesRepo pictureLikesRepo;
 
     @Autowired
-    private FollowerRepo followerRepo;
+    private LikedPicturesRepository likedPicturesRepository;
 
     @Autowired
-    private LikedPicturesRepository likedPicturesRepository;
+    private UserRepository userRepository;
 
     /**
      *
@@ -211,12 +211,13 @@ public class PictureController {
     @GetMapping("myNews")
     public List<Picture> getMyNews() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String owner = auth.getName();
+        String currentUser = auth.getName();
+        UserAccount user = userRepository.findByUsername(currentUser);
 
-        List<Follower> myFollowings = followerRepo.findFollowingByName(owner);
+        List<UserAccount> myFollowings = user.getFollowings();
         List<Picture> myFollowingsPictures = new ArrayList<>();
         for (int i = 0; i < myFollowings.size(); i++) {
-            myFollowingsPictures.addAll(pictureRepo.findByFollowing(myFollowings.get(i).getFollowing()));
+            myFollowingsPictures.addAll(pictureRepo.findByFollowing(myFollowings.get(i).getUsername()));
         }
 
         return myFollowingsPictures;

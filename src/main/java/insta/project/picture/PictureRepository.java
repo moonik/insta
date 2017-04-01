@@ -19,4 +19,5 @@ public interface PictureRepository extends JpaRepository<Picture, Long> {
     List<Picture> findAllByOwnerOrderByIdDesc(String owner);
     List<Picture> findById(Long id);
 
+
 }

@@ -1,7 +1,7 @@
 package insta.project.user.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import insta.project.user.domain.UserAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 

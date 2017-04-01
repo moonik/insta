@@ -1,9 +1,5 @@
 package insta.project.user.controller;
 
-import insta.project.follower.Follower;
-import insta.project.follower.FollowerDTO;
-import insta.project.follower.FollowerRepo;
-import insta.project.follower.FollowerService;
 import insta.project.user.domain.UserAccount;
 import insta.project.user.exceptions.UserFollowException;
 import insta.project.user.model.UserDTO;
@@ -31,12 +27,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private FollowerService followerService;
-
-    @Autowired
-    private FollowerRepo followerRepo;
 
     @PersistenceContext
     EntityManager em;
@@ -75,20 +65,27 @@ public class UserController {
      * @return save followers
      */
     @PostMapping("follow/{following}")
-    public Follower follow(@PathVariable("following") String following) {
+    public List<UserAccount> follow(@PathVariable("following") Long following) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         UserAccount currentUser = userRepository.findByUsername(owner);
-        UserAccount userFollow = userRepository.findByUsername(following);
-        if (currentUser.getUsername().equals(userFollow.getUsername()) || userFollow.getUsername() == null || followerRepo.ifFollowed(currentUser.getUsername(), userFollow.getUsername())) {
+        UserAccount userFollow = userRepository.findOne(following);
 
+        if(currentUser.getId() == userFollow.getId()){
             throw new UserFollowException();
         }
 
-        FollowerDTO followerDTO = new FollowerDTO(currentUser.getUsername(), userFollow.getUsername());
+        List<UserAccount> followings = currentUser.getFollowings();
+        List<UserAccount> followers = userFollow.getFollowers();
+        if(followings.contains(userFollow)){
+            throw new UserFollowException();
+        }
 
-        return followerService.saveFollowers(followerDTO);
+        followings.add(userFollow);
+        followers.add(currentUser);
+
+        return userRepository.save(followings);
 
     }
 
@@ -97,14 +94,13 @@ public class UserController {
      * @return followers
      */
     @GetMapping("myFollowers")
-    public List<Follower> getFollowers() {
+    public List<UserAccount> getFollowers() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         UserAccount currentUser = userRepository.findByUsername(owner);
 
-        List<Follower> followers = followerRepo.findFollowersByName(currentUser.getUsername());
-
+        List<UserAccount> followers = currentUser.getFollowers();
         return followers;
     }
 
@@ -113,15 +109,15 @@ public class UserController {
      * @return followings
      */
     @GetMapping("iFollow")
-    public List<Follower> getFollowings() {
+    public List<UserAccount> getFollowings() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
         UserAccount currentUser = userRepository.findByUsername(owner);
 
-        List<Follower> followers = followerRepo.findFollowingByName(currentUser.getUsername());
+        List<UserAccount> followings = currentUser.getFollowings();
 
-        return followers;
+        return followings;
     }
 
 

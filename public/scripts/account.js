@@ -73,8 +73,8 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
 //             });
 //           }
 
-    $scope.followUser = function(username){
-        $http.post('api/users/follow/' + username).then(function(response){
+    $scope.followUser = function(id){
+        $http.post('api/users/follow/' + id).then(function(response){
             console.log('followed');
             $rootScope.showBttn = false;
         });

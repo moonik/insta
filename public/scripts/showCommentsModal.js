@@ -55,6 +55,8 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
     function closeModal(data) {
         myStopFunction();
         close(data, 500);
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     }
 
 });
