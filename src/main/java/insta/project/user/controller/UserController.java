@@ -120,5 +120,25 @@ public class UserController {
         return followings;
     }
 
+    @PostMapping("unFollow/{following}")
+    public List<UserAccount> unFollow(@PathVariable("following") String following) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String owner = auth.getName();
+
+        UserAccount currentUser = userRepository.findByUsername(owner);
+        UserAccount userFollowing = userRepository.findByUsername(following);
+
+        List<UserAccount> followings = currentUser.getFollowings();
+
+        if(!followings.contains(userFollowing)){
+            throw new UserFollowException();
+        }
+
+        followings.remove(userFollowing);
+
+        return userRepository.save(followings);
+
+    }
+
 
 }

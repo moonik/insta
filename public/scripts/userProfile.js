@@ -83,7 +83,12 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         });
     };
 
+    $scope.unFollowUser = function(username){
+        $http.post('api/users/unFollow/' + username).then(function(response){
+            console.log('unfollowed');
+        });
 
+    };
 
 });
 
