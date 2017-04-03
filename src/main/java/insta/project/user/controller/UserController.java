@@ -47,6 +47,7 @@ public class UserController {
 
     /**
      * searches user by name
+     *
      * @param search - user name
      * @return user
      */
@@ -55,35 +56,38 @@ public class UserController {
         UserAccount userAccount = userRepository.findByUsername(search);
         if (userAccount == null) {
             throw new UserNotFoundException();
-        }else
-        return userAccount;
+        } else
+            return userAccount;
     }
 
     /**
      * follows user
+     *
      * @param following - whos follow(current user)
      * @return save followers
      */
     @PostMapping("follow/{following}")
-    public List<UserAccount> follow(@PathVariable("following") Long following) {
+    public List<UserAccount> follow(@PathVariable("following") String following) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String owner = auth.getName();
+        String current = auth.getName();
 
-        UserAccount currentUser = userRepository.findByUsername(owner);
-        UserAccount userFollow = userRepository.findOne(following);
+        UserAccount currentUser = userRepository.findByUsername(current);
+        UserAccount userFollow = userRepository.findByUsername(following);
 
-        if(currentUser.getId() == userFollow.getId()){
+        if (currentUser.getId() == userFollow.getId()) {
             throw new UserFollowException();
         }
 
         List<UserAccount> followings = currentUser.getFollowings();
         List<UserAccount> followers = userFollow.getFollowers();
-        if(followings.contains(userFollow)){
-            throw new UserFollowException();
-        }
+        if (followings.contains(userFollow)) {
+            followings.remove(userFollow);
+            followers.remove(currentUser);
+        } else {
 
-        followings.add(userFollow);
-        followers.add(currentUser);
+            followings.add(userFollow);
+            followers.add(currentUser);
+        }
 
         return userRepository.save(followings);
 
@@ -91,6 +95,7 @@ public class UserController {
 
     /**
      * gets my followers
+     *
      * @return followers
      */
     @GetMapping("myFollowers")
@@ -106,6 +111,7 @@ public class UserController {
 
     /**
      * gets people that i follow
+     *
      * @return followings
      */
     @GetMapping("iFollow")
@@ -119,26 +125,4 @@ public class UserController {
 
         return followings;
     }
-
-    @PostMapping("unFollow/{following}")
-    public List<UserAccount> unFollow(@PathVariable("following") String following) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String owner = auth.getName();
-
-        UserAccount currentUser = userRepository.findByUsername(owner);
-        UserAccount userFollowing = userRepository.findByUsername(following);
-
-        List<UserAccount> followings = currentUser.getFollowings();
-
-        if(!followings.contains(userFollowing)){
-            throw new UserFollowException();
-        }
-
-        followings.remove(userFollowing);
-
-        return userRepository.save(followings);
-
-    }
-
-
 }
