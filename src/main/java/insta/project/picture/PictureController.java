@@ -181,7 +181,6 @@ public class PictureController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
 
-
         if (pictureLikesRepo.findByPicId(picture_id, owner)) {
             PictureLikes pictureLikes = pictureLikesRepo.findByPicIdAndOwner(picture_id, owner);
             pictureLikesRepository.delete(pictureLikes);
@@ -189,8 +188,6 @@ public class PictureController {
             throw new LikeException();
         } else
             return pictureService.saveLike(picture_id);
-
-
     }
 
     /**
