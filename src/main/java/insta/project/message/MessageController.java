@@ -64,7 +64,7 @@ public class MessageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
 
-        if(!(messageRepo.checkIfNewMessage(currentUser, lastMessage.getId())))
+        if(messageRepo.checkIfNewMessage(currentUser, lastMessage.getId()))
         {
             //return new ResponseEntity<List<message>>(HttpStatus.NOT_FOUND);
             return Collections.emptyList();
@@ -99,7 +99,7 @@ public class MessageController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
 
-        if(!(messageRepo.checkIfNewMessages(userName, currentUser, lastMessage.getId())))
+        if(messageRepo.checkIfNewMessages(userName, currentUser, lastMessage.getId()))
         {
             //return new ResponseEntity<List<message>>(HttpStatus.NOT_FOUND);
             return Collections.emptyList();

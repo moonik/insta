@@ -33,13 +33,7 @@ public class CommentRepositoryImpl implements CommentRepo{
 
         List<Comment> newComment = query.getResultList();
 
-        if(newComment.get(0).getId().equals(commentId))
-        {
-            return false;
-        }
-
-        return true;
+        return newComment.get(0).getId().equals(commentId);
     }
-
 
 }

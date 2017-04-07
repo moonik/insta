@@ -100,7 +100,6 @@ public class PictureController {
      */
     @PostMapping("upload")
     public Picture upload(@RequestParam("name") String name, @RequestParam("owner") String owner, @RequestParam("file") MultipartFile file) {
-
         Picture picture = pictureService.upload(new PictureDTO(name, owner, new Date()), file);
         return picture;
     }
@@ -161,7 +160,7 @@ public class PictureController {
      */
     @PostMapping("updateComments/{picture_id}")
     public List<Comment> getNewComments(@PathVariable("picture_id") Long picture_id, @RequestBody Comment lastComment) {
-        if (!(commentRepo.checkIfNewComment(picture_id, lastComment.getId()))) {
+        if (commentRepo.checkIfNewComment(picture_id, lastComment.getId())) {
             //return new ResponseEntity<List<comment>>(HttpStatus.NOT_FOUND);
             return Collections.emptyList();
         }
@@ -184,7 +183,6 @@ public class PictureController {
         if (pictureLikesRepo.findByPicId(picture_id, owner)) {
             PictureLikes pictureLikes = pictureLikesRepo.findByPicIdAndOwner(picture_id, owner);
             pictureLikesRepository.delete(pictureLikes);
-
             throw new LikeException();
         } else
             return pictureService.saveLike(picture_id);
@@ -198,7 +196,6 @@ public class PictureController {
     @GetMapping("profile/{userName}")
     public List<Picture> getUsersPictures(@PathVariable("userName") String userName) {
         return pictureRepository.findAllByOwnerOrderByIdDesc(userName);
-
     }
 
     /**

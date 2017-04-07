@@ -46,7 +46,6 @@ public class LikedPictures {
         this.date = date;
     }
 
-
     public String getToken() {
         return token;
     }
