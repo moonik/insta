@@ -12,7 +12,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
     });
 
     // function checks if there are new comments
-    var updateData = setInterval(function(){
+    $rootScope.updateData = setInterval(function(){
         if($scope.comments.length != 0){
             $http.post('api/pictures/updateComments/' + $scope.pictureId.id, $scope.comments[$scope.comments.length-1])
             .then(function(data) {
@@ -26,7 +26,7 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
     }, 1000);
 
     function myStopFunction() {
-        clearInterval(updateData);
+        clearInterval($rootScope.updateData);
     };
 
 
