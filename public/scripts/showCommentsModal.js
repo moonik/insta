@@ -43,6 +43,13 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
         $scope.comment = {};
     };
 
+    $scope.delete = function(comment){
+        $http.delete('api/pictures/deleteComment/' + comment.id, $scope.comment).then(function(response){
+            var index = $scope.comments.indexOf(comment);
+            $scope.comments.splice(index, 1);
+        })
+    };;
+
     $scope.closeAndGo = function(username){
        closeModal(username);
     };

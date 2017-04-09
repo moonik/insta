@@ -169,6 +169,16 @@ public class PictureController {
         return commentRepo.findNewComments(picture_id, lastComment.getId());
     }
 
+    @DeleteMapping("deleteComment/{id}")
+    public void deleteComment(@PathVariable("id") Long id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+        if(currentUser.equals(commentRepository.findOne(id).getOwner())){
+            commentRepository.delete(id);
+        }else
+            throw new RuntimeException();
+    }
+
     /**
      * like picture
      * searches like by picture id then returns new like or if like already exists then delete like

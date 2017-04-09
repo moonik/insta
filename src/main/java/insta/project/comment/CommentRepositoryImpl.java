@@ -35,5 +35,4 @@ public class CommentRepositoryImpl implements CommentRepo{
 
         return newComment.get(0).getId().equals(commentId);
     }
-
 }
