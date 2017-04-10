@@ -5,6 +5,9 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
     $scope.comment = {};
     $scope.comments = [];
     $scope.message = {};
+    $scope.followers = [];
+    $scope.followings = [];
+    $rootScope.followButton = true;
 
     clearInterval($rootScope.updateData);
 
@@ -15,7 +18,20 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         $scope.pictures = data.data;
     });
 
+    $http.get('api/users/profileFollowings/' + $scope.username, $scope.followings).then(function(data){
+        $scope.followings = data.data;
+    });
 
+    $http.get('api/users/profileFollowers/' + $scope.username, $scope.followers).then(function(data){
+        $scope.followers = data.data;
+    })
+
+    $http.get('api/users/check/' + $scope.username).then(function(response){
+        $rootScope.followButton = true;
+    },
+    function(response){
+        $rootScope.followButton = false;
+    });
 
     $scope.addComment = function(id) {
         $http.post('api/pictures/comment', {
@@ -54,18 +70,6 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         });
     };
 
-
-
-//     $scope.sendMessage = function() {
-//            $http.post('api/messages/sendTo/'+ $scope.username, {
-//                text_message: $scope.message.text_message,
-//                receiver: $scope.username
-//            }).then(function(response){
-//                         });
-//                          $scope.message = {};
-//                          };
-
-
     $scope.sendMessage = function(username){
         ModalService.showModal({
             templateUrl: 'sendMessageModal.html',
@@ -83,9 +87,9 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         });
     };
 
-    $scope.unFollowUser = function(username){
+    $scope.followUser = function(username){
          $http.post('api/users/follow/' + username).then(function(response){
-            console.log('unfollowed');
+            $rootScope.followButton = !$rootScope.followButton;
         });
 
     };

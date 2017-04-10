@@ -125,4 +125,33 @@ public class UserController {
 
         return followings;
     }
+
+    @GetMapping("profileFollowings/{name}")
+    public List<UserAccount> getUserFollowings(@PathVariable("name") String user) {
+        UserAccount userAccount = userRepository.findByUsername(user);
+        List<UserAccount> followings = userAccount.getFollowings();
+
+        return followings;
+    }
+
+    @GetMapping("profileFollowers/{name}")
+    public List<UserAccount> getUserFollowers(@PathVariable("name") String user) {
+        UserAccount userAccount = userRepository.findByUsername(user);
+        List<UserAccount> followers = userAccount.getFollowers();
+
+        return followers;
+    }
+
+    @GetMapping("check/{userProfile}")
+    public void checkIfFollow(@PathVariable("userProfile") String userProfile) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = auth.getName();
+        UserAccount currUser = userRepository.findByUsername(currentUser);
+        UserAccount user = userRepository.findByUsername(userProfile);
+        List<UserAccount> followings = currUser.getFollowings();
+
+        if (followings.contains(user)) {
+            throw new RuntimeException();
+        }
+    }
 }

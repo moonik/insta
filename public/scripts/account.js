@@ -5,7 +5,6 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
     $rootScope.searchText = '';
     $scope.following = {};
     $rootScope.showBttn = false; // if false don't show follow button
-    $rootScope.isFollowed = false;
     $rootScope.getPictures = [];
     //var search = $routeParams['search'];
 

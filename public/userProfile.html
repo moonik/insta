@@ -2,11 +2,17 @@
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 
-<button ng-show="isSignedIn" type="submit" name="Submit" id="send" value="Send message"
+<span ng-model="myFollowers">Followers: {{followers.length}}</span> <br/>
+<span ng-model="myFollowings">Following: {{followings.length}}</span> <br/>
+
+<button ng-show="isSignedIn" class="btn btn-primary" type="submit" name="Submit" id="send" value="Send message"
         ng-click="sendMessage(username)">Send message </button>
 
-<button ng-show="isSignedIn" type="submit" name="Submit" id="unfollow" value="Un follow"
-        ng-click="unFollowUser(username)">Un follow</button>
+<button ng-show="isSignedIn && followButton" class="btn btn-primary" type="submit" name="Submit" id="follow" value="follow"
+        ng-click="followUser(username)">Follow</button>
+
+<button ng-show="isSignedIn && !followButton" class="btn btn-primary" type="submit" name="Submit" id="unfollow" value="Un follow"
+        ng-click="followUser(username)">Un follow</button>
 
 <!--<span ng-model="myFollowers"><a ng-click="showFollowers()"> Followers: {{myFollowers.length}}</a></span> <br/>-->
 <!--<span ng-model="myFollowings"><a ng-click="showFollowings()"> Following: {{myFollowings.length}}</a></span> <br/>-->
