@@ -102,11 +102,8 @@ public class UserController {
     public List<UserAccount> getFollowers() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
-
         UserAccount currentUser = userRepository.findByUsername(owner);
-
-        List<UserAccount> followers = currentUser.getFollowers();
-        return followers;
+        return currentUser.getFollowers();
     }
 
     /**
@@ -118,28 +115,20 @@ public class UserController {
     public List<UserAccount> getFollowings() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String owner = auth.getName();
-
         UserAccount currentUser = userRepository.findByUsername(owner);
-
-        List<UserAccount> followings = currentUser.getFollowings();
-
-        return followings;
+        return currentUser.getFollowings();
     }
 
     @GetMapping("profileFollowings/{name}")
     public List<UserAccount> getUserFollowings(@PathVariable("name") String user) {
         UserAccount userAccount = userRepository.findByUsername(user);
-        List<UserAccount> followings = userAccount.getFollowings();
-
-        return followings;
+        return userAccount.getFollowings();
     }
 
     @GetMapping("profileFollowers/{name}")
     public List<UserAccount> getUserFollowers(@PathVariable("name") String user) {
         UserAccount userAccount = userRepository.findByUsername(user);
-        List<UserAccount> followers = userAccount.getFollowers();
-
-        return followers;
+        return userAccount.getFollowers();
     }
 
     @GetMapping("check/{userProfile}")
