@@ -1,9 +1,11 @@
 package insta.project.user.controller;
 
+import insta.project.user.domain.OnlineUsers;
 import insta.project.user.domain.UserAccount;
 import insta.project.user.exceptions.UserFollowException;
 import insta.project.user.model.UserDTO;
 import insta.project.user.model.UserParams;
+import insta.project.user.repository.OnlineUsersRepository;
 import insta.project.user.repository.UserRepository;
 import insta.project.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OnlineUsersRepository onlineUsersRepository;
 
     @PersistenceContext
     EntityManager em;
@@ -142,5 +147,32 @@ public class UserController {
         if (followings.contains(user)) {
             throw new RuntimeException();
         }
+    }
+
+    @PostMapping("setOnlineUser/{username}")
+    public List<OnlineUsers> setOnlineUser(@PathVariable("username") String userName) {
+        UserAccount user = userRepository.findByUsername(userName);
+        OnlineUsers userOnline = new OnlineUsers(user);
+        List<OnlineUsers> onlineUsers = onlineUsersRepository.findAll();
+        onlineUsers.add(userOnline);
+
+        return onlineUsersRepository.save(onlineUsers);
+    }
+
+    @DeleteMapping("goOffline/{username}")
+    public void offline(@PathVariable("username") String userName) {
+        OnlineUsers user = onlineUsersRepository.findOne(userRepository.findOneByUsername(userName).get().getId());
+        onlineUsersRepository.delete(user.getId());
+    }
+
+    @GetMapping("onlineUsers")
+    public List<OnlineUsers> getOnlineUsers() {
+        return onlineUsersRepository.findAll();
+    }
+
+    @GetMapping("checkOnline/{username}")
+    public boolean checkUser(@PathVariable("username") String userName){
+        UserAccount user = userRepository.findByUsername(userName);
+        return onlineUsersRepository.checkUser(user.getId()) != null;
     }
 }

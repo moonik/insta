@@ -1,9 +1,9 @@
 <br>
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-
+<span ng-show="isOnline">Online<img src="img/online-icon.png" alt="online-icon" height="0.8%" width="0.8%"></span><br><br>
 <span ng-model="myFollowers">Followers: {{followers.length}}</span> <br/>
-<span ng-model="myFollowings">Following: {{followings.length}}</span> <br/>
+<span ng-model="myFollowings">Following: {{followings.length}}</span> <br><br>
 
 <button ng-show="isSignedIn" class="btn btn-primary" type="submit" name="Submit" id="send" value="Send message"
         ng-click="sendMessage(username)">Send message </button>

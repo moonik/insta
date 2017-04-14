@@ -26,6 +26,10 @@ angular.module('testApp').controller('UserProfileCtrl', function ($scope, $rootS
         $scope.followers = data.data;
     })
 
+    $http.get('api/users/checkOnline/' + $scope.username).then(function(data){
+        $scope.isOnline = data.data;
+    })
+
     $http.get('api/users/check/' + $scope.username).then(function(response){
         $rootScope.followButton = true;
     },

@@ -29,17 +29,20 @@ angular.module('testApp').controller('MainCtrl', function ($scope, $rootScope, $
         });
     };
 
-    $scope.signIn = function () {
+    $scope.signIn = function (username) {
         $http.post('api/login', $scope.userForm).then(function (response) {
             localStorage.setItem('jwt', response.headers()['x-auth-token']);
             $scope.getUser();
-            console.log('signed in');
+            $http.post('api/users/setOnlineUser/' + username).then(function(response){
+                $rootScope.user = username;
+            })
             $window.location.href = "#/home"
         })
          $scope.userForm = {};
     };
 
     $scope.signOut = function () {
+        $http.delete('api/users/goOffline/' + $rootScope.user.username).then(function(response){})
         $rootScope.isSignedIn = false;
         localStorage.removeItem('jwt');
         console.log('signed out');
