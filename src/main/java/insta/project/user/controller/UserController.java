@@ -161,7 +161,7 @@ public class UserController {
 
     @DeleteMapping("goOffline/{username}")
     public void offline(@PathVariable("username") String userName) {
-        OnlineUsers user = onlineUsersRepository.findOne(userRepository.findOneByUsername(userName).get().getId());
+        OnlineUsers user = onlineUsersRepository.getUser(userRepository.findOneByUsername(userName).get().getId());
         onlineUsersRepository.delete(user.getId());
     }
 
@@ -173,6 +173,6 @@ public class UserController {
     @GetMapping("checkOnline/{username}")
     public boolean checkUser(@PathVariable("username") String userName){
         UserAccount user = userRepository.findByUsername(userName);
-        return onlineUsersRepository.checkUser(user.getId()) != null;
+        return onlineUsersRepository.getUser(user.getId()) != null;
     }
 }

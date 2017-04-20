@@ -1,9 +1,25 @@
-<div id="login-form">
-    <form class="form-group">
-        <label for="username">Username</label>
-        <input type="text_message" name="username" id="username" class="form-control" ng-model="userForm.username"><br/>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" ng-model="userForm.password"><br/>
-        <input type="submit" class="btn btn-block btn-primary" name="btn-singin" value="Sign In" ng-click="signIn(userForm.username)">
-    </form>
+<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body" ng-show="!isSignedIn">
+                <div id="login-form">
+                    <form class="form-group">
+                        <label  for="username">Username</label>
+                        <input type="text_message" name="username" id="username" class="form-control" ng-model="userForm.username"><br/>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" ng-model="userForm.password"><br/>
+                        <!--<input type="submit"  value="Sign Out" ng-click="signOut()" ng-if="isSignedIn">-->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input ng-show="!isSignedIn" type="submit" value="Sign In" class="btn btn-block btn-primary submit-log" name="btn-signup" ng-click="signIn(userForm.username)">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

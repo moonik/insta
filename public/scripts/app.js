@@ -3,10 +3,6 @@ var testProject = angular.module('testApp', ['ngRoute', 'angularModalService', '
 testProject.config(function($routeProvider, $httpProvider){
 
     $routeProvider
-    .when('/registration', {
-        templateUrl: 'registration.html',
-        controller: 'MainCtrl'
-    })
     .when('/pictureUpload',{
         templateUrl: 'pictureUpload.html',
         controller: 'AddPicCtrl'
@@ -38,10 +34,6 @@ testProject.config(function($routeProvider, $httpProvider){
         templateUrl: 'news.html',
         controller: 'NewsCtrl'
     })
-    .when('/login',{
-        templateUrl: 'enter.html',
-        controller: 'MainCtrl'
-    })
     .when('/search',{
         templateUrl: 'search.html',
         controller: 'MainCtrl'
@@ -52,54 +44,59 @@ testProject.config(function($routeProvider, $httpProvider){
     $httpProvider.interceptors.push('httpRequestInterceptor');
 });
 
-//testProject.run(function ($rootScope, $location, ModalService, $http) {
-//    $rootScope.me = {};
-//    $rootScope.isSignedIn = false;
-//
-//    getUser();
-//
-//    $rootScope.signUp = function () {
-//        ModalService.showModal({
-//            templateUrl: 'signUpModal.html',
-//            controller: 'SignUpModalCtrl'
-//        }).then(function (modal) {
-//            modal.element.modal();
-//            modal.close.then(function (result) {
-//                getUser();
-//            });
-//        });
-//    };
-//
-//    $rootScope.logIn = function () {
-//        ModalService.showModal({
-//            templateUrl: 'logInModal.html',
-//            controller: 'LogInModalCtrl'
-//        }).then(function (modal) {
-//            modal.element.modal();
-//            modal.close.then(function (result) {
-//                getUser();
-//            });
-//        });
-//    };
-//
-//    $rootScope.logOut = function () {
-//        $rootScope.isSignedIn = false;
-//        localStorage.removeItem('jwt');
-//    };
-//
-//    function getUser() {
-//        if (localStorage.getItem('jwt') === null) {
-//            return;
-//        }
-//        $http.get('api/users/me').then(function (response) {
-//            $rootScope.me = response.data;
-//            $rootScope.isSignedIn = true;
-//        }, function (response) {
-//            localStorage.removeItem('jwt');
-//            $rootScope.isSignedIn = false;
-//        })
-//    }
-//});
+testProject.run(function ($rootScope, $location, ModalService, $http, $window) {
+    $rootScope.me = {};
+    $rootScope.isSignedIn = false;
+
+    getUser();
+
+    $rootScope.registration = function(){
+        ModalService.showModal({
+            templateUrl: 'registration.html',
+            controller: 'RegistrationCtrl',
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                getUser();
+                //$window.location.href = "#/home"
+            });
+        });
+    };
+
+    $rootScope.login = function(){
+        ModalService.showModal({
+            templateUrl: 'enter.html',
+            controller: 'LoginCtrl',
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                getUser();
+                //$window.location.href = "#/home"
+            });
+        });
+    };
+
+    $rootScope.logOut = function () {
+        clearInterval($rootScope.updateData);
+        $http.delete('api/users/goOffline/' + $rootScope.me.username).then(function(response){})
+        $rootScope.isSignedIn = false;
+        localStorage.removeItem('jwt');
+        console.log('signed out');
+    };
+
+    function getUser() {
+        if (localStorage.getItem('jwt') === null) {
+            return;
+        }
+        $http.get('api/users/me').then(function (response) {
+            $rootScope.me = response.data;
+            $rootScope.isSignedIn = true;
+        }, function (response) {
+            localStorage.removeItem('jwt');
+            $rootScope.isSignedIn = false;
+        })
+    }
+});
 
 testProject.factory('httpRequestInterceptor', function () {
     return {
