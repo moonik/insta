@@ -3,6 +3,7 @@ package insta.project.user.controller;
 import insta.project.user.domain.OnlineUsers;
 import insta.project.user.domain.UserAccount;
 import insta.project.user.exceptions.UserFollowException;
+import insta.project.user.exceptions.UserNotExistsFoundException;
 import insta.project.user.model.UserDTO;
 import insta.project.user.model.UserParams;
 import insta.project.user.repository.OnlineUsersRepository;
@@ -60,7 +61,7 @@ public class UserController {
     public UserAccount getUser(@PathVariable("search") String search) {
         UserAccount userAccount = userRepository.findByUsername(search);
         if (userAccount == null) {
-            throw new UserNotFoundException();
+            throw new UserNotExistsFoundException("User doesn't exist");
         } else
             return userAccount;
     }
@@ -80,7 +81,7 @@ public class UserController {
         UserAccount userFollow = userRepository.findByUsername(following);
 
         if (currentUser.getId() == userFollow.getId()) {
-            throw new UserFollowException();
+            throw new UserFollowException("Attempt to subscribe to yourself");
         }
 
         List<UserAccount> followings = currentUser.getFollowings();

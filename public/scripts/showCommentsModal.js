@@ -47,6 +47,10 @@ app.controller('showCommentsCtrl', function ($scope, $rootScope, $http, $window,
         $http.delete('api/pictures/deleteComment/' + comment.id, $scope.comment).then(function(response){
             var index = $scope.comments.indexOf(comment);
             $scope.comments.splice(index, 1);
+        },
+        function(response){
+            $scope.message = response;
+            alert($scope.message.data.message);
         })
     };;
 

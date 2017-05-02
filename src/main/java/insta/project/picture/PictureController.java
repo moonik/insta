@@ -9,6 +9,7 @@ import insta.project.like.PictureLikesRepo;
 import insta.project.like.PictureLikesRepository;
 import insta.project.likedPictures.LikedPictures;
 import insta.project.likedPictures.LikedPicturesRepository;
+import insta.project.picture.exceptions.NotCommentOwnerException;
 import insta.project.storage.StorageService;
 import insta.project.storage.exceptions.LikeException;
 import insta.project.user.domain.UserAccount;
@@ -176,7 +177,7 @@ public class PictureController {
         if(currentUser.equals(commentRepository.findOne(id).getOwner())){
             commentRepository.delete(id);
         }else
-            throw new RuntimeException();
+            throw new NotCommentOwnerException("You're trying to delete not your comment");
     }
 
     /**
