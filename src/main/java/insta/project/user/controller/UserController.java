@@ -31,12 +31,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private OnlineUsersRepository onlineUsersRepository;
-
-    @PersistenceContext
-    EntityManager em;
-
     @RequestMapping(method = RequestMethod.POST)
     public UserAccount create(@Valid @RequestBody UserParams params) {
         return userRepository.save(params.toUser());
@@ -59,11 +53,7 @@ public class UserController {
      */
     @GetMapping("search/{search}")
     public UserAccount getUser(@PathVariable("search") String search) {
-        UserAccount userAccount = userRepository.findByUsername(search);
-        if (userAccount == null) {
-            throw new UserNotExistsFoundException("User doesn't exist");
-        } else
-            return userAccount;
+        return userService.getUser(search);
     }
 
     /**
@@ -74,29 +64,7 @@ public class UserController {
      */
     @PostMapping("follow/{following}")
     public List<UserAccount> follow(@PathVariable("following") String following) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String current = auth.getName();
-
-        UserAccount currentUser = userRepository.findByUsername(current);
-        UserAccount userFollow = userRepository.findByUsername(following);
-
-        if (currentUser.getId() == userFollow.getId()) {
-            throw new UserFollowException("Attempt to subscribe to yourself");
-        }
-
-        List<UserAccount> followings = currentUser.getFollowings();
-        List<UserAccount> followers = userFollow.getFollowers();
-        if (followings.contains(userFollow)) {
-            followings.remove(userFollow);
-            followers.remove(currentUser);
-        } else {
-
-            followings.add(userFollow);
-            followers.add(currentUser);
-        }
-
-        return userRepository.save(followings);
-
+        return userService.follow(following);
     }
 
     /**
@@ -106,10 +74,7 @@ public class UserController {
      */
     @GetMapping("myFollowers")
     public List<UserAccount> getFollowers() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String owner = auth.getName();
-        UserAccount currentUser = userRepository.findByUsername(owner);
-        return currentUser.getFollowers();
+        return userService.getFollowers();
     }
 
     /**
@@ -119,30 +84,25 @@ public class UserController {
      */
     @GetMapping("iFollow")
     public List<UserAccount> getFollowings() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String owner = auth.getName();
-        UserAccount currentUser = userRepository.findByUsername(owner);
-        return currentUser.getFollowings();
+        return userService.getFollowings();
     }
 
     @GetMapping("profileFollowings/{name}")
     public List<UserAccount> getUserFollowings(@PathVariable("name") String user) {
-        UserAccount userAccount = userRepository.findByUsername(user);
-        return userAccount.getFollowings();
+        return userService.getUserFollowings(user);
     }
 
     @GetMapping("profileFollowers/{name}")
     public List<UserAccount> getUserFollowers(@PathVariable("name") String user) {
-        UserAccount userAccount = userRepository.findByUsername(user);
-        return userAccount.getFollowers();
+        return userService.getUserFollowers(user);
     }
 
     @GetMapping("check/{userProfile}")
     public void checkIfFollow(@PathVariable("userProfile") String userProfile) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = auth.getName();
-        UserAccount currUser = userRepository.findByUsername(currentUser);
-        UserAccount user = userRepository.findByUsername(userProfile);
+        UserAccount currUser = userRepository.findOneByUsername(currentUser).get();
+        UserAccount user = userRepository.findOneByUsername(userProfile).get();
         List<UserAccount> followings = currUser.getFollowings();
 
         if (followings.contains(user)) {
@@ -152,28 +112,21 @@ public class UserController {
 
     @PostMapping("setOnlineUser/{username}")
     public List<OnlineUsers> setOnlineUser(@PathVariable("username") String userName) {
-        UserAccount user = userRepository.findByUsername(userName);
-        OnlineUsers userOnline = new OnlineUsers(user);
-        List<OnlineUsers> onlineUsers = onlineUsersRepository.findAll();
-        onlineUsers.add(userOnline);
-
-        return onlineUsersRepository.save(onlineUsers);
+        return userService.setOnlineUser(userName);
     }
 
     @DeleteMapping("goOffline/{username}")
     public void offline(@PathVariable("username") String userName) {
-        OnlineUsers user = onlineUsersRepository.getUser(userRepository.findOneByUsername(userName).get().getId());
-        onlineUsersRepository.delete(user.getId());
+        userService.offline(userName);
     }
 
     @GetMapping("onlineUsers")
     public List<OnlineUsers> getOnlineUsers() {
-        return onlineUsersRepository.findAll();
+        return userService.getOnlineUsers();
     }
 
     @GetMapping("checkOnline/{username}")
     public boolean checkUser(@PathVariable("username") String userName){
-        UserAccount user = userRepository.findByUsername(userName);
-        return onlineUsersRepository.getUser(user.getId()) != null;
+        return userService.checkUser(userName);
     }
 }
